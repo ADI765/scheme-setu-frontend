@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Schemes — Scheme Setu</title>
+    <meta name="description"
+        content="Enter your profile details to discover government educational schemes you're eligible for." />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        accent: "#60A5FA",
+                        bg: "#0F172A",
+                        surface: "#1E293B",
+                        "surface-soft": "#334155",
+                        "text-primary": "#E2E8F0",
+                        "text-secondary": "#94A3B8",
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', "system-ui", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="bg-bg text-text-primary min-h-screen flex flex-col">
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="sticky top-0 z-30 bg-bg/80 backdrop-blur-md border-b border-surface-soft/40">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div
+                    class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                    <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <span class="text-lg font-bold text-text-primary">Scheme <span class="text-primary">Setu</span></span>
+            </a>
+
+            <div class="hidden sm:flex items-center gap-1">
+                <a href="index.html"
+                    class="px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-soft/50 transition-all duration-300">Home</a>
+                <a href="profile.html"
+                    class="px-3 py-2 rounded-lg text-sm font-medium text-primary border-b-2 border-primary">Find
+                    Schemes</a>
+                <a href="wishlist.html"
+                    class="px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-soft/50 transition-all duration-300">Wishlist</a>
+            </div>
+
+            <button id="mobile-menu-btn"
+                class="sm:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-soft/50 transition-all duration-300">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="sm:hidden hidden border-t border-surface-soft/40 bg-bg/95 backdrop-blur-md">
+            <div class="px-4 py-3 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-soft/50 transition-all">Home</a>
+                <a href="profile.html"
+                    class="block px-3 py-2 rounded-lg text-sm font-medium text-primary bg-primary/5">Find Schemes</a>
+                <a href="wishlist.html"
+                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-soft/50 transition-all">Wishlist</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="flex-1 flex items-start justify-center px-4 sm:px-6 py-10 sm:py-16">
+        <div class="w-full max-w-lg">
+
+            <!-- Header -->
+            <div class="text-center mb-8 slide-up">
+                <h1 class="text-2xl sm:text-3xl font-bold mb-2">Find Your Schemes</h1>
+                <p class="text-text-secondary">Tell us about yourself and we'll match you with eligible government
+                    schemes.</p>
+            </div>
+
+            <!-- Profile Form Card -->
+            <div class="bg-surface rounded-xl p-6 sm:p-8 border border-surface-soft/50 scale-in">
+                <form id="profile-form" novalidate>
+
+                    <!-- Age -->
+                    <div class="mb-5">
+                        <label for="age" class="block text-sm font-medium text-text-secondary mb-1.5">Age</label>
+                        <input type="number" id="age" name="age" placeholder="e.g. 21" min="5" max="100"
+                            class="w-full bg-surface-soft text-text-primary px-4 py-3 rounded-lg border border-surface-soft placeholder:text-text-secondary/60 transition-all duration-300"
+                            required />
+                        <p id="age-error" class="text-red-400 text-xs mt-1 hidden">Please enter a valid age (5–100)</p>
+                    </div>
+
+                    <!-- Annual Family Income -->
+                    <div class="mb-5">
+                        <label for="income" class="block text-sm font-medium text-text-secondary mb-1.5">Annual Family
+                            Income (₹)</label>
+                        <input type="number" id="income" name="income" placeholder="e.g. 250000" min="0"
+                            class="w-full bg-surface-soft text-text-primary px-4 py-3 rounded-lg border border-surface-soft placeholder:text-text-secondary/60 transition-all duration-300"
+                            required />
+                        <p id="income-error" class="text-red-400 text-xs mt-1 hidden">Please enter a valid income (≥ 0)
+                        </p>
+                    </div>
+
+                    <!-- Occupation -->
+                    <div class="mb-5">
+                        <label for="occupation"
+                            class="block text-sm font-medium text-text-secondary mb-1.5">Occupation</label>
+                        <input type="text" id="occupation" name="occupation" placeholder="e.g. student"
+                            class="w-full bg-surface-soft text-text-primary px-4 py-3 rounded-lg border border-surface-soft placeholder:text-text-secondary/60 transition-all duration-300"
+                            required />
+                        <p id="occupation-error" class="text-red-400 text-xs mt-1 hidden">Please enter your occupation
+                        </p>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="mb-5">
+                        <label for="gender" class="block text-sm font-medium text-text-secondary mb-1.5">Gender</label>
+                        <select id="gender" name="gender"
+                            class="w-full bg-surface-soft text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
+                            required>
+                            <option value="" disabled selected class="text-text-secondary/60">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <p id="gender-error" class="text-red-400 text-xs mt-1 hidden">Please select your gender</p>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="mb-5">
+                        <label for="category"
+                            class="block text-sm font-medium text-text-secondary mb-1.5">Category</label>
+                        <select id="category" name="category"
+                            class="w-full bg-surface-soft text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
+                            required>
+                            <option value="" disabled selected class="text-text-secondary/60">Select category</option>
+                            <option value="general">General</option>
+                            <option value="obc">OBC</option>
+                            <option value="sc">SC</option>
+                            <option value="st">ST</option>
+                            <option value="ews">EWS</option>
+                        </select>
+                        <p id="category-error" class="text-red-400 text-xs mt-1 hidden">Please select your category</p>
+                    </div>
+
+                    <!-- Education Level -->
+                    <div class="mb-8">
+                        <label for="education_level"
+                            class="block text-sm font-medium text-text-secondary mb-1.5">Education Level</label>
+                        <select id="education_level" name="education_level"
+                            class="w-full bg-surface-soft text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
+                            required>
+                            <option value="" disabled selected class="text-text-secondary/60">Select education level
+                            </option>
+                            <option value="pre-matric">Pre-Matric (Up to Class 10)</option>
+                            <option value="post-matric">Post-Matric (Class 11–12)</option>
+                            <option value="undergraduate">Undergraduate</option>
+                            <option value="postgraduate">Postgraduate</option>
+                            <option value="phd">PhD / Doctoral</option>
+                            <option value="diploma">Diploma / ITI</option>
+                        </select>
+                        <p id="education_level-error" class="text-red-400 text-xs mt-1 hidden">Please select your
+                            education level</p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submit-btn"
+                        class="w-full flex items-center justify-center gap-2 bg-primary text-white font-semibold px-6 py-3.5 rounded-lg transition-all duration-300 hover:bg-accent hover:shadow-lg hover:shadow-primary/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span id="submit-text">Find Eligible Schemes</span>
+                        <!-- Loading Spinner (hidden by default) -->
+                        <svg id="submit-spinner" class="hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Server Error Message (hidden by default) -->
+                    <div id="server-error"
+                        class="hidden mt-4 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
+                        <p id="server-error-text"></p>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="border-t border-surface-soft/30 px-4 sm:px-6 py-8">
+        <div
+            class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-text-secondary">
+            <p>&copy; 2026 Scheme Setu &mdash; Academic Project</p>
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="hover:text-text-primary transition-colors duration-300">Home</a>
+                <a href="wishlist.html" class="hover:text-text-primary transition-colors duration-300">Wishlist</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts (logic added in Phase 2) -->
+    <script src="js/utils.js"></script>
+    <script src="js/dummyData.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/form.js"></script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+    </script>
+</body>
+
+</html>
