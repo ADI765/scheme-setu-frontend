@@ -23,25 +23,29 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- Scrollbar (Dark) ---------- */
+/* ---------- Scrollbar (Light Theme) ---------- */
 ::-webkit-scrollbar {
     width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #cbd5e1;
     border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #60a5fa;
+    background: #1d4ed8;
 }
 
-/* ---------- Keyframe Animations ---------- */
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
+
+/* ---------- Fade In ---------- */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -52,6 +56,7 @@ body {
     }
 }
 
+/* ---------- Slide Up ---------- */
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -64,6 +69,7 @@ body {
     }
 }
 
+/* ---------- Slide Down ---------- */
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -76,6 +82,7 @@ body {
     }
 }
 
+/* ---------- Scale In ---------- */
 @keyframes scaleIn {
     from {
         opacity: 0;
@@ -88,6 +95,7 @@ body {
     }
 }
 
+/* ---------- Pulse Subtle ---------- */
 @keyframes pulse-subtle {
 
     0%,
@@ -100,6 +108,7 @@ body {
     }
 }
 
+/* ---------- Shimmer (Skeleton) ---------- */
 @keyframes shimmer {
     0% {
         background-position: -200% 0;
@@ -110,23 +119,101 @@ body {
     }
 }
 
-/* ---------- Animation Utility Classes ---------- */
+/* ---------- Bounce In (Wishlist Add) ---------- */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+    70% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ---------- Highlight Pulse (Wishlist Save) ---------- */
+@keyframes highlightPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(29, 78, 216, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgba(29, 78, 216, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(29, 78, 216, 0);
+    }
+}
+
+/* ---------- Shake ---------- */
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-6px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(6px);
+    }
+}
+
+/* ---------- Float (Hero decoration) ---------- */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ============================================================
+   PAGE LOAD ANIMATIONS
+   ============================================================ */
+
 .fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+    animation: fadeIn 0.6s ease-out forwards;
 }
 
 .slide-up {
-    animation: slideUp 0.5s ease-out forwards;
+    animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .slide-down {
-    animation: slideDown 0.4s ease-out forwards;
+    animation: slideDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .scale-in {
-    animation: scaleIn 0.4s ease-out forwards;
+    animation: scaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/* Stagger delays for sequential entrance */
 .stagger-1 {
     animation-delay: 0.1s;
     opacity: 0;
@@ -147,20 +234,117 @@ body {
     opacity: 0;
 }
 
-/* ---------- Swipe Card Animations ---------- */
+/* Page-level entrance */
+.page-enter {
+    animation: slideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ============================================================
+   SECTION REVEAL ON SCROLL (IntersectionObserver)
+   ============================================================ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered reveal for child elements */
+.reveal-stagger>*:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.reveal-stagger>*:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.reveal-stagger>*:nth-child(3) {
+    transition-delay: 0.15s;
+}
+
+.reveal-stagger>*:nth-child(4) {
+    transition-delay: 0.2s;
+}
+
+/* ============================================================
+   CARD HOVER ANIMATION
+   ============================================================ */
+
+.card-hover {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -8px rgba(29, 78, 216, 0.12),
+        0 4px 8px -2px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================================
+   BUTTON INTERACTION ANIMATIONS
+   ============================================================ */
+
+.btn-primary {
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 8px 24px -4px rgba(29, 78, 216, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 2px 8px -2px rgba(29, 78, 216, 0.2);
+}
+
+.btn-secondary {
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:active {
+    transform: translateY(0) scale(0.97);
+}
+
+/* ============================================================
+   SWIPE CARD ANIMATIONS
+   ============================================================ */
+
 .swipe-card {
     will-change: transform;
     touch-action: none;
     user-select: none;
     cursor: grab;
+    transition: box-shadow 0.3s ease;
 }
 
 .swipe-card:active {
     cursor: grabbing;
 }
 
+.swipe-card:hover {
+    box-shadow: 0 8px 32px -8px rgba(29, 78, 216, 0.1),
+        0 4px 8px -2px rgba(0, 0, 0, 0.04);
+}
+
 .swipe-card.animating {
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .swipe-card.swipe-right {
@@ -174,19 +358,98 @@ body {
 }
 
 .swipe-card.snap-back {
-    transition: transform 0.2s ease-out;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     transform: translateX(0) rotate(0);
 }
 
-/* ---------- Skeleton Loader ---------- */
+/* ============================================================
+   INPUT FIELD ANIMATIONS
+   ============================================================ */
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #1d4ed8 !important;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Label color change on focus (when label is a previous sibling) */
+.form-group:focus-within label {
+    color: #1d4ed8;
+    transition: color 0.25s ease;
+}
+
+/* ============================================================
+   WISHLIST ANIMATIONS
+   ============================================================ */
+
+.wishlist-add {
+    animation: bounceIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wishlist-highlight {
+    animation: highlightPulse 0.8s ease-out;
+}
+
+/* Card removal slide-out */
+.wishlist-remove {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateX(20px);
+    opacity: 0;
+}
+
+/* ============================================================
+   NAVBAR ANIMATIONS
+   ============================================================ */
+
+.nav-link {
+    position: relative;
+    transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #1d4ed8;
+    border-radius: 9999px;
+    transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link:hover::after {
+    width: 60%;
+    left: 20%;
+}
+
+.nav-link-active::after {
+    width: 60%;
+    left: 20%;
+    background: #1d4ed8;
+}
+
+/* ============================================================
+   SKELETON LOADER (Light Theme)
+   ============================================================ */
+
 .skeleton {
-    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+    background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: 0.5rem;
 }
 
-/* ---------- Toast Notification ---------- */
+/* ============================================================
+   TOAST NOTIFICATION (Light Theme)
+   ============================================================ */
+
 .toast {
     position: fixed;
     bottom: 1.5rem;
@@ -194,14 +457,14 @@ body {
     transform: translateX(-50%) translateY(1rem);
     z-index: 50;
     padding: 0.75rem 1.25rem;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     font-size: 0.875rem;
     background: #1e293b;
-    color: #e2e8f0;
+    color: #f8fafc;
     border: 1px solid rgba(51, 65, 85, 0.5);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     opacity: 0;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
 }
 
@@ -210,12 +473,15 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ---------- Modal Overlay ---------- */
+/* ============================================================
+   MODAL OVERLAY
+   ============================================================ */
+
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
     z-index: 40;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -227,34 +493,236 @@ body {
     pointer-events: auto;
 }
 
-/* ---------- Progress Bar ---------- */
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+
 .progress-bar {
     height: 4px;
-    background: #334155;
+    background: #e2e8f0;
     border-radius: 9999px;
     overflow: hidden;
 }
 
 .progress-bar-fill {
     height: 100%;
-    background: #3b82f6;
+    background: linear-gradient(90deg, #1d4ed8, #3b82f6);
     border-radius: 9999px;
     transition: width 0.4s ease-in-out;
 }
 
-/* ---------- Custom Select Arrow ---------- */
+/* ============================================================
+   CUSTOM SELECT ARROW
+   ============================================================ */
+
 select {
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394A3B8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748B' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
 }
 
-/* ---------- Focus Ring ---------- */
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+/* ============================================================
+   FOCUS RING
+   ============================================================ */
+
+input,
+select,
+textarea {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+/* ============================================================
+   AUTH OVERLAY (Clean Light Theme)
+   ============================================================ */
+
+.auth-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #eff6ff 100%);
+    padding: 1rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    border-radius: 1.25rem;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+    animation: scaleIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.auth-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+}
+
+.auth-card p.auth-subtitle {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.auth-card label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 0.375rem;
+    transition: color 0.25s ease;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 0.7rem 0.95rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 0.625rem;
+    font-size: 0.875rem;
+    color: #1e293b;
+    background: #f8fafc;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    margin-bottom: 1rem;
+}
+
+.auth-card input:focus {
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+    background: #fff;
+}
+
+.auth-card input::placeholder {
+    color: #94a3b8;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.625rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 2px 8px rgba(29, 78, 216, 0.2);
+}
+
+.auth-btn:hover {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+    box-shadow: 0 6px 20px rgba(29, 78, 216, 0.3);
+    transform: translateY(-1px);
+}
+
+.auth-btn:active {
+    transform: scale(0.97) translateY(0);
+    box-shadow: 0 2px 8px rgba(29, 78, 216, 0.2);
+}
+
+.auth-error {
+    font-size: 0.8125rem;
+    color: #dc2626;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.auth-toggle {
+    text-align: center;
+    font-size: 0.8125rem;
+    color: #64748b;
+    margin-top: 1.25rem;
+}
+
+.auth-toggle a {
+    color: #1d4ed8;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.auth-toggle a:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
+
+/* ============================================================
+   SHAKE ANIMATION
+   ============================================================ */
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* ============================================================
+   NAVBAR USER BADGE
+   ============================================================ */
+
+.user-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background: rgba(29, 78, 216, 0.08);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #1d4ed8;
+    border: 1px solid rgba(29, 78, 216, 0.15);
+}
+
+.logout-btn {
+    background: none;
+    border: 1px solid rgba(100, 116, 139, 0.25);
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+    color: #dc2626;
+    border-color: rgba(220, 38, 38, 0.3);
+    background: rgba(220, 38, 38, 0.05);
+}
+
+/* ============================================================
+   DECORATIVE ELEMENTS
+   ============================================================ */
+
+/* Subtle gradient accent line for sections */
+.accent-line {
+    height: 3px;
+    width: 48px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+    margin-bottom: 1rem;
+}
+
+/* Float animation for decorative elements */
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Gradient text utility */
+.text-gradient {
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }

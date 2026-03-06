@@ -24,12 +24,11 @@
             return "";
         },
         income: (value) => {
-            const num = parseInt(value, 10);
-            if (isNaN(num) || num < 0) return "Please enter a valid income (≥ 0)";
+            if (!value) return "Please select your income range";
             return "";
         },
         occupation: (value) => {
-            if (!value || !value.trim()) return "Please enter your occupation";
+            if (!value) return "Please select your occupation";
             return "";
         },
         gender: (value) => {
@@ -89,9 +88,15 @@
      * @returns {Object}
      */
     function collectFormData() {
+        // Parse income range "min-max" into numeric values
+        const incomeRange = $("income").value;
+        const [incomeMin, incomeMax] = incomeRange.split("-").map(Number);
+
         return {
             age: parseInt($("age").value, 10),
-            income: parseInt($("income").value, 10),
+            income: Math.round((incomeMin + incomeMax) / 2), // midpoint for backward compat
+            income_min: incomeMin,
+            income_max: incomeMax,
             occupation: $("occupation").value.trim().toLowerCase(),
             gender: $("gender").value.trim().toLowerCase(),
             category: $("category").value.trim().toLowerCase(),
