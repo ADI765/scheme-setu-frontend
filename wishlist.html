@@ -228,39 +228,119 @@
 
     </div><!-- /app-content -->
 
-    <!-- ========== AUTH OVERLAY ========== -->
+    <!-- ========== AUTH OVERLAY — Split-Screen Login ========== -->
     <div id="auth-overlay" class="auth-overlay">
-        <div id="auth-login-card" class="auth-card">
-            <h2>Welcome Back</h2>
-            <p class="auth-subtitle">Log in to discover schemes you deserve.</p>
-            <div id="auth-login-error" class="auth-error hidden"></div>
-            <form id="auth-login-form">
-                <label for="auth-login-username">Username</label>
-                <input type="text" id="auth-login-username" placeholder="Enter username" autocomplete="username"
-                    required />
-                <label for="auth-login-password">Password</label>
-                <input type="password" id="auth-login-password" placeholder="Enter password"
-                    autocomplete="current-password" required />
-                <button type="submit" class="auth-btn">Log In</button>
-            </form>
-            <div class="auth-toggle">Don't have an account? <a id="auth-show-signup">Sign Up</a></div>
+        <!-- === LEFT PANEL: Form === -->
+        <div class="auth-left-panel">
+            <div class="auth-left-inner">
+                <div class="auth-brand">
+                    <div class="auth-brand-icon">
+                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <div class="auth-brand-name">Scheme <span>Setu</span></div>
+                </div>
+                <h1 class="auth-welcome-title">Welcome to Scheme Setu</h1>
+                <p class="auth-welcome-sub">Discover government scholarships and schemes you are eligible for.</p>
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="tab-signin" type="button">Sign In</button>
+                    <button class="auth-tab" id="tab-signup" type="button">Sign Up</button>
+                </div>
+                <div id="auth-login-card" class="auth-card">
+                    <h2>Welcome Back</h2>
+                    <p class="auth-subtitle">Log in to discover schemes you deserve.</p>
+                    <div id="auth-login-error" class="auth-error hidden"></div>
+                    <form id="auth-login-form">
+                        <label for="auth-login-username">Username *</label>
+                        <input type="text" id="auth-login-username" placeholder="Enter your username"
+                            autocomplete="username" required />
+                        <label for="auth-login-password">Password *</label>
+                        <input type="password" id="auth-login-password" placeholder="Enter your password"
+                            autocomplete="current-password" required />
+                        <button type="submit" class="auth-btn">Log In</button>
+                    </form>
+                    <div class="auth-toggle">Don't have an account? <a id="auth-show-signup">Sign Up</a></div>
+                </div>
+                <div id="auth-signup-card" class="auth-card hidden">
+                    <h2>Create Account</h2>
+                    <p class="auth-subtitle">Join Scheme Setu to find eligible schemes.</p>
+                    <div id="auth-signup-error" class="auth-error hidden"></div>
+                    <form id="auth-signup-form">
+                        <label for="auth-signup-username">Username *</label>
+                        <input type="text" id="auth-signup-username" placeholder="Choose a username"
+                            autocomplete="username" required />
+                        <label for="auth-signup-password">Password *</label>
+                        <input type="password" id="auth-signup-password" placeholder="Choose a password"
+                            autocomplete="new-password" required />
+                        <label for="auth-signup-phone">Phone (optional)</label>
+                        <input type="tel" id="auth-signup-phone" placeholder="e.g. 9876543210" autocomplete="tel" />
+                        <button type="submit" class="auth-btn">Sign Up</button>
+                    </form>
+                    <div class="auth-toggle">Already have an account? <a id="auth-show-login">Log In</a></div>
+                </div>
+                <div class="auth-divider">or continue with</div>
+                <div class="auth-social-row">
+                    <button class="auth-social-btn" type="button" title="Google"><svg viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                                fill="#4285F4" />
+                            <path
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                fill="#34A853" />
+                            <path
+                                d="M5.84 14.09A6.97 6.97 0 015.47 12c0-.72.13-1.43.37-2.09V7.07H2.18A11.96 11.96 0 001 12c0 1.94.46 3.77 1.18 5.07l3.66-2.98z"
+                                fill="#FBBC05" />
+                            <path
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                fill="#EA4335" />
+                        </svg></button>
+                    <button class="auth-social-btn" type="button" title="Apple"><svg viewBox="0 0 24 24" fill="#1e293b">
+                            <path
+                                d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.52-3.23 0-1.44.62-2.2.44-3.06-.4C3.79 16.17 4.36 9.53 8.75 9.28c1.32.07 2.24.77 3.01.82.97-.2 1.9-.77 2.93-.7 1.24.1 2.17.6 2.78 1.52-2.55 1.54-1.95 4.93.55 5.88-.46 1.2-.66 1.76-1.28 2.82-.63 1.09-1.52 2.45-2.7 2.5l.01.16zM12.03 9.2C11.88 7.16 13.5 5.5 15.4 5.35c.28 2.24-2.03 3.92-3.37 3.85z" />
+                        </svg></button>
+                    <button class="auth-social-btn" type="button" title="Facebook"><svg viewBox="0 0 24 24"
+                            fill="#1877F2">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg></button>
+                </div>
+                <div class="auth-footer">&copy; 2026 Scheme Setu</div>
+            </div>
         </div>
-        <div id="auth-signup-card" class="auth-card hidden">
-            <h2>Create Account</h2>
-            <p class="auth-subtitle">Join Scheme Setu to find eligible schemes.</p>
-            <div id="auth-signup-error" class="auth-error hidden"></div>
-            <form id="auth-signup-form">
-                <label for="auth-signup-username">Username</label>
-                <input type="text" id="auth-signup-username" placeholder="Choose a username" autocomplete="username"
-                    required />
-                <label for="auth-signup-password">Password</label>
-                <input type="password" id="auth-signup-password" placeholder="Choose a password"
-                    autocomplete="new-password" required />
-                <label for="auth-signup-phone">Phone (optional)</label>
-                <input type="tel" id="auth-signup-phone" placeholder="e.g. 9876543210" autocomplete="tel" />
-                <button type="submit" class="auth-btn">Sign Up</button>
-            </form>
-            <div class="auth-toggle">Already have an account? <a id="auth-show-login">Log In</a></div>
+        <!-- === RIGHT PANEL: Visual === -->
+        <div class="auth-right-panel">
+            <div class="auth-float-cards">
+                <div class="auth-float-card">
+                    <div class="float-card-header">Scholarship Tracker</div>
+                    <div class="float-card-value">₹1,85,000 <span class="float-card-badge green">↑ Eligible</span></div>
+                    <div class="float-card-sub">Total scholarship value matched</div>
+                </div>
+                <div class="auth-float-card">
+                    <div class="float-card-header">Active Schemes</div>
+                    <div class="float-card-row">Post Matric Scholarship <span style="font-weight:600;">SC/ST</span>
+                    </div>
+                    <div class="float-card-row">Punjab Merit Scholarship <span class="float-card-badge blue">New</span>
+                    </div>
+                    <div class="float-card-row">National Means Merit <span style="font-weight:600;">₹12,000/yr</span>
+                    </div>
+                </div>
+                <div class="auth-float-card">
+                    <div class="float-card-header">Eligibility Score</div>
+                    <div class="float-card-value">92%</div>
+                    <div class="float-card-sub">Based on your profile match</div>
+                </div>
+            </div>
+            <div class="auth-right-icon"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="white"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg></div>
+            <h2 class="auth-right-heading">A Unified Hub for Discovering <em>Student Schemes</em></h2>
+            <p class="auth-right-desc">Scheme Setu helps students quickly find and track government scholarships and
+                welfare schemes tailored to their eligibility.</p>
         </div>
     </div>
 
@@ -280,6 +360,23 @@
         const mobileMenu = document.getElementById("mobile-menu");
         menuBtn.addEventListener("click", () => {
             mobileMenu.classList.toggle("hidden");
+        });
+    </script>
+
+    <!-- Auth Tab Toggle -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabSignin = document.getElementById("tab-signin");
+            const tabSignup = document.getElementById("tab-signup");
+            const showSignup = document.getElementById("auth-show-signup");
+            const showLogin = document.getElementById("auth-show-login");
+            function activateTab(a, b) { a.classList.add("active"); b.classList.remove("active"); }
+            if (tabSignin && tabSignup) {
+                tabSignin.addEventListener("click", () => { activateTab(tabSignin, tabSignup); if (showLogin) showLogin.click(); });
+                tabSignup.addEventListener("click", () => { activateTab(tabSignup, tabSignin); if (showSignup) showSignup.click(); });
+            }
+            if (showSignup) showSignup.addEventListener("click", () => activateTab(tabSignup, tabSignin));
+            if (showLogin) showLogin.addEventListener("click", () => activateTab(tabSignin, tabSignup));
         });
     </script>
 </body>
