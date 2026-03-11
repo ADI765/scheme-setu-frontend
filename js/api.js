@@ -1,11 +1,6 @@
-/**
- * Scheme Setu — API Module (api.js)
- * Handles communication with the backend.
- * Toggle USE_DUMMY to switch between mock and real API.
- */
 
 // ===== Configuration =====
-const USE_DUMMY = true; // ← flip to false when backend is ready
+const USE_DUMMY = false; // ← flipped to use real backend
 const API_BASE_URL = "http://localhost:5000"; // Flask backend URL
 const API_TIMEOUT = 10000; // 10 seconds
 
@@ -17,7 +12,7 @@ const API_TIMEOUT = 10000; // 10 seconds
  * @returns {Promise<Object>} - { status, match_count, eligible_schemes[] }
  */
 async function matchSchemes(profileData) {
-    // --- Dummy mode: return mock data instantly ---
+    // --- Dummy mode: return mock data instantly
     if (USE_DUMMY) {
         // Simulate network delay for realistic UX testing
         await new Promise((resolve) => setTimeout(resolve, 800));
@@ -35,6 +30,8 @@ async function matchSchemes(profileData) {
             body: JSON.stringify({
                 age: parseInt(profileData.age, 10),
                 income: parseInt(profileData.income, 10),
+                income_min: parseInt(profileData.income_min || 0, 10),
+                income_max: parseInt(profileData.income_max || profileData.income, 10),
                 occupation: profileData.occupation.trim().toLowerCase(),
                 gender: profileData.gender.trim().toLowerCase(),
                 category: profileData.category.trim().toLowerCase(),
