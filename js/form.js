@@ -94,13 +94,13 @@
 
         return {
             age: parseInt($("age").value, 10),
-            income: Math.round((incomeMin + incomeMax) / 2), // midpoint for backward compat
-            income_min: incomeMin,
-            income_max: incomeMax,
-            occupation: $("occupation").value.trim().toLowerCase(),
             gender: $("gender").value.trim().toLowerCase(),
             category: $("category").value.trim().toLowerCase(),
             education_level: $("education_level").value.trim().toLowerCase(),
+            occupation: $("occupation").value.trim().toLowerCase(),
+            income: Math.round((incomeMin + incomeMax) / 2), // midpoint for backward compat
+            income_min: incomeMin,
+            income_max: incomeMax,
         };
     }
 

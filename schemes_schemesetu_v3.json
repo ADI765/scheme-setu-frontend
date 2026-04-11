@@ -1,0 +1,2282 @@
+{
+  "schemeSetu": {
+    "version": "3.0",
+    "lastUpdated": "2025",
+    "description": "Comprehensive collection of Central Government and Punjab State Government schemes for age groups 6 to 45 years. Updated with amount and deadline fields.",
+    "totalSchemes": 55,
+    "changelog": "v3.0 — Added 'amount' (single string format) and 'deadline' fields to all 55 schemes.",
+    "ageGroups": [
+      {
+        "id": "age_group_children",
+        "label": "Children & Students",
+        "ageRange": "6-18",
+        "totalSchemes": 20,
+        "schemes": [
+          {
+            "id": "SCH_001",
+            "name": "Samagra Shiksha Abhiyan",
+            "shortName": "Samagra Shiksha",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education",
+            "launchedYear": 2018,
+            "category": "Education",
+            "amount": "Free textbooks + uniforms; transport allowance up to ₹6,000/year",
+            "deadline": "Ongoing — enrollment open throughout academic year",
+            "description": "An integrated umbrella scheme for school education covering pre-primary to Class XII. Merges Sarva Shiksha Abhiyan, RMSA, and Teacher Education into one comprehensive program for quality and inclusive education.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "3 to 18 years (Pre-primary to Class 12)",
+              "residency": "All Indian students in government or government-aided schools",
+              "otherCriteria": "Special focus on marginalized groups, children with disabilities, and girls"
+            },
+            "benefits": {
+              "financial": [
+                "Free textbooks for Classes 1 to 8",
+                "Free uniforms for girls and SC/ST students in Classes 1 to 8",
+                "Transport allowance up to ₹6,000/year for remote area children",
+                "Stipend of ₹200/month for girls with disabilities in Classes 9 to 12"
+              ],
+              "nonFinancial": [
+                "Infrastructure development in government schools",
+                "Digital classrooms and smart boards",
+                "Sports equipment and library books",
+                "Inclusive education support for CWSN"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Enroll child in the nearest government or government-aided school",
+              "Step 2: Register with school office with required documents",
+              "Step 3: Benefits like uniforms and textbooks are distributed automatically through school",
+              "Step 4: For transport allowance, apply via the District Education Office"
+            ],
+            "documentsRequired": [
+              "Birth certificate or age proof",
+              "Aadhaar card of child and parent",
+              "Caste certificate (if applicable)",
+              "Disability certificate (if applicable)",
+              "Address proof"
+            ],
+            "officialWebsite": "https://samagra.education.gov.in",
+            "helplineNumber": "1800-11-8004",
+            "tags": ["school education", "uniforms", "textbooks", "inclusive education", "girls"]
+          },
+          {
+            "id": "SCH_002",
+            "name": "PM POSHAN Scheme (Mid-Day Meal)",
+            "shortName": "PM POSHAN",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education",
+            "launchedYear": 1995,
+            "category": "Nutrition & Education",
+            "amount": "Free hot meal daily; ₹6.19/day (primary), ₹9.29/day (upper primary)",
+            "deadline": "Ongoing — benefit provided on all school days automatically",
+            "description": "One of the world's largest school feeding programs providing hot-cooked nutritious meals to students in government and government-aided schools daily to improve nutrition and boost attendance.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "6 to 14 years (Classes 1 to 8)",
+              "residency": "Students enrolled in government or government-aided schools",
+              "otherCriteria": "Also covers Madrasas supported under Samagra Shiksha"
+            },
+            "benefits": {
+              "financial": [
+                "Free hot-cooked meal every school day",
+                "Meal cost: ₹6.19/day per child for primary; ₹9.29/day for upper primary (from Dec 2024)"
+              ],
+              "nonFinancial": [
+                "Improved nutrition and reduced classroom hunger",
+                "Higher school attendance and retention",
+                "Reduction in malnutrition among school children"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Enroll child in a government or government-aided school",
+              "Step 2: Meal is automatically provided on all school days — no separate application needed"
+            ],
+            "documentsRequired": ["School enrollment record"],
+            "officialWebsite": "https://pmposhan.education.gov.in",
+            "helplineNumber": "1800-11-8004",
+            "tags": ["mid-day meal", "nutrition", "school attendance", "free meal", "children"]
+          },
+          {
+            "id": "SCH_003",
+            "name": "Beti Bachao Beti Padhao (BBBP)",
+            "shortName": "BBBP",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Women and Child Development",
+            "launchedYear": 2015,
+            "category": "Girl Child Education & Welfare",
+            "amount": "Linked to SSY — 8.2% interest/year; min deposit ₹250/year",
+            "deadline": "Ongoing — accounts can be opened anytime for girls below 10 years",
+            "description": "A national campaign to address declining Child Sex Ratio and promote education and empowerment of the girl child by preventing female foeticide and improving enrollment of girls in schools.",
+            "eligibility": {
+              "gender": "Girl",
+              "ageLimit": "0 to 18 years",
+              "residency": "Indian citizen",
+              "otherCriteria": "Special focus on districts with low child sex ratio"
+            },
+            "benefits": {
+              "financial": ["Linked to Sukanya Samriddhi Yojana with 8.2% interest per annum"],
+              "nonFinancial": [
+                "Awareness campaigns against female foeticide",
+                "Support for girl child school enrollment",
+                "Community mobilization"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit nearest post office or authorized bank",
+              "Step 2: Open a Sukanya Samriddhi Account for the girl child",
+              "Step 3: Submit required documents",
+              "Step 4: Deposit minimum ₹250 to activate account"
+            ],
+            "documentsRequired": [
+              "Birth certificate of girl child",
+              "Aadhaar card of parent/guardian",
+              "Address proof",
+              "Passport-size photographs"
+            ],
+            "officialWebsite": "https://wcd.nic.in/bbbp-schemes",
+            "helplineNumber": "7827170170",
+            "tags": ["girl child", "female foeticide", "education", "sex ratio", "women empowerment"]
+          },
+          {
+            "id": "SCH_004",
+            "name": "Sukanya Samriddhi Yojana (SSY)",
+            "shortName": "SSY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Finance",
+            "launchedYear": 2015,
+            "category": "Financial Savings",
+            "amount": "Min ₹250/year to max ₹1,50,000/year; 8.2% interest per annum",
+            "deadline": "Ongoing — open for girls below 10 years at any time",
+            "description": "A small savings scheme for the girl child offering one of the highest interest rates. Part of BBBP, it encourages parents to save for their daughter's education and marriage.",
+            "eligibility": {
+              "gender": "Girl",
+              "ageLimit": "Below 10 years at account opening",
+              "residency": "Indian citizen",
+              "otherCriteria": "Maximum 2 accounts per family; exception for twins/triplets"
+            },
+            "benefits": {
+              "financial": [
+                "Interest rate of 8.2% per annum (compounded annually)",
+                "Minimum ₹250/year; Maximum ₹1,50,000/year",
+                "50% withdrawal allowed after girl turns 18",
+                "Full tax exemption under Section 80C",
+                "Matures when girl turns 21"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit any post office or authorized bank",
+              "Step 2: Fill SSY account opening form",
+              "Step 3: Submit documents and make initial deposit",
+              "Step 4: Collect passbook"
+            ],
+            "documentsRequired": [
+              "Birth certificate of girl child",
+              "Aadhaar card of parent/guardian",
+              "Address proof",
+              "Identity proof of guardian",
+              "Passport-size photographs"
+            ],
+            "officialWebsite": "https://www.indiapost.gov.in/Financial/Pages/Content/Sukanya-Samriddhi-Account.aspx",
+            "helplineNumber": "1800-11-2011",
+            "tags": ["savings", "girl child", "investment", "tax-free", "future planning"]
+          },
+          {
+            "id": "SCH_005",
+            "name": "National Means-cum-Merit Scholarship (NMMS)",
+            "shortName": "NMMS",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education",
+            "launchedYear": 2008,
+            "category": "Scholarship",
+            "amount": "₹12,000/year (₹1,000/month) for Classes 9 to 12",
+            "deadline": "Annual — applications open July/August each year; exam in Nov–Feb (state-wise)",
+            "description": "A centrally sponsored scholarship for meritorious students from low-income families to reduce dropout at Class 8 and encourage continuation of education at secondary level.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Students of Class 9 to 12",
+              "residency": "Indian citizen",
+              "otherCriteria": "55% in Class 7 (50% for SC/ST); family income below ₹3.5 lakh/year; government school"
+            },
+            "benefits": {
+              "financial": ["₹12,000/year (₹1,000/month) for Classes 9 to 12 via DBT"]
+            },
+            "howToApply": [
+              "Step 1: Apply on National Scholarship Portal at scholarships.gov.in",
+              "Step 2: Appear for State-level NMMS Exam conducted by SCERT",
+              "Step 3: Selected students receive scholarship upon verification",
+              "Step 4: Renew each year by submitting progress report"
+            ],
+            "documentsRequired": [
+              "Class 7 mark sheet",
+              "Income certificate (below ₹3.5 lakh)",
+              "Aadhaar card",
+              "Caste certificate (if applicable)",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://scholarships.gov.in",
+            "helplineNumber": "0120-6619540",
+            "tags": ["scholarship", "merit", "class 9", "secondary education", "dropout prevention"]
+          },
+          {
+            "id": "SCH_006",
+            "name": "National Scheme of Incentive to Girls for Secondary Education (NSIGSE)",
+            "shortName": "NSIGSE",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education",
+            "launchedYear": 2008,
+            "category": "Girl Education",
+            "amount": "₹3,000 fixed deposit (withdrawable with interest after Class 10 and age 18)",
+            "deadline": "Annual — apply through school after passing Class 8",
+            "description": "Provides financial incentive to SC/ST girl students passing Class 8 to encourage enrollment in secondary school and reduce girl child dropouts.",
+            "eligibility": {
+              "gender": "Girl",
+              "ageLimit": "Below 16 years at Class 9 enrollment",
+              "residency": "Indian citizen",
+              "otherCriteria": "SC/ST; passed Class 8; government school; unmarried"
+            },
+            "benefits": {
+              "financial": ["₹3,000 in FD account; withdrawable with interest after age 18 and Class 10"]
+            },
+            "howToApply": [
+              "Step 1: Apply through school principal after passing Class 8",
+              "Step 2: School submits eligible girls list to District Education Officer",
+              "Step 3: Verified girls get FD account opened in their name"
+            ],
+            "documentsRequired": [
+              "Class 8 pass certificate",
+              "Caste certificate (SC/ST)",
+              "Birth certificate",
+              "Aadhaar card",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://scholarships.gov.in",
+            "helplineNumber": "0120-6619540",
+            "tags": ["SC/ST", "girl education", "class 9", "fixed deposit", "incentive"]
+          },
+          {
+            "id": "SCH_007",
+            "name": "Kasturba Gandhi Balika Vidyalaya (KGBV)",
+            "shortName": "KGBV",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education",
+            "launchedYear": 2004,
+            "category": "Residential Girl Education",
+            "amount": "Free residential education — accommodation, meals, uniforms, books (no cost to student)",
+            "deadline": "Annual — admissions at start of academic year (April–June); contact local Block Education Office",
+            "description": "Residential schools for girls from marginalized communities in educationally backward blocks, ensuring quality education and safe accommodation for girls aged 10 to 18.",
+            "eligibility": {
+              "gender": "Girl",
+              "ageLimit": "10 to 18 years",
+              "residency": "Educationally backward blocks",
+              "otherCriteria": "SC, ST, OBC, minority, BPL girls; dropout girls"
+            },
+            "benefits": {
+              "nonFinancial": [
+                "Free residential accommodation",
+                "Free meals, education, uniforms, books",
+                "Vocational training and life skills"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Contact nearest KGBV school or Block Education Office",
+              "Step 2: Submit application form with documents",
+              "Step 3: Selection done by district authorities based on eligibility"
+            ],
+            "documentsRequired": [
+              "Birth certificate",
+              "Caste certificate",
+              "BPL card or income certificate",
+              "Previous school mark sheet",
+              "Aadhaar card"
+            ],
+            "officialWebsite": "https://samagra.education.gov.in",
+            "helplineNumber": "1800-11-8004",
+            "tags": ["residential school", "girl education", "SC/ST", "OBC", "free hostel", "dropout"]
+          },
+          {
+            "id": "SCH_008",
+            "name": "Mission Poshan 2.0 (Saksham Anganwadi)",
+            "shortName": "Poshan 2.0",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Women and Child Development",
+            "launchedYear": 2021,
+            "category": "Nutrition & Child Health",
+            "amount": "Free supplementary nutrition, health check-ups, and ECCE (no monetary benefit)",
+            "deadline": "Ongoing — register at Anganwadi Centre anytime",
+            "description": "Integrated nutrition support to address stunting, wasting, and anemia among children 0–6 years and adolescent girls 14–18, delivered through Anganwadi Centres.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Children 6 months to 6 years; Adolescent girls 14 to 18 years",
+              "residency": "Registered at Anganwadi Centres",
+              "otherCriteria": "Also covers pregnant and lactating mothers"
+            },
+            "benefits": {
+              "nonFinancial": [
+                "Supplementary nutrition at AWC",
+                "ECCE for children 3 to 6 years",
+                "Iron, Vitamin B12, Folic Acid supplements",
+                "Regular health check-ups and immunization",
+                "Nutrition tracking via Poshan Tracker"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit nearest Anganwadi Centre",
+              "Step 2: Register child with Anganwadi worker",
+              "Step 3: Benefits provided automatically after enrollment"
+            ],
+            "documentsRequired": [
+              "Birth certificate of child",
+              "Aadhaar card of parent",
+              "MCP card for infants"
+            ],
+            "officialWebsite": "https://poshanabhiyaan.gov.in",
+            "helplineNumber": "1800-11-1000",
+            "tags": ["nutrition", "anganwadi", "malnutrition", "child health", "ICDS"]
+          },
+          {
+            "id": "SCH_009",
+            "name": "PM CARES for Children",
+            "shortName": "PM CARES Children",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Women and Child Development",
+            "launchedYear": 2021,
+            "category": "Child Welfare",
+            "amount": "₹10 lakh corpus by age 18 + ₹20,000 school scholarship + ₹5 lakh health insurance",
+            "deadline": "Ongoing — apply anytime at pmcaresforchildren.in",
+            "description": "Comprehensive support for children who lost parents due to COVID-19, providing education, health insurance, and financial support until age 23.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Up to 18 years (support continues till 23)",
+              "residency": "Indian citizen",
+              "otherCriteria": "Both parents or guardian died due to COVID-19 from March 11, 2020"
+            },
+            "benefits": {
+              "financial": [
+                "₹10 lakh corpus by age 18",
+                "Monthly stipend age 18 to 23",
+                "₹10 lakh lump sum at age 23",
+                "₹4,000/month under Mission Vatsalya",
+                "₹20,000/year school scholarship",
+                "₹50,000/year Swanath Scholarship for technical courses"
+              ],
+              "nonFinancial": [
+                "₹5 lakh health insurance under Ayushman Bharat",
+                "Admission support in KV/NVS",
+                "Interest-free education loan"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit pmcaresforchildren.in",
+              "Step 2: Register as new applicant",
+              "Step 3: Upload COVID-19 death certificate and child documents",
+              "Step 4: District Magistrate verifies and approves"
+            ],
+            "documentsRequired": [
+              "Death certificate mentioning COVID-19",
+              "Birth certificate of child",
+              "Aadhaar of child and guardian",
+              "Bank account details",
+              "School enrollment certificate"
+            ],
+            "officialWebsite": "https://pmcaresforchildren.in",
+            "helplineNumber": "pmcares-children.wcd@nic.in",
+            "tags": ["COVID-19", "orphan", "child welfare", "health insurance", "scholarship"]
+          },
+          {
+            "id": "SCH_010",
+            "name": "Right to Education (RTE) Act",
+            "shortName": "RTE Act",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education",
+            "launchedYear": 2010,
+            "category": "Education",
+            "amount": "Free education (tuition + books) in government schools; free seats in 25% private school quota",
+            "deadline": "Annual — RTE admission season is typically March–May each year",
+            "description": "A landmark law ensuring free and compulsory education to all children aged 6 to 14. Mandates private schools to reserve 25% of seats for EWS/disadvantaged children.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "6 to 14 years",
+              "residency": "Indian citizen",
+              "otherCriteria": "EWS/disadvantaged children for 25% private school quota"
+            },
+            "benefits": {
+              "financial": [
+                "Completely free education in government schools",
+                "Free education in private schools under 25% quota for EWS"
+              ],
+              "nonFinancial": [
+                "No detention till Class 8",
+                "Neighborhood school within 1 km"
+              ]
+            },
+            "howToApply": [
+              "Step 1: For government school — directly enroll at nearest government school",
+              "Step 2: For private school 25% quota — apply through District Education Office or state RTE portal",
+              "Step 3: Submit income and address proof",
+              "Step 4: Admission granted after verification"
+            ],
+            "documentsRequired": [
+              "Birth certificate",
+              "Aadhaar card",
+              "Address proof",
+              "Income/BPL certificate (for private school quota)",
+              "Caste certificate (if applicable)"
+            ],
+            "officialWebsite": "https://rte.nic.in",
+            "helplineNumber": "1800-11-8004",
+            "tags": ["free education", "compulsory education", "private school quota", "EWS", "RTE"]
+          },
+          {
+            "id": "SCH_011",
+            "name": "Pre-Matric Scholarship for SC/ST/OBC Students",
+            "shortName": "Pre-Matric Scholarship",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Social Justice / Tribal Affairs",
+            "launchedYear": 2012,
+            "category": "Scholarship",
+            "amount": "₹225/month (day scholar) or ₹525/month (hosteller) for Classes 9–10",
+            "deadline": "Annual — apply on NSP by October 31 each year",
+            "description": "Scholarship for SC/ST/OBC students in Classes 9 and 10 to reduce dropout rates and encourage continuation of secondary education.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Students in Classes 9 and 10",
+              "residency": "Indian citizen",
+              "otherCriteria": "SC/ST/OBC; family income below ₹2.5 lakh/year; government school"
+            },
+            "benefits": {
+              "financial": [
+                "₹225/month for day scholars (Class 9–10)",
+                "₹525/month for hostellers (Class 9–10)",
+                "Additional book and stationery allowances"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply on NSP at scholarships.gov.in",
+              "Step 2: Fill personal, bank, and school details",
+              "Step 3: Upload documents",
+              "Step 4: School verifies and forwards to district"
+            ],
+            "documentsRequired": [
+              "Caste certificate",
+              "Income certificate",
+              "Previous class mark sheet",
+              "Aadhaar card",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://scholarships.gov.in",
+            "helplineNumber": "0120-6619540",
+            "tags": ["SC/ST", "OBC", "pre-matric", "scholarship", "class 9", "class 10"]
+          },
+          {
+            "id": "SCH_012",
+            "name": "Balika Samriddhi Yojana (BSY)",
+            "shortName": "BSY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Women and Child Development",
+            "launchedYear": 1997,
+            "category": "Girl Child Financial Aid",
+            "amount": "₹500 at birth + scholarships ₹300 to ₹1,000/year (Class 1 to 10)",
+            "deadline": "Ongoing — apply within 1 year of birth at nearest Anganwadi Centre",
+            "description": "Supports girl children from BPL families with birth grant and annual scholarships to improve their status and encourage education up to Class 10.",
+            "eligibility": {
+              "gender": "Girl",
+              "ageLimit": "Born on or after August 15, 1997",
+              "residency": "BPL families (rural and urban)",
+              "otherCriteria": "Maximum 2 girls per family; must be enrolled in school"
+            },
+            "benefits": {
+              "financial": [
+                "₹500 cash grant at birth",
+                "Annual scholarships from Class 1 to 10 (₹300 to ₹1,000/year)"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit nearest Anganwadi worker or ICDS office",
+              "Step 2: Fill BSY application form",
+              "Step 3: Submit documents for verification",
+              "Step 4: Bank account opened in girl's name; scholarship credited annually"
+            ],
+            "documentsRequired": [
+              "Birth certificate",
+              "BPL ration card or income certificate",
+              "Aadhaar card of parent",
+              "School enrollment certificate",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://wcd.nic.in",
+            "helplineNumber": "1800-111-3111",
+            "tags": ["BPL", "girl child", "birth grant", "scholarship", "classes 1 to 10"]
+          },
+          {
+            "id": "SCH_013",
+            "name": "NPS Vatsalya Scheme",
+            "shortName": "NPS Vatsalya",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Finance / PFRDA",
+            "launchedYear": 2024,
+            "category": "Financial Savings / Pension",
+            "amount": "Contribution-based; min ₹1,000/year; grows via compounding until age 18",
+            "deadline": "Ongoing — open at any PFRDA-registered Point of Presence anytime",
+            "description": "A pension savings scheme for minors allowing parents to open and contribute to an NPS account until the child turns 18, when it seamlessly converts to a regular NPS account.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Minors below 18 years",
+              "residency": "Indian citizen",
+              "otherCriteria": "Managed by parent or legal guardian"
+            },
+            "benefits": {
+              "financial": [
+                "Long-term compounded savings growth",
+                "Tax benefits similar to regular NPS",
+                "Converts to regular NPS at age 18"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit PFRDA-registered PoP (bank or post office)",
+              "Step 2: Fill NPS Vatsalya account opening form",
+              "Step 3: Submit documents",
+              "Step 4: Make initial contribution and receive PRAN"
+            ],
+            "documentsRequired": [
+              "Birth certificate of minor",
+              "Aadhaar card of parent/guardian",
+              "PAN card of parent/guardian",
+              "Bank account details",
+              "Passport-size photographs"
+            ],
+            "officialWebsite": "https://npscra.nsdl.co.in",
+            "helplineNumber": "1800-110-708",
+            "tags": ["pension", "NPS", "minor", "savings", "budget 2024", "long-term"]
+          },
+          {
+            "id": "SCH_014",
+            "name": "Bebe Nanki Laadli Beti Kalyan Scheme",
+            "shortName": "Bebe Nanki Scheme",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Social Security and Women & Child Development, Punjab",
+            "launchedYear": 2011,
+            "category": "Girl Child Welfare",
+            "amount": "₹20,000 deposited with LIC; total payout of ₹61,000 across 5 milestones up to age 18",
+            "deadline": "Ongoing — apply within 1 year of girl's birth at nearest Anganwadi or DSS office",
+            "description": "Punjab scheme to curb female foeticide by providing tiered financial assistance to girl children from birth to age 18 through LIC-backed disbursement.",
+            "eligibility": {
+              "gender": "Girl",
+              "ageLimit": "Girls born after January 1, 2011",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "Includes abandoned girls in Punjab orphanages born after Jan 1, 2011"
+            },
+            "benefits": {
+              "financial": [
+                "₹20,000 deposited with LIC per beneficiary",
+                "Total ₹61,000 disbursed at milestones: birth, school admission, Class 8, Class 10, age 18"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit nearest Anganwadi or District Social Security Office in Punjab",
+              "Step 2: Fill application form",
+              "Step 3: Submit documents for verification",
+              "Step 4: Amount deposited with LIC in girl's name"
+            ],
+            "documentsRequired": [
+              "Birth certificate",
+              "Aadhaar card of parents",
+              "Punjab residence proof",
+              "Ration card",
+              "Guardian's bank passbook"
+            ],
+            "officialWebsite": "https://sswcd.punjab.gov.in",
+            "helplineNumber": "0172-2714006",
+            "tags": ["Punjab", "girl child", "LIC", "female foeticide", "milestones"]
+          },
+          {
+            "id": "SCH_015",
+            "name": "Mai Bhago Vidya Scheme (Free Bicycle)",
+            "shortName": "Mai Bhago Vidya",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Social Security and Women & Child Development, Punjab",
+            "launchedYear": 2011,
+            "category": "Girl Education",
+            "amount": "1 free bicycle per eligible girl student (no monetary value transferred)",
+            "deadline": "Annual — distribution happens at start of academic year (April–June) through school",
+            "description": "Encourages girl students in Classes 9 to 12 in Punjab government schools to continue education by providing free bicycles, reducing commute barriers.",
+            "eligibility": {
+              "gender": "Girl",
+              "ageLimit": "Students of Classes 9 to 12",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "Enrolled in government school in Punjab"
+            },
+            "benefits": {
+              "nonFinancial": ["Free bicycle per eligible girl student"]
+            },
+            "howToApply": [
+              "Step 1: Apply through school where girl is enrolled",
+              "Step 2: School prepares and submits eligible girls list to District Education Office",
+              "Step 3: Bicycles distributed at school level"
+            ],
+            "documentsRequired": [
+              "School enrollment certificate",
+              "Aadhaar card of student",
+              "Punjab residence proof",
+              "Passport-size photograph"
+            ],
+            "officialWebsite": "https://sswcd.punjab.gov.in",
+            "helplineNumber": "0172-2714006",
+            "tags": ["Punjab", "bicycle", "girl education", "class 9 to 12", "government school"]
+          },
+          {
+            "id": "SCH_016",
+            "name": "Punjab Ashirwad (Shagun) Scheme",
+            "shortName": "Ashirwad Scheme",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Social Security and Women & Child Development, Punjab",
+            "launchedYear": 2006,
+            "category": "Girl Child Marriage Support",
+            "amount": "₹51,000 one-time financial assistance per girl for marriage",
+            "deadline": "Ongoing — apply before the marriage date at District Social Security Office",
+            "description": "Provides ₹51,000 to EWS families for marriage of their girl child to reduce financial burden and prevent child marriage.",
+            "eligibility": {
+              "gender": "Girl",
+              "ageLimit": "Girl must be 18 years or above at marriage",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "BPL/SC/ST/OBC families; widows/divorced women for daughters; orphan girls"
+            },
+            "benefits": {
+              "financial": ["₹51,000 financial assistance per girl for marriage"]
+            },
+            "howToApply": [
+              "Step 1: Visit District Social Security Office in Punjab",
+              "Step 2: Fill Ashirwad Scheme form",
+              "Step 3: Submit documents before marriage date",
+              "Step 4: Amount deposited directly in applicant's account"
+            ],
+            "documentsRequired": [
+              "Birth certificate of girl (proving age 18+)",
+              "BPL/income certificate",
+              "Aadhaar card of girl and parents",
+              "Punjab domicile certificate",
+              "Marriage proof or invitation",
+              "Bank passbook"
+            ],
+            "officialWebsite": "https://sswcd.punjab.gov.in",
+            "helplineNumber": "0172-2714006",
+            "tags": ["Punjab", "girl marriage", "financial assistance", "BPL", "shagun"]
+          },
+          {
+            "id": "SCH_017",
+            "name": "Scholarship for Students with Disabilities (Punjab)",
+            "shortName": "Disability Scholarship Punjab",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Social Security and Women & Child Development, Punjab",
+            "launchedYear": 1996,
+            "category": "Disability Support & Education",
+            "amount": "₹200/month (Class 1–8); ₹300/month (Class 9 and above)",
+            "deadline": "Ongoing — apply at District Social Security Office anytime during academic year",
+            "description": "100% state-funded monthly scholarship for students with disabilities in Punjab schools to support their education.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "School-going children (Class 1 onwards)",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "Must have recognized disability certificate; enrolled in Punjab school"
+            },
+            "benefits": {
+              "financial": [
+                "₹200/month for Classes 1 to 8",
+                "₹300/month for Class 9 and above"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Obtain disability certificate from CMO",
+              "Step 2: Visit District Social Security Office",
+              "Step 3: Fill application and submit documents",
+              "Step 4: Monthly scholarship credited after verification"
+            ],
+            "documentsRequired": [
+              "Disability certificate from CMO",
+              "School enrollment certificate",
+              "Aadhaar card of student and parent",
+              "Bank passbook",
+              "Passport-size photograph"
+            ],
+            "officialWebsite": "https://sswcd.punjab.gov.in",
+            "helplineNumber": "0172-2714006",
+            "tags": ["Punjab", "disability", "divyang", "scholarship", "school"]
+          },
+          {
+            "id": "SCH_018",
+            "name": "PM YASASVI Scholarship (OBC/EBC/DNT)",
+            "shortName": "PM YASASVI",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Social Justice and Empowerment",
+            "launchedYear": 2023,
+            "category": "Scholarship",
+            "amount": "₹75,000/year (Class 9–10); ₹1,25,000/year (Class 11–12)",
+            "deadline": "Annual — YET exam registration opens around July; exam usually in September",
+            "description": "PM Young Achievers Scholarship for OBC/EBC/DNT students in Classes 9 and 11 — one of India's highest school-level scholarships by amount.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Class 9 and Class 11 students",
+              "residency": "Indian citizen",
+              "otherCriteria": "OBC/EBC/DNT; family income below ₹2.5 lakh/year; must qualify YASASVI Entrance Test (YET)"
+            },
+            "benefits": {
+              "financial": [
+                "₹75,000/year for Class 9 and 10",
+                "₹1,25,000/year for Class 11 and 12"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply on NSP at scholarships.gov.in",
+              "Step 2: Appear for YASASVI Entrance Test (YET) conducted by NTA",
+              "Step 3: Selected students notified; scholarship credited via DBT"
+            ],
+            "documentsRequired": [
+              "Caste certificate (OBC/EBC/DNT)",
+              "Income certificate",
+              "Aadhaar card",
+              "Previous class mark sheet",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://scholarships.gov.in",
+            "helplineNumber": "0120-6619540",
+            "tags": ["OBC", "EBC", "DNT", "scholarship", "NTA exam", "class 9", "class 11"]
+          },
+          {
+            "id": "SCH_019",
+            "name": "AICTE Swanath Scholarship",
+            "shortName": "Swanath Scholarship",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education / AICTE",
+            "launchedYear": 2021,
+            "category": "Technical Education Scholarship",
+            "amount": "₹50,000/year for the full course duration (max 4 years degree / 3 years diploma)",
+            "deadline": "Annual — applications open around August–October each year on AICTE portal",
+            "description": "Supports orphan students, COVID-19 orphans, and wards of martyred armed forces personnel pursuing technical education in AICTE-approved institutions.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Diploma or UG technical students",
+              "residency": "Indian citizen",
+              "otherCriteria": "Orphan/COVID-19 orphan/ward of martyred armed forces; income below ₹8 lakh/year; AICTE-approved institution"
+            },
+            "benefits": {
+              "financial": ["₹50,000/year for full course duration"]
+            },
+            "howToApply": [
+              "Step 1: Apply through AICTE portal at aicte-india.org",
+              "Step 2: Fill Swanath Scholarship form",
+              "Step 3: Upload supporting documents",
+              "Step 4: Institution verifies; AICTE releases scholarship"
+            ],
+            "documentsRequired": [
+              "Proof of orphan status / COVID death certificate",
+              "Admission letter from AICTE institution",
+              "Income certificate",
+              "Aadhaar card",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://www.aicte-india.org/schemes/students-development-schemes",
+            "helplineNumber": "011-29581000",
+            "tags": ["AICTE", "scholarship", "technical education", "orphan", "diploma", "armed forces"]
+          },
+          {
+            "id": "SCH_020",
+            "name": "Punjab Chief Minister's Scholarship Scheme",
+            "shortName": "CM Scholarship Punjab",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Higher Education, Punjab",
+            "launchedYear": 2019,
+            "category": "Scholarship",
+            "amount": "Tuition fee waiver + monthly stipend (varies by education level)",
+            "deadline": "Annual — apply on scholarships.punjab.gov.in; deadline typically October 31 each year",
+            "description": "Provides financial assistance and tuition fee waiver to meritorious students from EWS in Punjab studying in government institutions.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "School and college students",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "Meritorious EWS students in government institutions in Punjab"
+            },
+            "benefits": {
+              "financial": [
+                "Tuition fee waiver",
+                "Monthly stipend (varies by education level)"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply at scholarships.punjab.gov.in",
+              "Step 2: Fill personal and academic details",
+              "Step 3: Upload documents",
+              "Step 4: School/college verifies and forwards"
+            ],
+            "documentsRequired": [
+              "Income certificate",
+              "Previous academic mark sheets",
+              "Aadhaar card",
+              "Punjab domicile certificate",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://scholarships.punjab.gov.in",
+            "helplineNumber": "0172-2660126",
+            "tags": ["Punjab", "scholarship", "EWS", "government school", "merit", "tuition fee"]
+          }
+        ]
+      },
+      {
+        "id": "age_group_youth",
+        "label": "Youth",
+        "ageRange": "18-25",
+        "totalSchemes": 18,
+        "schemes": [
+          {
+            "id": "SCH_021",
+            "name": "Pradhan Mantri Kaushal Vikas Yojana (PMKVY 4.0)",
+            "shortName": "PMKVY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Skill Development and Entrepreneurship",
+            "launchedYear": 2015,
+            "category": "Skill Development",
+            "amount": "Free skill training + average monetary reward of ₹8,000 upon certification",
+            "deadline": "Ongoing — rolling admissions at PMKVY Training Centres throughout the year",
+            "description": "India's flagship free skill training scheme for youth to improve employability with industry-relevant certification and placement support.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "15 to 45 years",
+              "residency": "Indian citizen",
+              "otherCriteria": "School/college dropouts and unemployed youth given priority"
+            },
+            "benefits": {
+              "financial": [
+                "Free skill training (3 to 6 months)",
+                "Average monetary reward of ₹8,000 upon certification",
+                "Placement assistance"
+              ],
+              "nonFinancial": [
+                "NSDC-recognized industry certification",
+                "Soft skills and digital literacy training",
+                "RPL certification for existing workers"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit skillindiadigital.gov.in or call helpline",
+              "Step 2: Find nearby PMKVY Training Centre",
+              "Step 3: Register at centre with documents",
+              "Step 4: Complete training; appear for assessment and receive certification"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Bank account details",
+              "Passport-size photograph",
+              "Educational certificate (if any)",
+              "Caste certificate (if applicable)"
+            ],
+            "officialWebsite": "https://www.skillindiadigital.gov.in",
+            "helplineNumber": "1800-123-9626",
+            "tags": ["skill training", "free course", "youth", "employment", "NSDC", "certification"]
+          },
+          {
+            "id": "SCH_022",
+            "name": "PM Internship Scheme (PMIS)",
+            "shortName": "PM Internship",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Corporate Affairs",
+            "launchedYear": 2024,
+            "category": "Employment & Internship",
+            "amount": "₹5,000/month allowance + ₹6,000 one-time assistance",
+            "deadline": "Annual rounds — Round 1 closed March 2025; Round 2 expected mid-2025; check pminternship.mca.gov.in",
+            "description": "Provides 1 crore youth with 12-month internships in top 500 Indian companies with monthly allowance and hands-on industry experience.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "21 to 24 years",
+              "residency": "Indian citizen; not in full-time education",
+              "otherCriteria": "ITI/diploma/BA/BSc/BCom graduates; family income below ₹8 lakh/year; no IIT/IIM/NLU degrees"
+            },
+            "benefits": {
+              "financial": [
+                "₹5,000/month government allowance",
+                "₹6,000 one-time incidental assistance"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Register at pminternship.mca.gov.in",
+              "Step 2: Fill educational and personal details",
+              "Step 3: Apply to internship openings in top companies",
+              "Step 4: Complete mandatory skill training during internship"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Educational qualification certificate",
+              "Bank account details",
+              "Passport-size photograph",
+              "Address proof"
+            ],
+            "officialWebsite": "https://pminternship.mca.gov.in",
+            "helplineNumber": "1800-11-9090",
+            "tags": ["internship", "youth", "employment", "top companies", "CSR", "budget 2024"]
+          },
+          {
+            "id": "SCH_023",
+            "name": "Startup India Initiative",
+            "shortName": "Startup India",
+            "govtLevel": "Central Government",
+            "ministry": "DPIIT",
+            "launchedYear": 2016,
+            "category": "Entrepreneurship & Startup",
+            "amount": "Tax exemption for 3 years + 80% patent fee concession + access to ₹10,000 crore Fund of Funds",
+            "deadline": "Ongoing — apply for DPIIT recognition anytime at startupindia.gov.in",
+            "description": "India's flagship entrepreneurship program providing recognition, tax benefits, funding support, and regulatory simplification for startups.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 years and above",
+              "residency": "Indian citizen or India-registered company",
+              "otherCriteria": "Startup less than 10 years old; turnover below ₹100 crore; scalable business model"
+            },
+            "benefits": {
+              "financial": [
+                "Tax exemption on profits for 3 years (Section 80-IAC)",
+                "Capital gains tax exemption for investors",
+                "Fund of Funds access (₹10,000 crore corpus)",
+                "80% patent examination fee concession"
+              ],
+              "nonFinancial": [
+                "DPIIT recognition certificate",
+                "Access to government tenders",
+                "Incubator and mentorship network"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Register at startupindia.gov.in",
+              "Step 2: Submit business plan and incorporation documents",
+              "Step 3: Apply for DPIIT recognition",
+              "Step 4: Access tax benefits and funding support"
+            ],
+            "documentsRequired": [
+              "Certificate of incorporation",
+              "Aadhaar/PAN of founders",
+              "Description of innovative product/service",
+              "Proof of funding (if any)"
+            ],
+            "officialWebsite": "https://www.startupindia.gov.in",
+            "helplineNumber": "1800-115-565",
+            "tags": ["startup", "entrepreneurship", "DPIIT", "tax exemption", "funding", "innovation"]
+          },
+          {
+            "id": "SCH_024",
+            "name": "Pradhan Mantri Mudra Yojana (PMMY)",
+            "shortName": "PMMY / Mudra Loan",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Finance",
+            "launchedYear": 2015,
+            "category": "Micro Business Loan",
+            "amount": "Shishu: up to ₹50,000 | Kishore: ₹50,001–₹5 lakh | Tarun: ₹5–₹10 lakh | Tarun Plus: up to ₹20 lakh",
+            "deadline": "Ongoing — apply at any bank, MFI, or NBFC anytime",
+            "description": "Collateral-free micro-enterprise loans for non-farm income-generating activities for youth and entrepreneurs.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 years and above",
+              "residency": "Indian citizen",
+              "otherCriteria": "Non-farm micro/small enterprise; not a wilful defaulter"
+            },
+            "benefits": {
+              "financial": [
+                "Shishu: up to ₹50,000",
+                "Kishore: ₹50,001 to ₹5 lakh",
+                "Tarun: ₹5 lakh to ₹10 lakh",
+                "Tarun Plus: up to ₹20 lakh",
+                "No collateral required"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit any bank, MFI, or NBFC offering Mudra loans",
+              "Step 2: Fill Mudra loan application form",
+              "Step 3: Submit business plan and documents",
+              "Step 4: Bank processes and disburses loan"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "PAN card",
+              "Business address proof",
+              "Business plan or project report",
+              "Bank statements (6 months)",
+              "Passport-size photograph"
+            ],
+            "officialWebsite": "https://www.mudra.org.in",
+            "helplineNumber": "1800-180-1111",
+            "tags": ["micro loan", "startup", "small business", "collateral-free", "mudra"]
+          },
+          {
+            "id": "SCH_025",
+            "name": "Post-Matric Scholarship (SC Students)",
+            "shortName": "Post-Matric SC Scholarship",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Social Justice and Empowerment",
+            "launchedYear": 1944,
+            "category": "Scholarship",
+            "amount": "₹380–₹1,200/month maintenance allowance + full tuition fee reimbursement",
+            "deadline": "Annual — apply on NSP by October 31 each year",
+            "description": "Financial assistance to SC students beyond Class 10 in recognized institutions to enable completion of education.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Post-Class 10 students",
+              "residency": "Indian citizen",
+              "otherCriteria": "Scheduled Caste; family income below ₹2.5 lakh/year"
+            },
+            "benefits": {
+              "financial": [
+                "₹380–₹1,200/month maintenance allowance",
+                "Full tuition fee and non-refundable charges reimbursed",
+                "Book and study tour allowances"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Register on NSP at scholarships.gov.in",
+              "Step 2: Fill personal, academic, and bank details",
+              "Step 3: Upload documents",
+              "Step 4: Institution verifies; state disburses scholarship"
+            ],
+            "documentsRequired": [
+              "Caste certificate (SC)",
+              "Income certificate",
+              "Previous mark sheet",
+              "Aadhaar card",
+              "Admission proof",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://scholarships.gov.in",
+            "helplineNumber": "0120-6619540",
+            "tags": ["SC", "scholarship", "post-matric", "college", "higher education"]
+          },
+          {
+            "id": "SCH_026",
+            "name": "Central Sector Scholarship for College & University Students",
+            "shortName": "Central Sector Scholarship",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education",
+            "launchedYear": 2008,
+            "category": "Scholarship",
+            "amount": "₹12,000/year (first 3 years); ₹20,000/year (4th and 5th year)",
+            "deadline": "Annual — applications open on NSP around October 31 each year",
+            "description": "Merit-based scholarship for students above 80th percentile in Class 12 from low-income families pursuing higher education.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Freshers in college (renewal for 5 years)",
+              "residency": "Indian citizen",
+              "otherCriteria": "Above 80th percentile in Class 12; family income below ₹4.5 lakh/year; not availing other scholarships"
+            },
+            "benefits": {
+              "financial": [
+                "₹12,000/year for first 3 years of UG",
+                "₹20,000/year for 4th and 5th year (professional courses)"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply on NSP at scholarships.gov.in",
+              "Step 2: Fill Class 12 board, income, college details",
+              "Step 3: Upload documents",
+              "Step 4: Institute verifies; scholarship credited to bank account"
+            ],
+            "documentsRequired": [
+              "Class 12 mark sheet",
+              "Income certificate",
+              "Aadhaar card",
+              "College admission proof",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://scholarships.gov.in",
+            "helplineNumber": "0120-6619540",
+            "tags": ["merit scholarship", "college", "undergraduate", "class 12", "income below 4.5 lakh"]
+          },
+          {
+            "id": "SCH_027",
+            "name": "PM-Vidyalakshmi Education Loan Scheme",
+            "shortName": "PM Vidyalakshmi",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education",
+            "launchedYear": 2024,
+            "category": "Education Loan",
+            "amount": "Loan up to ₹10 lakh (collateral-free); 3% interest subvention for income below ₹8 lakh/year",
+            "deadline": "Ongoing — apply anytime at vidyalakshmi.co.in after college admission",
+            "description": "Centralized education loan portal providing collateral-free loans for quality higher education with government guarantee.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Higher education students",
+              "residency": "Indian citizen",
+              "otherCriteria": "Admitted to QHEI; income below ₹8 lakh preferred; not availing other government schemes"
+            },
+            "benefits": {
+              "financial": [
+                "Up to ₹10 lakh collateral-free loan",
+                "75% government credit guarantee to banks",
+                "3% interest subvention during moratorium (income below ₹8 lakh)"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit vidyalakshmi.co.in",
+              "Step 2: Register and fill personal and academic details",
+              "Step 3: Apply to eligible banks offering education loans",
+              "Step 4: Bank processes and disburses loan"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "PAN card",
+              "Admission letter from recognized institution",
+              "Income certificate of parents",
+              "Fee structure from college",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://www.vidyalakshmi.co.in",
+            "helplineNumber": "1800-572-8888",
+            "tags": ["education loan", "higher education", "collateral-free", "budget 2024", "QHEIs"]
+          },
+          {
+            "id": "SCH_028",
+            "name": "Agnipath / Agniveer Scheme",
+            "shortName": "Agniveer",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Defence",
+            "launchedYear": 2022,
+            "category": "Employment / Defence",
+            "amount": "₹30,000–₹40,000/month salary + ₹11.71 lakh tax-free Seva Nidhi at exit",
+            "deadline": "Annual recruitment cycles — check joinindianarmy.nic.in for current notification dates",
+            "description": "Short-term 4-year military service scheme for youth with financial benefits, skills, and 25% chance of permanent enrollment.",
+            "eligibility": {
+              "gender": "All (men and women)",
+              "ageLimit": "17.5 to 23 years",
+              "residency": "Indian citizen",
+              "otherCriteria": "Must meet physical and educational requirements for respective service branch"
+            },
+            "benefits": {
+              "financial": [
+                "₹30,000–₹40,000/month salary",
+                "₹11.71 lakh tax-free Seva Nidhi at exit",
+                "₹48 lakh life insurance during service"
+              ],
+              "nonFinancial": [
+                "Military skills certification",
+                "Priority in state government jobs",
+                "25% chance of permanent enrollment"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Watch for recruitment notifications on joinindianarmy.nic.in",
+              "Step 2: Apply online during notification period",
+              "Step 3: Appear for written exam and physical fitness test",
+              "Step 4: Attend medical examination",
+              "Step 5: Join training on appointment letter"
+            ],
+            "documentsRequired": [
+              "10th and 12th mark sheets",
+              "Aadhaar card",
+              "Birth certificate",
+              "Domicile certificate",
+              "Character certificate"
+            ],
+            "officialWebsite": "https://joinindianarmy.nic.in",
+            "helplineNumber": "1800-11-2112",
+            "tags": ["military", "army", "defence", "4-year service", "seva nidhi", "agniveer"]
+          },
+          {
+            "id": "SCH_029",
+            "name": "National Apprenticeship Training Scheme (NATS)",
+            "shortName": "NATS",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education / BOAT",
+            "launchedYear": 1959,
+            "category": "Apprenticeship",
+            "amount": "₹8,000–₹9,000/month stipend (employer + government contribution of ₹1,500/month)",
+            "deadline": "Ongoing — register anytime at nats.education.gov.in; openings depend on company",
+            "description": "Practical 1–2 year apprenticeship training for engineering/diploma graduates in government and private organizations.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 years and above",
+              "residency": "Indian citizen",
+              "otherCriteria": "Engineering or diploma graduates from AICTE-approved institutions"
+            },
+            "benefits": {
+              "financial": [
+                "₹9,000/month for degree apprentice",
+                "₹8,000/month for diploma apprentice",
+                "₹1,500/month additional from government under NAPS"
+              ],
+              "nonFinancial": [
+                "1 to 2 years industry experience",
+                "National Apprenticeship Certificate",
+                "Higher placement chances"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Register on NATS portal at nats.education.gov.in",
+              "Step 2: Search apprenticeship openings by sector",
+              "Step 3: Apply for relevant opportunities",
+              "Step 4: Attend interview and sign apprenticeship agreement"
+            ],
+            "documentsRequired": [
+              "Degree or diploma certificate",
+              "Aadhaar card",
+              "Bank account details",
+              "Passport-size photograph",
+              "Date of birth proof"
+            ],
+            "officialWebsite": "https://nats.education.gov.in",
+            "helplineNumber": "044-22542235",
+            "tags": ["apprenticeship", "diploma", "engineering", "stipend", "industry training"]
+          },
+          {
+            "id": "SCH_030",
+            "name": "National Youth Corps (NYC) Scheme",
+            "shortName": "NYC",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Youth Affairs and Sports",
+            "launchedYear": 2010,
+            "category": "Youth Empowerment",
+            "amount": "₹5,000/month honorarium during volunteer service",
+            "deadline": "Annual — contact nearest Nehru Yuva Kendra (NYK) for current enrollment cycle",
+            "description": "Builds disciplined youth volunteers contributing to community development, disaster relief, and environmental awareness.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 to 25 years",
+              "residency": "Indian citizen",
+              "otherCriteria": "Unemployed; at least matriculation qualification"
+            },
+            "benefits": {
+              "financial": ["₹5,000/month honorarium during service"],
+              "nonFinancial": [
+                "Service certificate for government job applications",
+                "Training in community service and disaster management"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit nearest Nehru Yuva Kendra (NYK)",
+              "Step 2: Fill NYC application form",
+              "Step 3: Submit documents and attend selection",
+              "Step 4: Deploy in community service activities"
+            ],
+            "documentsRequired": [
+              "Matriculation certificate",
+              "Aadhaar card",
+              "Address proof",
+              "Passport-size photograph",
+              "Character certificate"
+            ],
+            "officialWebsite": "https://www.nyks.nic.in",
+            "helplineNumber": "011-24364248",
+            "tags": ["youth volunteer", "national service", "community", "NYK", "nation building"]
+          },
+          {
+            "id": "SCH_031",
+            "name": "Prime Minister's Employment Generation Programme (PMEGP)",
+            "shortName": "PMEGP",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of MSME",
+            "launchedYear": 2008,
+            "category": "Entrepreneurship & Employment",
+            "amount": "25–45% government subsidy on project cost; max project ₹50 lakh (manufacturing), ₹20 lakh (services)",
+            "deadline": "Ongoing — apply anytime at kviconline.gov.in/pmegpeportal",
+            "description": "Credit-linked subsidy scheme for micro-enterprise setup in non-farm sector with government margin money subsidy.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 years and above",
+              "residency": "Indian citizen",
+              "otherCriteria": "Minimum 8th standard for projects above ₹10 lakh in manufacturing"
+            },
+            "benefits": {
+              "financial": [
+                "25% subsidy (urban general) to 45% (rural special category)",
+                "Project cost up to ₹50 lakh (manufacturing), ₹20 lakh (services)"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply at kviconline.gov.in/pmegpeportal",
+              "Step 2: Submit project and personal details to KVIC/KVIB/DIC",
+              "Step 3: Interview by task force committee",
+              "Step 4: Bank sanctions loan; government releases subsidy"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "PAN card",
+              "8th standard pass certificate",
+              "Project report",
+              "Caste/special category certificate"
+            ],
+            "officialWebsite": "https://www.kviconline.gov.in/pmegpeportal",
+            "helplineNumber": "1800-3000-0034",
+            "tags": ["MSME", "micro enterprise", "subsidy", "employment", "loan", "self-employment"]
+          },
+          {
+            "id": "SCH_032",
+            "name": "Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY)",
+            "shortName": "DDU-GKY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Rural Development",
+            "launchedYear": 2014,
+            "category": "Skill Development & Rural Employment",
+            "amount": "Free training + placement with min ₹6,000/month salary guarantee",
+            "deadline": "Ongoing — rolling admissions at DDU-GKY training centres; contact DRDA",
+            "description": "Free market-linked skill training for rural poor youth with mandatory placement support in formal sector.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "15 to 35 years (45 for women and vulnerable groups)",
+              "residency": "Rural Indian citizen",
+              "otherCriteria": "SECC 2011 families; priority to SC/ST, women, PWD"
+            },
+            "benefits": {
+              "financial": ["Free training + placement with minimum ₹6,000/month formal sector salary"],
+              "nonFinancial": [
+                "Free accommodation and meals during training",
+                "Industry-recognized certification"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Contact nearest DRDA or DDU-GKY training centre",
+              "Step 2: Register and fill application",
+              "Step 3: Complete skill training (3 to 12 months)",
+              "Step 4: Attend placement drives"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "SECC 2011 identification",
+              "Bank account details",
+              "Educational certificate",
+              "Caste certificate (if applicable)"
+            ],
+            "officialWebsite": "https://ddugky.gov.in",
+            "helplineNumber": "1800-180-6127",
+            "tags": ["rural youth", "skill training", "placement", "free training", "wage employment"]
+          },
+          {
+            "id": "SCH_033",
+            "name": "Stand-Up India Scheme",
+            "shortName": "Stand-Up India",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Finance / SIDBI",
+            "launchedYear": 2016,
+            "category": "Entrepreneurship Loan",
+            "amount": "Loan of ₹10 lakh to ₹1 crore per borrower for greenfield enterprise",
+            "deadline": "Ongoing — apply anytime at standupmitra.in or nearest scheduled bank branch",
+            "description": "Facilitates bank loans to SC/ST and women entrepreneurs for setting up greenfield enterprises.",
+            "eligibility": {
+              "gender": "Women and SC/ST entrepreneurs",
+              "ageLimit": "18 years and above",
+              "residency": "Indian citizen",
+              "otherCriteria": "Greenfield enterprise; not a bank defaulter"
+            },
+            "benefits": {
+              "financial": [
+                "Composite loan ₹10 lakh to ₹1 crore",
+                "Covers 75% of project cost",
+                "Repayment up to 7 years; moratorium up to 18 months"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply at standupmitra.in",
+              "Step 2: Register and fill business plan",
+              "Step 3: Connect with Loan Facilitation Centre or bank",
+              "Step 4: Bank processes and disburses loan"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "PAN card",
+              "Caste certificate (for SC/ST)",
+              "Business project report",
+              "Business address proof",
+              "Bank statements"
+            ],
+            "officialWebsite": "https://www.standupmitra.in",
+            "helplineNumber": "1800-180-1111",
+            "tags": ["SC/ST", "women entrepreneur", "greenfield", "bank loan", "startup", "SIDBI"]
+          },
+          {
+            "id": "SCH_034",
+            "name": "Punjab Skill Development Mission (PSDM)",
+            "shortName": "PSDM",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Technical Education and Industrial Training, Punjab",
+            "launchedYear": 2015,
+            "category": "Skill Development",
+            "amount": "Free skill training courses + stipend during training (for eligible candidates)",
+            "deadline": "Ongoing — rolling admissions at PSDM centres; visit psdm.gov.in for current batches",
+            "description": "State-level skill training mission in Punjab to equip youth with relevant industry skills and connect them to employment.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "15 to 45 years",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "Priority to unemployed youth, school dropouts, marginalized communities"
+            },
+            "benefits": {
+              "financial": ["Free skill training + stipend during training (for eligible candidates)"],
+              "nonFinancial": [
+                "Placement assistance",
+                "Industry certification",
+                "Entrepreneurship support"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit psdm.gov.in or nearest PSDM centre in Punjab",
+              "Step 2: Register online or at centre",
+              "Step 3: Choose skill course",
+              "Step 4: Complete training and appear for assessment"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Educational certificate",
+              "Punjab domicile certificate",
+              "Bank account details",
+              "Passport-size photograph"
+            ],
+            "officialWebsite": "https://www.psdm.gov.in",
+            "helplineNumber": "0172-5212888",
+            "tags": ["Punjab", "skill training", "PSDM", "employment", "youth", "free courses"]
+          },
+          {
+            "id": "SCH_035",
+            "name": "Aam Aadmi Rozgar Yojana (AARY) – Punjab",
+            "shortName": "AARY Punjab",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Employment Generation, Punjab",
+            "launchedYear": 2022,
+            "category": "Employment",
+            "amount": "Free job portal + free skill courses + access to job fairs (no direct monetary benefit)",
+            "deadline": "Ongoing — register anytime at pgrkam.com",
+            "description": "Punjab scheme to provide employment opportunities to youth through job fairs, skill training, and entrepreneurship support.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 to 35 years",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "Unemployed graduates and diploma holders registered in Punjab employment exchange"
+            },
+            "benefits": {
+              "nonFinancial": [
+                "Access to job fairs",
+                "Free skill upgrading courses",
+                "Entrepreneurship workshops",
+                "Industry placement connections"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Register at pgrkam.com",
+              "Step 2: Create profile with education and skills",
+              "Step 3: Browse jobs and register for job fairs",
+              "Step 4: Attend job fairs and interviews"
+            ],
+            "documentsRequired": [
+              "Educational certificates",
+              "Aadhaar card",
+              "Punjab domicile certificate",
+              "Employment exchange registration card",
+              "Photograph"
+            ],
+            "officialWebsite": "https://pgrkam.com",
+            "helplineNumber": "1800-137-7100",
+            "tags": ["Punjab", "employment", "job fair", "graduates", "skill training"]
+          },
+          {
+            "id": "SCH_036",
+            "name": "Mukhya Mantri Sehat Bima Yojana (MMSBY) – Punjab",
+            "shortName": "MMSBY Punjab",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Health, Punjab",
+            "launchedYear": 2019,
+            "category": "Health Insurance",
+            "amount": "₹10 lakh cashless health insurance per family per year (zero premium for beneficiary)",
+            "deadline": "Ongoing — enroll at any Aam Aadmi Clinic or government hospital in Punjab",
+            "description": "Punjab's flagship cashless health insurance covering 100% of Punjab's population for up to ₹10 lakh per family per year.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "All ages",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "All Punjab residents covered (100% population coverage)"
+            },
+            "benefits": {
+              "financial": [
+                "₹10 lakh cashless insurance per family per year",
+                "1,949+ medical procedures covered",
+                "No premium to be paid"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit nearest Aam Aadmi Clinic or government hospital",
+              "Step 2: Register with Aadhaar card for MMSBY health card",
+              "Step 3: Use health card for cashless treatment at empanelled hospitals"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Punjab domicile certificate",
+              "Ration card or address proof"
+            ],
+            "officialWebsite": "https://sha.punjab.gov.in",
+            "helplineNumber": "104",
+            "tags": ["Punjab", "health insurance", "cashless", "Ayushman Bharat", "MMSBY"]
+          },
+          {
+            "id": "SCH_037",
+            "name": "Merit-cum-Means Scholarship for Minorities",
+            "shortName": "MCM Minority Scholarship",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Minority Affairs",
+            "launchedYear": 2006,
+            "category": "Scholarship",
+            "amount": "Course fee up to ₹20,000/year + maintenance allowance ₹10,000/year",
+            "deadline": "Annual — apply on NSP by October 31 each year",
+            "description": "Financial assistance to students from minority communities pursuing professional/technical courses.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Students in professional/technical courses",
+              "residency": "Indian citizen",
+              "otherCriteria": "Muslim/Christian/Sikh/Buddhist/Jain/Parsi; 50% marks in previous year; income below ₹2.5 lakh/year"
+            },
+            "benefits": {
+              "financial": [
+                "Course fee up to ₹20,000/year",
+                "Maintenance allowance ₹10,000/year"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply on NSP at scholarships.gov.in",
+              "Step 2: Select Minority Scholarship and fill details",
+              "Step 3: Upload documents",
+              "Step 4: Institute verifies; Ministry releases scholarship"
+            ],
+            "documentsRequired": [
+              "Minority community certificate",
+              "Income certificate",
+              "Previous mark sheet",
+              "Aadhaar card",
+              "Admission letter",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://scholarships.gov.in",
+            "helplineNumber": "0120-6619540",
+            "tags": ["minority", "Muslim", "Sikh", "Christian", "scholarship", "professional course"]
+          },
+          {
+            "id": "SCH_038",
+            "name": "AICTE Pragati Scholarship for Girls (Technical Education)",
+            "shortName": "Pragati Scholarship",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Education / AICTE",
+            "launchedYear": 2014,
+            "category": "Girl Technical Education Scholarship",
+            "amount": "₹50,000/year (up to 4 years degree / 3 years diploma)",
+            "deadline": "Annual — applications open August–October on AICTE portal",
+            "description": "Supports girl students from low-income families in AICTE-approved technical institutions to encourage girls in technical fields.",
+            "eligibility": {
+              "gender": "Girl",
+              "ageLimit": "First and second year diploma or degree students",
+              "residency": "Indian citizen",
+              "otherCriteria": "Income below ₹8 lakh/year; one girl per family per year; AICTE-approved institution"
+            },
+            "benefits": {
+              "financial": ["₹50,000/year for full course duration"]
+            },
+            "howToApply": [
+              "Step 1: Apply at aicte-india.org",
+              "Step 2: Fill personal, academic, and bank details",
+              "Step 3: Upload documents",
+              "Step 4: Institution verifies; AICTE releases annually"
+            ],
+            "documentsRequired": [
+              "Class 10 and 12 mark sheets",
+              "Income certificate",
+              "Aadhaar card",
+              "Admission letter from AICTE institution",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://www.aicte-india.org/schemes/students-development-schemes",
+            "helplineNumber": "011-29581000",
+            "tags": ["AICTE", "girl student", "technical education", "engineering", "diploma", "scholarship"]
+          }
+        ]
+      },
+      {
+        "id": "age_group_adults",
+        "label": "Adults",
+        "ageRange": "25-45",
+        "totalSchemes": 17,
+        "schemes": [
+          {
+            "id": "SCH_039",
+            "name": "Pradhan Mantri Awas Yojana – Urban (PMAY-U)",
+            "shortName": "PMAY Urban",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Housing and Urban Affairs",
+            "launchedYear": 2015,
+            "category": "Housing",
+            "amount": "Interest subsidy of 3–6.5% on home loan (EWS: 6.5% on ₹6 lakh; MIG-I: 4% on ₹9 lakh; MIG-II: 3% on ₹12 lakh)",
+            "deadline": "Ongoing under PMAY 2.0 — apply at pmaymis.gov.in or nearest ULB",
+            "description": "Affordable housing for urban EWS/LIG/MIG households with interest subsidies and direct housing construction support.",
+            "eligibility": {
+              "gender": "All (women co-ownership mandatory for EWS/LIG)",
+              "ageLimit": "Adult beneficiaries (18+)",
+              "residency": "Indian citizen (urban area)",
+              "otherCriteria": "No pucca house anywhere; EWS (income ≤₹3 lakh), LIG (₹3–6 lakh), MIG-I (₹6–12 lakh), MIG-II (₹12–18 lakh)"
+            },
+            "benefits": {
+              "financial": [
+                "EWS/LIG: 6.5% interest subsidy on loan up to ₹6 lakh",
+                "MIG-I: 4% on ₹9 lakh",
+                "MIG-II: 3% on ₹12 lakh",
+                "Direct benefit transfer for self-construction"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply at pmaymis.gov.in or nearest ULB/CSC",
+              "Step 2: Fill personal, income, property details",
+              "Step 3: Submit documents",
+              "Step 4: Interest subsidy credited upfront to reduce EMI"
+            ],
+            "documentsRequired": [
+              "Aadhaar card of applicant and spouse",
+              "Income certificate",
+              "PAN card",
+              "Property documents",
+              "Bank account details",
+              "Affidavit of no pucca house"
+            ],
+            "officialWebsite": "https://pmaymis.gov.in",
+            "helplineNumber": "1800-11-6163",
+            "tags": ["housing", "urban", "EWS", "LIG", "MIG", "interest subsidy", "home loan"]
+          },
+          {
+            "id": "SCH_040",
+            "name": "Pradhan Mantri Awas Yojana – Gramin (PMAY-G)",
+            "shortName": "PMAY Gramin",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Rural Development",
+            "launchedYear": 2016,
+            "category": "Housing",
+            "amount": "₹1,20,000 (plains) or ₹1,30,000 (hilly areas) + ₹12,000 for toilet under SBM",
+            "deadline": "Ongoing — eligibility based on SECC 2011 waitlist; contact Gram Panchayat",
+            "description": "Rural housing scheme providing financial assistance to BPL households to construct pucca houses.",
+            "eligibility": {
+              "gender": "All (priority to women-headed households)",
+              "ageLimit": "Adult household head",
+              "residency": "Rural Indian citizen",
+              "otherCriteria": "SECC 2011 identified; houseless or kutcha house"
+            },
+            "benefits": {
+              "financial": [
+                "₹1,20,000 in plains (₹1,30,000 in hilly areas)",
+                "₹12,000 for toilet under Swachh Bharat Mission",
+                "90 days MGNREGS wage support"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Contact Gram Panchayat or Block Development Office",
+              "Step 2: Check if name is in SECC 2011 waitlist",
+              "Step 3: District officials verify and include in beneficiary list",
+              "Step 4: Funds transferred in instalments based on construction progress"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "SECC 2011 details",
+              "Bank account details",
+              "BPL card",
+              "Land ownership documents"
+            ],
+            "officialWebsite": "https://pmayg.nic.in",
+            "helplineNumber": "1800-11-6446",
+            "tags": ["rural housing", "pucca house", "SECC", "BPL", "gramin", "MGNREGS"]
+          },
+          {
+            "id": "SCH_041",
+            "name": "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+            "shortName": "PMJDY / Jan Dhan",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Finance",
+            "launchedYear": 2014,
+            "category": "Financial Inclusion",
+            "amount": "Zero balance account + ₹2 lakh accidental insurance + ₹30,000 life insurance + ₹10,000 overdraft",
+            "deadline": "Ongoing — open account at any bank branch or Business Correspondent anytime",
+            "description": "Universal banking access with zero balance accounts, free accidental insurance, overdraft facility, and access to pension and insurance schemes.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "10 years and above",
+              "residency": "Indian citizen",
+              "otherCriteria": "Unbanked individuals"
+            },
+            "benefits": {
+              "financial": [
+                "Zero balance savings account",
+                "₹2 lakh accidental death insurance (RuPay card)",
+                "₹30,000 life insurance",
+                "₹10,000 overdraft facility (after 6 months)"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit any bank or Business Correspondent",
+              "Step 2: Fill PMJDY account opening form",
+              "Step 3: Submit documents",
+              "Step 4: Receive passbook and RuPay debit card"
+            ],
+            "documentsRequired": [
+              "Aadhaar card (primary)",
+              "OR: Voter ID, Driving License, NREGA Job Card",
+              "Passport-size photograph"
+            ],
+            "officialWebsite": "https://pmjdy.gov.in",
+            "helplineNumber": "1800-11-0001",
+            "tags": ["banking", "financial inclusion", "zero balance", "RuPay", "insurance", "overdraft"]
+          },
+          {
+            "id": "SCH_042",
+            "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+            "shortName": "PMJJBY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Finance",
+            "launchedYear": 2015,
+            "category": "Life Insurance",
+            "amount": "₹2 lakh life insurance cover at only ₹436/year premium",
+            "deadline": "Annual renewal — auto-debited on June 1 each year; enroll anytime",
+            "description": "Government-backed term life insurance providing ₹2 lakh on death at a nominal annual premium of ₹436.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 to 50 years",
+              "residency": "Indian citizen",
+              "otherCriteria": "Must have bank account with auto-debit"
+            },
+            "benefits": {
+              "financial": [
+                "₹2 lakh life cover on death (any cause)",
+                "Annual premium: only ₹436/year"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit bank or apply via net/mobile banking",
+              "Step 2: Submit consent for auto-debit",
+              "Step 3: Policy activates from June 1"
+            ],
+            "documentsRequired": [
+              "Aadhaar-linked bank account",
+              "Consent form for auto-debit",
+              "Nominee details"
+            ],
+            "officialWebsite": "https://jansuraksha.gov.in",
+            "helplineNumber": "1800-180-1111",
+            "tags": ["life insurance", "term insurance", "low premium", "₹2 lakh", "death benefit"]
+          },
+          {
+            "id": "SCH_043",
+            "name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+            "shortName": "PMSBY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Finance",
+            "launchedYear": 2015,
+            "category": "Accidental Insurance",
+            "amount": "₹2 lakh on accidental death/full disability; ₹1 lakh on partial disability — at just ₹20/year",
+            "deadline": "Annual renewal — auto-debited on June 1; enroll anytime at your bank",
+            "description": "Very low-cost accidental insurance at ₹20/year providing ₹2 lakh cover for accidental death and disability.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 to 70 years",
+              "residency": "Indian citizen",
+              "otherCriteria": "Must have bank account"
+            },
+            "benefits": {
+              "financial": [
+                "₹2 lakh on accidental death or permanent total disability",
+                "₹1 lakh on permanent partial disability",
+                "Annual premium: only ₹20/year"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit bank or apply via net/mobile banking",
+              "Step 2: Fill PMSBY enrollment form",
+              "Step 3: Premium auto-debited annually"
+            ],
+            "documentsRequired": [
+              "Bank account with Aadhaar link",
+              "Consent form"
+            ],
+            "officialWebsite": "https://jansuraksha.gov.in",
+            "helplineNumber": "1800-180-1111",
+            "tags": ["accident insurance", "disability", "low premium", "₹20/year", "bank account"]
+          },
+          {
+            "id": "SCH_044",
+            "name": "Ayushman Bharat – PM Jan Arogya Yojana (PM-JAY)",
+            "shortName": "Ayushman Bharat / PM-JAY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Health and Family Welfare",
+            "launchedYear": 2018,
+            "category": "Health Insurance",
+            "amount": "₹5 lakh cashless health insurance per family per year (zero premium for beneficiary)",
+            "deadline": "Ongoing — check eligibility and get Ayushman card at any empanelled hospital or pmjay.gov.in",
+            "description": "World's largest government health insurance scheme providing ₹5 lakh per family per year for secondary and tertiary care.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "All ages",
+              "residency": "Indian citizen",
+              "otherCriteria": "SECC 2011 identified families; recently extended to all senior citizens above 70 years"
+            },
+            "benefits": {
+              "financial": [
+                "₹5 lakh cashless insurance per family per year",
+                "1,949+ medical packages covered",
+                "Pre and post-hospitalization expenses covered"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Check eligibility at pmjay.gov.in or call 14555",
+              "Step 2: Visit empanelled hospital or Ayushman Bharat Mitra",
+              "Step 3: Get Ayushman Golden Card with Aadhaar",
+              "Step 4: Use card for cashless treatment"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Ration card or SECC inclusion proof",
+              "Mobile number linked to Aadhaar"
+            ],
+            "officialWebsite": "https://pmjay.gov.in",
+            "helplineNumber": "14555",
+            "tags": ["health insurance", "cashless", "₹5 lakh", "SECC", "hospital", "Ayushman"]
+          },
+          {
+            "id": "SCH_045",
+            "name": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+            "shortName": "Ujjwala Yojana",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Petroleum and Natural Gas",
+            "launchedYear": 2016,
+            "category": "LPG & Women Welfare",
+            "amount": "Free LPG connection (cylinder + regulator + hose); continued subsidy via PAHAL",
+            "deadline": "Ongoing — apply at nearest LPG distributor anytime",
+            "description": "Provides free LPG connections to women from BPL households to replace polluting cooking fuels.",
+            "eligibility": {
+              "gender": "Women (adult, 18+)",
+              "ageLimit": "18 years and above",
+              "residency": "Indian citizen (BPL, rural and urban)",
+              "otherCriteria": "BPL/SECC/SC/ST/forest area/PMAY/PMJDY/tea garden workers"
+            },
+            "benefits": {
+              "financial": [
+                "Free LPG connection with 14.2 kg cylinder, regulator, hose",
+                "Continued LPG subsidy via PAHAL"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit nearest LPG distributor",
+              "Step 2: Fill KYC form for new LPG connection",
+              "Step 3: Submit BPL/SECC certificate",
+              "Step 4: Receive free gas connection"
+            ],
+            "documentsRequired": [
+              "Aadhaar card of woman applicant",
+              "BPL card or SECC proof",
+              "Bank account details",
+              "Address proof",
+              "Passport-size photograph"
+            ],
+            "officialWebsite": "https://www.pmuy.gov.in",
+            "helplineNumber": "1800-233-3555",
+            "tags": ["LPG", "gas connection", "women", "BPL", "clean cooking fuel", "SECC"]
+          },
+          {
+            "id": "SCH_046",
+            "name": "MGNREGS (Mahatma Gandhi National Rural Employment Guarantee)",
+            "shortName": "MGNREGS / NREGA",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Rural Development",
+            "launchedYear": 2006,
+            "category": "Rural Employment",
+            "amount": "100 days guaranteed employment/year at ₹220–₹357/day (state-wise wage rate)",
+            "deadline": "Ongoing — apply for Job Card at Gram Panchayat anytime; work allocation within 15 days",
+            "description": "Guarantees 100 days of wage employment per year to every rural household whose adult members volunteer for unskilled manual work.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 years and above",
+              "residency": "Rural Indian citizen",
+              "otherCriteria": "Any rural adult willing to do unskilled manual work; Job Card required"
+            },
+            "benefits": {
+              "financial": [
+                "100 days guaranteed employment/year",
+                "₹220–₹357/day (varies by state)",
+                "Unemployment allowance if work not given in 15 days"
+              ],
+              "nonFinancial": [
+                "Crèche, first aid, and drinking water at worksite"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Register at nearest Gram Panchayat",
+              "Step 2: Receive MGNREGS Job Card",
+              "Step 3: Submit written work application at Gram Panchayat",
+              "Step 4: Work allocated within 15 days; payment within 15 days of work"
+            ],
+            "documentsRequired": [
+              "Aadhaar card of all adult members",
+              "Bank/post office account details",
+              "Photograph",
+              "Rural address proof"
+            ],
+            "officialWebsite": "https://nrega.nic.in",
+            "helplineNumber": "1800-111-555",
+            "tags": ["rural employment", "100 days work", "guaranteed wages", "job card", "unskilled labour"]
+          },
+          {
+            "id": "SCH_047",
+            "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+            "shortName": "PMFBY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Agriculture and Farmers Welfare",
+            "launchedYear": 2016,
+            "category": "Crop Insurance",
+            "amount": "Full sum insured for total crop loss; farmer pays only 2% (Kharif), 1.5% (Rabi), 5% (horticulture) premium",
+            "deadline": "Seasonal — Kharif: apply by July 31; Rabi: apply by December 31 (check state-wise dates)",
+            "description": "Comprehensive crop insurance against natural calamities, pests, and diseases for financial stability of farmers.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Adult farmers",
+              "residency": "Indian citizen (farmer)",
+              "otherCriteria": "Loanee and non-loanee farmers; sharecroppers and tenant farmers also eligible"
+            },
+            "benefits": {
+              "financial": [
+                "Full sum insured for total crop loss",
+                "Low farmer premium: 2% Kharif, 1.5% Rabi, 5% horticulture",
+                "Balance premium borne by Central and State Government"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Contact nearest bank, CSC, or insurance company agent",
+              "Step 2: Fill crop insurance application before cut-off date",
+              "Step 3: Pay applicable premium",
+              "Step 4: Claim settled based on crop cutting experiments and satellite data"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Land ownership records or rental agreement",
+              "Bank account details",
+              "Sowing certificate from Patwari",
+              "Previous season crop details"
+            ],
+            "officialWebsite": "https://pmfby.gov.in",
+            "helplineNumber": "1800-200-7710",
+            "tags": ["farmers", "crop insurance", "kharif", "rabi", "natural calamity", "premium subsidy"]
+          },
+          {
+            "id": "SCH_048",
+            "name": "PM Kisan Samman Nidhi (PM-KISAN)",
+            "shortName": "PM-KISAN",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Agriculture and Farmers Welfare",
+            "launchedYear": 2019,
+            "category": "Farmer Income Support",
+            "amount": "₹6,000/year in 3 instalments of ₹2,000 every 4 months via DBT",
+            "deadline": "Ongoing — register anytime at pmkisan.gov.in; instalments released every 4 months",
+            "description": "Direct income support of ₹6,000/year to all eligible farmer families in 3 instalments to cover cultivation costs.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "Adult farmers",
+              "residency": "Indian citizen (farmer)",
+              "otherCriteria": "Small and marginal farmers with arable land; excludes institutional landholders, government employees, income tax payers"
+            },
+            "benefits": {
+              "financial": [
+                "₹6,000/year in 3 instalments of ₹2,000 every 4 months",
+                "Direct credit to Aadhaar-linked bank account"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Visit pmkisan.gov.in or nearest CSC",
+              "Step 2: Register as new farmer with land and Aadhaar details",
+              "Step 3: Submit land records for verification",
+              "Step 4: After Patwari verification, payments begin"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Land ownership records (Khasra/Khatauni)",
+              "Bank account details",
+              "Mobile number linked to Aadhaar"
+            ],
+            "officialWebsite": "https://pmkisan.gov.in",
+            "helplineNumber": "155261",
+            "tags": ["farmer", "income support", "₹6000/year", "small farmer", "DBT", "agriculture"]
+          },
+          {
+            "id": "SCH_049",
+            "name": "DAY-NULM (National Urban Livelihoods Mission)",
+            "shortName": "DAY-NULM",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Housing and Urban Affairs",
+            "launchedYear": 2013,
+            "category": "Urban Employment & Self-Employment",
+            "amount": "Individual loan up to ₹2 lakh; group enterprise up to ₹10 lakh; SHG Revolving Fund ₹10,000",
+            "deadline": "Ongoing — contact nearest Urban Local Body (ULB) or City Livelihood Centre",
+            "description": "Reduces urban poverty through skill development, SHG formation, and credit linkage for urban poor households.",
+            "eligibility": {
+              "gender": "All (priority to women)",
+              "ageLimit": "18 to 45 years",
+              "residency": "Urban Indian citizen (BPL/near-BPL)",
+              "otherCriteria": "Urban poor, rag pickers, street vendors, construction workers"
+            },
+            "benefits": {
+              "financial": [
+                "Interest subsidy on individual loans up to ₹2 lakh",
+                "Group enterprise loan up to ₹10 lakh",
+                "SHG Revolving Fund ₹10,000 per SHG"
+              ],
+              "nonFinancial": [
+                "Free skill training and placement",
+                "Street vendor support with identity cards"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Contact nearest ULB or City Livelihood Centre",
+              "Step 2: Join SHG or apply individually for skill training",
+              "Step 3: Apply for credit linkage through ULB",
+              "Step 4: Receive training, certification, and loan"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "BPL income certificate",
+              "Urban address proof",
+              "Bank account details"
+            ],
+            "officialWebsite": "https://nulm.gov.in",
+            "helplineNumber": "1800-11-6163",
+            "tags": ["urban poor", "SHG", "micro enterprise", "street vendor", "skill training", "women"]
+          },
+          {
+            "id": "SCH_050",
+            "name": "PMEGP for Adults (Micro Enterprise Setup)",
+            "shortName": "PMEGP Adults",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of MSME",
+            "launchedYear": 2008,
+            "category": "Business Loan",
+            "amount": "25–45% government subsidy on project cost; project up to ₹50 lakh (manufacturing), ₹20 lakh (services)",
+            "deadline": "Ongoing — apply anytime at kviconline.gov.in/pmegpeportal",
+            "description": "For adults 25–45 setting up new micro enterprises with government margin money subsidy to reduce startup financial burden.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 years and above",
+              "residency": "Indian citizen",
+              "otherCriteria": "New enterprise only; minimum 8th class pass for manufacturing above ₹10 lakh"
+            },
+            "benefits": {
+              "financial": [
+                "25% (general urban) to 45% (special rural) subsidy",
+                "Up to ₹50 lakh (manufacturing), ₹20 lakh (services) project cost"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply at kviconline.gov.in/pmegpeportal",
+              "Step 2: Submit project report to KVIC/KVIB/DIC",
+              "Step 3: Interview by task force",
+              "Step 4: Bank sanctions loan; subsidy credited"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "PAN card",
+              "Educational certificate",
+              "Project report",
+              "Caste certificate if applicable"
+            ],
+            "officialWebsite": "https://www.kviconline.gov.in/pmegpeportal",
+            "helplineNumber": "1800-3000-0034",
+            "tags": ["micro enterprise", "new business", "KVIC", "margin money", "loan subsidy", "MSME"]
+          },
+          {
+            "id": "SCH_051",
+            "name": "Punjab Ghar Ghar Rozgar (PGRKAM)",
+            "shortName": "PGRKAM",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Employment Generation, Punjab",
+            "launchedYear": 2017,
+            "category": "Employment Portal",
+            "amount": "Free job portal access + free career counseling (no direct monetary benefit)",
+            "deadline": "Ongoing — register anytime at pgrkam.com",
+            "description": "Punjab's employment portal connecting job seekers with employers through digital listings, job fairs, and career counseling.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 years and above",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "Unemployed or underemployed graduates, diploma holders, ITI workers"
+            },
+            "benefits": {
+              "nonFinancial": [
+                "Free job portal with thousands of listings",
+                "State-organized job fairs",
+                "Free career counseling",
+                "Apprenticeship and internship connections"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Register at pgrkam.com",
+              "Step 2: Create profile with education and skills",
+              "Step 3: Browse jobs or register for job fairs",
+              "Step 4: Apply or attend placement camps"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Educational certificates",
+              "Punjab domicile proof",
+              "Skill certificates (if any)"
+            ],
+            "officialWebsite": "https://pgrkam.com",
+            "helplineNumber": "1800-137-7100",
+            "tags": ["Punjab", "job portal", "employment", "job fair", "career counseling", "placement"]
+          },
+          {
+            "id": "SCH_052",
+            "name": "PM SVANidhi Scheme (Street Vendor Micro-Credit)",
+            "shortName": "PM SVANidhi",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Housing and Urban Affairs",
+            "launchedYear": 2020,
+            "category": "Street Vendor Micro-Credit",
+            "amount": "Initial ₹10,000 → ₹20,000 → ₹50,000 on timely repayment + 7% interest subsidy",
+            "deadline": "Ongoing — apply anytime at pmsvanidhi.mohua.gov.in",
+            "description": "Collateral-free working capital loans for urban street vendors with escalating credit limits on timely repayment.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "18 years and above",
+              "residency": "Urban street vendor",
+              "otherCriteria": "Certificate of Vending or ULB Letter of Recommendation; surveyed vendor"
+            },
+            "benefits": {
+              "financial": [
+                "Initial loan ₹10,000",
+                "Enhanced ₹20,000 on timely repayment",
+                "Further ₹50,000 on continued repayment",
+                "7% annual interest subsidy",
+                "Digital transaction cashback up to ₹1,200/year"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Apply at pmsvanidhi.mohua.gov.in",
+              "Step 2: Visit nearest ULB with documents",
+              "Step 3: ULB verifies and issues Letter of Recommendation",
+              "Step 4: Apply to bank/MFI for loan"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Vendor certificate or ULB letter",
+              "Bank account details",
+              "Photograph",
+              "Mobile number"
+            ],
+            "officialWebsite": "https://pmsvanidhi.mohua.gov.in",
+            "helplineNumber": "1800-11-3585",
+            "tags": ["street vendor", "micro loan", "working capital", "digital payment", "hawker"]
+          },
+          {
+            "id": "SCH_053",
+            "name": "Sukh Samman Nidhi Scheme – Punjab (Women Support)",
+            "shortName": "Sukh Samman Punjab",
+            "govtLevel": "Punjab State Government",
+            "ministry": "Department of Social Security and Women & Child Development, Punjab",
+            "launchedYear": 2023,
+            "category": "Women Financial Empowerment",
+            "amount": "₹1,000/month directly credited to bank account",
+            "deadline": "Ongoing — apply at sswcd.punjab.gov.in or nearest Sewa Kendra anytime",
+            "description": "Monthly ₹1,000 financial support to women above 18 from low-income Punjab families to enhance financial independence.",
+            "eligibility": {
+              "gender": "Female",
+              "ageLimit": "18 years and above",
+              "residency": "Permanent resident of Punjab",
+              "otherCriteria": "Family income below ₹3 lakh/year; not a government employee or income tax payer"
+            },
+            "benefits": {
+              "financial": ["₹1,000/month via DBT to bank account"]
+            },
+            "howToApply": [
+              "Step 1: Apply at sswcd.punjab.gov.in or nearest Sewa Kendra/DC office",
+              "Step 2: Fill Sukh Samman Nidhi form",
+              "Step 3: Submit income proof and Aadhaar",
+              "Step 4: Monthly payment begins after verification"
+            ],
+            "documentsRequired": [
+              "Aadhaar card",
+              "Punjab domicile certificate",
+              "Income certificate (below ₹3 lakh)",
+              "Bank passbook",
+              "Passport-size photograph"
+            ],
+            "officialWebsite": "https://sswcd.punjab.gov.in",
+            "helplineNumber": "0172-2714006",
+            "tags": ["Punjab", "women", "monthly allowance", "financial support", "DBT"]
+          },
+          {
+            "id": "SCH_054",
+            "name": "Pradhan Mantri Rozgar Protsahan Yojana (PMRPY)",
+            "shortName": "PMRPY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Labour and Employment",
+            "launchedYear": 2016,
+            "category": "Employment Incentive",
+            "amount": "Government pays 12% employer EPF contribution for 3 years per new employee",
+            "deadline": "Ongoing — employer registers new employees on EPFO portal; benefit automatic",
+            "description": "Encourages employers to hire more workers by having the government pay full employer EPF contribution for new employees earning below ₹15,000/month.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "New employees of any age; salary below ₹15,000/month",
+              "residency": "Indian citizen",
+              "otherCriteria": "First-time EPFO registrant; EPFO-registered employer"
+            },
+            "benefits": {
+              "financial": [
+                "Full employer EPF contribution (12%) paid by government for 3 years",
+                "Reduces cost of formal hiring by 12%"
+              ]
+            },
+            "howToApply": [
+              "Step 1: Employer registers with EPFO",
+              "Step 2: Hire new employees with salary below ₹15,000",
+              "Step 3: Register new employees on EPFO portal",
+              "Step 4: Government pays employer contribution automatically for 3 years"
+            ],
+            "documentsRequired": [
+              "EPFO registration of employer",
+              "Aadhaar card of new employee",
+              "Salary proof",
+              "Bank account of employee"
+            ],
+            "officialWebsite": "https://pmrpy.gov.in",
+            "helplineNumber": "1800-118-005",
+            "tags": ["employer", "EPF", "job creation", "salary below 15000", "formal employment"]
+          },
+          {
+            "id": "SCH_055",
+            "name": "Employment Linked Incentive (ELI) – PM Viksit Bharat Rozgar Yojana",
+            "shortName": "ELI / PMVBRY",
+            "govtLevel": "Central Government",
+            "ministry": "Ministry of Labour and Employment",
+            "launchedYear": 2025,
+            "category": "Employment Incentive",
+            "amount": "Scheme A: One-month salary up to ₹15,000 for first-time employees; Scheme B: ₹3,000/month reimbursement to manufacturing employers for 2 years",
+            "deadline": "Scheme approved July 2025 — implementation rolling out; check labour.gov.in for current status",
+            "description": "Landmark ₹2 lakh crore employment scheme creating formal jobs for 4.1 crore youth through direct salary support and employer incentives.",
+            "eligibility": {
+              "gender": "All",
+              "ageLimit": "First-time formal sector employees (18–35 primarily)",
+              "residency": "Indian citizen",
+              "otherCriteria": "First-time EPFO registrant for Scheme A; manufacturing sector for Scheme B"
+            },
+            "benefits": {
+              "financial": [
+                "Scheme A: One-month salary up to ₹15,000 (3 instalments) for first-time employees",
+                "Scheme B: Up to ₹3,000/month to manufacturing employers for 2 years",
+                "Scheme C: Reimbursement for employers adding 1,000+ new employees"
+              ]
+            },
+            "howToApply": [
+              "Step 1: First-time employees register on EPFO portal when joining formal employment",
+              "Step 2: Employer registers new employee in EPFO",
+              "Step 3: Government transfers Scheme A benefit to Aadhaar-linked account",
+              "Step 4: Manufacturing employers apply through labour ministry portal for Scheme B/C"
+            ],
+            "documentsRequired": [
+              "Aadhaar card of new employee",
+              "Bank account linked to Aadhaar",
+              "EPFO registration (employer)",
+              "Salary and appointment letter"
+            ],
+            "officialWebsite": "https://labour.gov.in",
+            "helplineNumber": "1800-11-2014",
+            "tags": ["first job", "formal employment", "ELI", "salary support", "manufacturing", "EPFO", "budget 2025"]
+          }
+        ]
+      }
+    ]
+  }
+}

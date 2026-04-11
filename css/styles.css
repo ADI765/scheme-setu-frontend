@@ -322,44 +322,128 @@ body {
 }
 
 /* ============================================================
-   SWIPE CARD ANIMATIONS
+   FANNED DECK — SWIPEABLE FLASHCARDS
    ============================================================ */
 
-.swipe-card {
-    will-change: transform;
-    touch-action: none;
-    user-select: none;
-    cursor: grab;
-    transition: box-shadow 0.3s ease;
+/* Deck wrapper — sets the stage for fanned cards */
+.deck-container {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    perspective: 1000px; /* Adds depth to drag */
 }
 
-.swipe-card:active {
+/* Each flashcard in the deck (background + top) */
+.flashcard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 320px;
+    background: #ffffff;
+    color: #1e293b;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+    /* Fan them from the bottom center */
+    transform-origin: bottom center;
+    transform: rotate(var(--rotation, 0deg));
+    z-index: var(--z, 1);
+
+    /* Smooth snap-back / promotion animation */
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.3s ease,
+                opacity 0.35s ease;
+
+    /* Prevent text highlighting while dragging */
+    user-select: none;
+    touch-action: none;
+    will-change: transform, opacity;
+}
+
+/* Background cards — slightly muted to create depth */
+.flashcard.bg-card {
+    background: #f1f5f9;
+    color: #475569;
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    pointer-events: none; /* Only the top card is interactive */
+}
+
+/* The active top card — interactive */
+.flashcard.top-card {
+    cursor: grab;
+    box-shadow: 0 10px 32px -8px rgba(29, 78, 216, 0.12),
+                0 4px 12px -2px rgba(0, 0, 0, 0.06);
+    z-index: 10 !important;
+}
+
+.flashcard.top-card:active {
     cursor: grabbing;
 }
 
-.swipe-card:hover {
-    box-shadow: 0 8px 32px -8px rgba(29, 78, 216, 0.1),
-        0 4px 8px -2px rgba(0, 0, 0, 0.04);
+.flashcard.top-card:hover {
+    box-shadow: 0 14px 40px -8px rgba(29, 78, 216, 0.15),
+                0 6px 16px -4px rgba(0, 0, 0, 0.08);
 }
 
-.swipe-card.animating {
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+/* When actively dragging, remove transition so it follows cursor instantly */
+.flashcard.top-card.dragging {
+    transition: none !important;
+    cursor: grabbing;
 }
 
-.swipe-card.swipe-right {
-    transform: translateX(120%) rotate(15deg);
-    opacity: 0;
+/* Swipe fly-away transitions */
+.flashcard.swipe-away {
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out !important;
+    pointer-events: none;
 }
 
-.swipe-card.swipe-left {
-    transform: translateX(-120%) rotate(-15deg);
-    opacity: 0;
+/* Promotion animation (next card becoming top) */
+.flashcard.promoting {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.4s ease;
 }
 
-.swipe-card.snap-back {
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-    transform: translateX(0) rotate(0);
+/* Snap-back (release without threshold) */
+.flashcard.snap-back {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* Entrance animation for newly rendered deck */
+@keyframes deckEntrance {
+    from {
+        opacity: 0;
+        transform: rotate(var(--rotation, 0deg)) scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(var(--rotation, 0deg)) scale(1) translateY(0);
+    }
+}
+
+.flashcard.deck-enter {
+    animation: deckEntrance 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Stagger entrance for fan cards */
+.flashcard.deck-enter:nth-child(1) { animation-delay: 0s; }
+.flashcard.deck-enter:nth-child(2) { animation-delay: 0.05s; }
+.flashcard.deck-enter:nth-child(3) { animation-delay: 0.1s; }
+.flashcard.deck-enter:nth-child(4) { animation-delay: 0.15s; }
+
+/* Responsive spacing */
+@media (min-width: 640px) {
+    .flashcard {
+        padding: 2rem;
+    }
+    .deck-container {
+        min-height: 400px;
+    }
 }
 
 /* ============================================================
@@ -491,6 +575,274 @@ textarea:focus {
 .modal-overlay.active {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* ============================================================
+   SCHEME DETAIL MODAL
+   ============================================================ */
+
+/* Overlay specific to scheme modal */
+.scheme-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: 1rem;
+}
+
+.scheme-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Modal Container */
+.scheme-modal {
+    background: #ffffff;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 560px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.2),
+        0 8px 20px -4px rgba(0, 0, 0, 0.08);
+    transform: scale(0.92) translateY(12px);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.3s ease;
+    position: relative;
+}
+
+.scheme-modal-overlay.active .scheme-modal {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* Modal Header */
+.scheme-modal-header {
+    padding: 1.5rem 1.75rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    position: relative;
+}
+
+.scheme-modal-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.4;
+    padding-right: 2.5rem;
+    margin: 0;
+}
+
+.scheme-modal-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    background: rgba(29, 78, 216, 0.08);
+    color: #1d4ed8;
+    margin-bottom: 0.625rem;
+}
+
+/* Close Button */
+.scheme-modal-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    background: #f1f5f9;
+    color: #64748b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 1.125rem;
+    line-height: 1;
+}
+
+.scheme-modal-close:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+/* Modal Body */
+.scheme-modal-body {
+    padding: 1.25rem 1.75rem;
+}
+
+/* Sections */
+.scheme-modal-section {
+    margin-bottom: 1.25rem;
+}
+
+.scheme-modal-section:last-child {
+    margin-bottom: 0;
+}
+
+.scheme-modal-section-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+}
+
+.scheme-modal-section p {
+    font-size: 0.875rem;
+    color: #475569;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.scheme-modal-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.scheme-modal-section ul li {
+    position: relative;
+    padding-left: 1.125rem;
+    font-size: 0.8125rem;
+    color: #475569;
+    line-height: 1.65;
+    margin-bottom: 0.3rem;
+}
+
+.scheme-modal-section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: #3b82f6;
+}
+
+/* Modal Footer */
+.scheme-modal-footer {
+    padding: 1rem 1.75rem 1.5rem;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.scheme-modal-apply {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #ffffff;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
+    text-decoration: none;
+}
+
+.scheme-modal-apply:hover {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    box-shadow: 0 4px 16px rgba(29, 78, 216, 0.35);
+    transform: translateY(-1px);
+}
+
+.scheme-modal-close-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #64748b;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.scheme-modal-close-btn:hover {
+    border-color: #cbd5e1;
+    color: #1e293b;
+    background: #f8fafc;
+}
+
+/* More Info Button — used on cards */
+.more-info-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #64748b;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+
+.more-info-btn:hover {
+    border-color: #3b82f6;
+    color: #1d4ed8;
+    background: #eff6ff;
+}
+
+/* Responsive Modal */
+@media (max-width: 640px) {
+    .scheme-modal-overlay {
+        padding: 0.5rem;
+        align-items: flex-end;
+    }
+
+    .scheme-modal {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 1rem 1rem 0 0;
+    }
+
+    .scheme-modal-header {
+        padding: 1.25rem 1.25rem 0.875rem;
+    }
+
+    .scheme-modal-body {
+        padding: 1rem 1.25rem;
+    }
+
+    .scheme-modal-footer {
+        padding: 0.875rem 1.25rem 1.25rem;
+        flex-direction: column;
+    }
+
+    .scheme-modal-apply,
+    .scheme-modal-close-btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* ============================================================
@@ -1203,7 +1555,7 @@ textarea {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 0.875rem;
-    padding: 1.25rem 1.5rem;
+    padding:  1rem;
     transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
         box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
         border-color 0.25s ease;
