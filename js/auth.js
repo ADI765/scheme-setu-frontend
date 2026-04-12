@@ -93,10 +93,10 @@ const Auth = (() => {
         return { ok: true };
     }
 
-    /** Log out the current user and reload */
+    /** Log out the current user and go to landing */
     function logout() {
         sessionStorage.removeItem(SESSION_KEY);
-        location.reload();
+        window.location.href = "index.html";
     }
 
     // -------- UI Wiring (called on every page) --------
@@ -122,7 +122,14 @@ const Auth = (() => {
             return;
         }
 
-        // Not authenticated → show overlay, hide app
+        // Not authenticated → redirect to login page (unless already on login.html)
+        const currentPage = window.location.pathname.split("/").pop() || "index.html";
+        if (currentPage !== "login.html" && currentPage !== "index.html") {
+            window.location.href = "login.html";
+            return;
+        }
+
+        // On login.html — show overlay
         if (appContent) appContent.classList.add("hidden");
         if (overlay) {
             overlay.classList.remove("hidden");
@@ -187,10 +194,13 @@ const Auth = (() => {
                 const result = login(username, password);
 
                 if (result.ok) {
-                    overlay.classList.add("hidden");
-                    if (appContent) appContent.classList.remove("hidden");
-                    _showUsername(userDisplay, userDisplayMobile);
-                    _bindLogout(logoutBtn, logoutBtnMobile);
+                    // Existing user login → check if profile exists
+                    const profileData = localStorage.getItem("schemeSetu_profile_" + username);
+                    if (profileData) {
+                        window.location.href = "dashboard.html";
+                    } else {
+                        window.location.href = "profile.html";
+                    }
                 } else {
                     loginError.textContent = result.error;
                     loginError.classList.remove("hidden");
@@ -212,10 +222,8 @@ const Auth = (() => {
                 const result = signup(username, password, phone);
 
                 if (result.ok) {
-                    overlay.classList.add("hidden");
-                    if (appContent) appContent.classList.remove("hidden");
-                    _showUsername(userDisplay, userDisplayMobile);
-                    _bindLogout(logoutBtn, logoutBtnMobile);
+                    // New signup → always go to profile
+                    window.location.href = "profile.html";
                 } else {
                     signupError.textContent = result.error;
                     signupError.classList.remove("hidden");
@@ -233,3 +241,8 @@ const Auth = (() => {
     // -------- Expose public API --------
     return { isAuthenticated, getCurrentUser, login, signup, logout, init };
 })();
+
+// Global stub for Google login (referenced by onclick in auth overlays)
+function loginWithGoogle() {
+    alert("Google login is not available yet. Please use username/password.");
+}

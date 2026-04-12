@@ -167,17 +167,8 @@
         }).join("") + "</ul>";
     }
 
-    function escapeHTML(str) {
-        if (!str) return "";
-        var div = document.createElement("div");
-        div.textContent = str;
-        return div.innerHTML;
-    }
+    // escapeHTML and escapeAttr are provided by utils.js
 
-    function escapeAttr(str) {
-        if (!str) return "";
-        return str.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-    }
 
     // ===== Export to global scope =====
     window.openSchemeModal = openSchemeModal;

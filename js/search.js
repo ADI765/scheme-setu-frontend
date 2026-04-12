@@ -38,17 +38,22 @@
                 await new Promise((r) => setTimeout(r, 300));
                 results = searchDummyData(query);
             } else {
-                // Real API mode
-                const response = await fetch(
-                    `${API_BASE_URL}/api/search-schemes?q=${encodeURIComponent(query)}`
-                );
+                // Try real API first, fallback to local JSON
+                try {
+                    const response = await fetch(
+                        `${API_BASE_URL}/api/search-schemes?q=${encodeURIComponent(query)}`
+                    );
 
-                if (!response.ok) {
-                    throw new Error("Search failed. Please try again.");
+                    if (!response.ok) {
+                        throw new Error("API error");
+                    }
+
+                    const data = await response.json();
+                    results = data.results || data.schemes || [];
+                } catch (_apiErr) {
+                    // Fallback: search local JSON data
+                    results = await searchLocalJSON(query);
                 }
-
-                const data = await response.json();
-                results = data.results || data.schemes || [];
             }
 
             // Hide loading
@@ -90,6 +95,40 @@
         return dummyResponse.eligible_schemes.filter((scheme) => {
             const text = `${scheme.scheme_name} ${scheme.description}`.toLowerCase();
             return keywords.every((kw) => text.includes(kw));
+        });
+    }
+
+    // ===== Local JSON Fallback Search =====
+    let _cachedLocalSchemes = null;
+    async function searchLocalJSON(query) {
+        if (!_cachedLocalSchemes) {
+            try {
+                const res = await fetch("data/schemes_schemesetu_v3.json");
+                const data = await res.json();
+                const ageGroups = data.schemeSetu?.ageGroups || [];
+                _cachedLocalSchemes = ageGroups.flatMap(g => (g.schemes || []).map(s => ({
+                    scheme_name: s.name || s.shortName,
+                    description: s.description || "",
+                    apply_link: s.officialWebsite || "#",
+                    category: s.category || "",
+                    govtLevel: s.govtLevel || "",
+                    amount: s.amount || "N/A",
+                    deadline: s.deadline || "TBD",
+                    tags: s.tags || [],
+                    eligibility: s.eligibility,
+                    benefits: s.benefits,
+                    howToApply: s.howToApply,
+                    documentsRequired: s.documentsRequired
+                })));
+            } catch (err) {
+                console.warn("Could not load local scheme data.", err);
+                _cachedLocalSchemes = [];
+            }
+        }
+        const keywords = query.toLowerCase().split(/\s+/);
+        return _cachedLocalSchemes.filter(scheme => {
+            const text = [scheme.scheme_name, scheme.description, scheme.category, scheme.govtLevel, ...(scheme.tags || [])].join(" ").toLowerCase();
+            return keywords.every(kw => text.includes(kw));
         });
     }
 
@@ -199,11 +238,8 @@
         return text.length > maxLen ? text.substring(0, maxLen) + "…" : text;
     }
 
-    function escapeHtml(text) {
-        const div = document.createElement("div");
-        div.textContent = text;
-        return div.innerHTML;
-    }
+    // escapeHtml is provided by utils.js (alias of escapeHTML)
+
 
     function escapeRegex(str) {
         return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

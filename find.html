@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Swipe Schemes — Scheme Setu</title>
-    <meta name="description" content="Swipe through government schemes you're eligible for. Save the ones you like." />
+    <title>Find for Someone Else — Scheme Setu</title>
+    <meta name="description"
+        content="Enter your profile details to discover government educational schemes you're eligible for." />
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -94,93 +95,149 @@
     <div id="app-content">
 
         <!-- ========== MAIN CONTENT ========== -->
-        <main class="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12">
-            <div class="w-full max-w-md">
+        <main class="flex-1 flex items-start justify-center px-4 sm:px-6 py-10 sm:py-16">
+            <div class="w-full max-w-lg">
 
-                <!-- Progress Section -->
-                <div id="progress-section" class="mb-6 slide-down">
-                    <div class="flex items-center justify-between text-sm mb-2">
-                        <span class="text-text-secondary">Reviewing schemes</span>
-                        <span id="progress-text" class="text-text-primary font-medium">1 / 5</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div id="progress-fill" class="progress-bar-fill" style="width: 20%"></div>
-                    </div>
+                <!-- Header -->
+                <div class="text-center mb-8 slide-up">
+                    <div class="accent-line mx-auto"></div>
+                    <h1 class="text-2xl sm:text-3xl font-bold mb-2">Find Schemes for Someone Else</h1>
+                    <p class="text-text-secondary">Enter their details below. This data won’t be saved to your profile.</p>
                 </div>
 
-                <!-- ===== Swipe Deck Container ===== -->
-                <div id="card-container" class="deck-container">
-                    <!-- Fanned flashcards are rendered dynamically by swipe.js -->
-                </div>
+                <!-- Profile Form Card -->
+                <div class="bg-surface rounded-xl p-4 sm:p-8 border border-surface-soft/60 scale-in shadow-sm">
+                    <form id="profile-form" novalidate>
 
-                <!-- ===== Action Buttons ===== -->
-                <div id="action-buttons" class="flex items-center justify-center gap-6 mt-8 slide-up stagger-2">
-                    <!-- Discard Button -->
-                    <button id="discard-btn"
-                        class="w-16 h-16 rounded-full bg-white border-2 border-red-300 flex items-center justify-center text-red-500 hover:bg-red-50 hover:border-red-500 transition-all duration-300 active:scale-90 shadow-sm"
-                        title="Discard Scheme">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                        <!-- Age -->
+                        <div class="mb-5 form-group">
+                            <label for="age" class="block text-sm font-medium text-text-secondary mb-1.5">Age</label>
+                            <input type="number" id="age" name="age" placeholder="e.g. 21" min="5" max="100"
+                                class="w-full bg-bg text-text-primary px-4 py-3 rounded-lg border border-surface-soft placeholder:text-text-secondary/60 transition-all duration-300"
+                                required />
+                            <p id="age-error" class="text-red-500 text-xs mt-1 hidden">Please enter a valid age (5–100)
+                            </p>
+                        </div>
 
-                    <!-- Save Button -->
-                    <button id="save-btn"
-                        class="w-16 h-16 rounded-full bg-white border-2 border-green-300 flex items-center justify-center text-green-500 hover:bg-green-50 hover:border-green-500 transition-all duration-300 active:scale-90 shadow-sm"
-                        title="Save Scheme">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                        </svg>
-                    </button>
-                </div>
+                        <!-- Gender -->
+                        <div class="mb-5 form-group">
+                            <label for="gender"
+                                class="block text-sm font-medium text-text-secondary mb-1.5">Gender</label>
+                            <select id="gender" name="gender"
+                                class="w-full bg-bg text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
+                                required>
+                                <option value="" disabled selected class="text-text-secondary/60">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <p id="gender-error" class="text-red-500 text-xs mt-1 hidden">Please select your gender</p>
+                        </div>
 
-                <!-- ===== Empty State (hidden by default) ===== -->
-                <div id="empty-state" class="hidden text-center py-16">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/5 flex items-center justify-center">
-                        <svg class="w-10 h-10 text-primary/60" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h2 class="text-xl font-bold mb-2">You've reviewed all schemes!</h2>
-                    <p class="text-text-secondary mb-8">Check your wishlist for saved schemes or search again with
-                        different
-                        details.</p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <a href="wishlist.html"
-                            class="btn-primary inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-accent shadow-lg shadow-primary/20 h-12 sm:h-10">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                        <!-- Category -->
+                        <div class="mb-5 form-group">
+                            <label for="category"
+                                class="block text-sm font-medium text-text-secondary mb-1.5">Category</label>
+                            <select id="category" name="category"
+                                class="w-full bg-bg text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
+                                required>
+                                <option value="" disabled selected class="text-text-secondary/60">Select category
+                                </option>
+                                <option value="general">General</option>
+                                <option value="obc">OBC</option>
+                                <option value="sc">SC</option>
+                                <option value="st">ST</option>
+                                <option value="ews">EWS</option>
+                            </select>
+                            <p id="category-error" class="text-red-500 text-xs mt-1 hidden">Please select your category
+                            </p>
+                        </div>
+
+                        <!-- Education Level -->
+                        <div class="mb-5 form-group">
+                            <label for="education_level"
+                                class="block text-sm font-medium text-text-secondary mb-1.5">Education Level</label>
+                            <select id="education_level" name="education_level"
+                                class="w-full bg-bg text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
+                                required>
+                                <option value="" disabled selected class="text-text-secondary/60">Select education level
+                                </option>
+                                <option value="high-school">High School</option>
+                                <option value="senior-secondary">Senior Secondary</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="postgraduate">Postgraduate</option>
+                                <option value="phd">PhD / Research</option>
+                            </select>
+                            <p id="education_level-error" class="text-red-500 text-xs mt-1 hidden">Please select your
+                                education level</p>
+                        </div>
+
+                        <!-- Occupation -->
+                        <div class="mb-5 form-group">
+                            <label for="occupation"
+                                class="block text-sm font-medium text-text-secondary mb-1.5">Occupation</label>
+                            <select id="occupation" name="occupation"
+                                class="w-full bg-bg text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
+                                required>
+                                <option value="" disabled selected class="text-text-secondary/60">Select occupation
+                                </option>
+                                <option value="student">Student</option>
+                                <option value="school-student">School Student</option>
+                                <option value="college-student">College Student</option>
+                                <option value="undergraduate">Undergraduate Student</option>
+                                <option value="postgraduate">Postgraduate Student</option>
+                                <option value="research-scholar">Research Scholar</option>
+                                <option value="unemployed-student">Unemployed Student</option>
+                                <option value="working-student">Working Student</option>
+                            </select>
+                            <p id="occupation-error" class="text-red-500 text-xs mt-1 hidden">Please select your
+                                occupation
+                            </p>
+                        </div>
+
+                        <!-- Family Income (Salary) -->
+                        <div class="mb-8 form-group">
+                            <label for="income" class="block text-sm font-medium text-text-secondary mb-1.5">Annual
+                                Family Income (₹)</label>
+                            <select id="income" name="income"
+                                class="w-full bg-bg text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
+                                required>
+                                <option value="" disabled selected class="text-text-secondary/60">Select income range
+                                </option>
+                                <option value="0-100000">Below ₹1,00,000</option>
+                                <option value="100000-250000">₹1,00,000 – ₹2,50,000</option>
+                                <option value="250000-500000">₹2,50,000 – ₹5,00,000</option>
+                                <option value="500000-800000">₹5,00,000 – ₹8,00,000</option>
+                                <option value="800000-10000000">Above ₹8,00,000</option>
+                            </select>
+                            <p id="income-error" class="text-red-500 text-xs mt-1 hidden">Please select your income
+                                range
+                            </p>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submit-btn"
+                            class="btn-primary w-full flex items-center justify-center gap-2 bg-primary text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 hover:bg-accent shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed h-12 sm:h-auto">
+                            <span id="submit-text">Find Eligible Schemes</span>
+                            <!-- Loading Spinner (hidden by default) -->
+                            <svg id="submit-spinner" class="hidden w-5 h-5 animate-spin" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4">
+                                </circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                             </svg>
-                            View Wishlist
-                        </a>
-                        <a href="profile.html"
-                            class="btn-secondary inline-flex items-center gap-2 bg-white text-text-primary font-medium px-6 py-3 rounded-xl border border-surface-soft transition-all duration-300 hover:border-primary/30 hover:text-primary shadow-sm h-12 sm:h-10">
-                            Search Again
-                        </a>
-                    </div>
-                </div>
+                        </button>
 
-                <!-- ===== No Schemes Found State (hidden by default) ===== -->
-                <div id="no-schemes-state" class="hidden text-center py-16">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/5 flex items-center justify-center">
-                        <svg class="w-10 h-10 text-primary/60" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                    <h2 class="text-xl font-bold mb-2">No Schemes Found</h2>
-                    <p class="text-text-secondary mb-8">We couldn't find any schemes matching your profile. Try
-                        adjusting
-                        your details.</p>
-                    <a href="profile.html"
-                        class="btn-primary inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-accent shadow-lg shadow-primary/20 h-12 sm:h-10">
-                        Edit Profile
-                    </a>
+                        <!-- Server Error Message (hidden by default) -->
+                        <div id="server-error"
+                            class="hidden mt-4 p-4 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm text-center">
+                            <p id="server-error-text"></p>
+                        </div>
+
+                    </form>
                 </div>
 
             </div>
@@ -193,7 +250,6 @@
                 <p>&copy; 2026 Scheme Setu &mdash; Academic Project</p>
                 <div class="flex items-center gap-4">
                     <a href="dashboard.html" class="hover:text-primary transition-colors duration-300">Dashboard</a>
-                    <a href="profile.html" class="hover:text-primary transition-colors duration-300">Profile</a>
                     <a href="wishlist.html" class="hover:text-primary transition-colors duration-300">Wishlist</a>
                 </div>
             </div>
@@ -201,7 +257,7 @@
 
     </div><!-- /app-content -->
 
-    <!-- ========== AUTH OVERLAY ========== -->
+    <!-- ========== AUTH OVERLAY — Split-Screen Login ========== -->
     <div id="auth-overlay" class="auth-overlay">
         <!-- === LEFT PANEL: Form === -->
         <div class="auth-left-panel">
@@ -301,18 +357,14 @@
         </div>
     </div>
 
-    <!-- Auth Script -->
+    <!-- Auth Script (must load before other scripts) -->
     <script src="js/auth.js"></script>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
-
-    <!-- Scripts (logic added in Phase 3) -->
+    <!-- Scripts (logic added in Phase 2) -->
     <script src="js/utils.js"></script>
     <script src="js/dummyData.js"></script>
     <script src="js/api.js"></script>
-    <script src="js/modal.js"></script>
-    <script src="js/swipe.js"></script>
+    <script src="js/form.js"></script>
 
     <!-- Mobile Menu Toggle -->
     <script>

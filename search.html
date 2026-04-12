@@ -1,208 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Search Schemes — Scheme Setu</title>
-    <meta name="description"
-        content="Search government scholarships and welfare schemes by keyword. Find schemes for education, employment, and more." />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css" />
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
+    <!-- Tailwind Config -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
+            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        primary: "#1D4ED8",
-                        accent: "#3B82F6",
-                        bg: "#F8FAFC",
-                        surface: "#FFFFFF",
-                        "surface-soft": "#E2E8F0",
-                        "text-primary": "#1E293B",
-                        "text-secondary": "#64748B",
+                        "primary-fixed-dim": "#7fdfd1", "on-secondary-fixed": "#093957", "on-surface": "#2c2f2f",
+                        "tertiary-fixed": "#f9cfb0", "surface-container-highest": "#d9dedd", "on-background": "#2c2f2f",
+                        "primary-dim": "#005a51", "surface-container": "#e6e9e8", "tertiary-fixed-dim": "#eac1a3",
+                        "primary-container": "#8eeedf", "error-dim": "#9f0519", "secondary-fixed": "#b1d9fd",
+                        "outline-variant": "#abaead", "outline": "#747777", "surface-variant": "#d9dedd",
+                        "on-primary": "#c0fff3", "on-tertiary": "#fff0e7", "tertiary-dim": "#674932",
+                        "surface-tint": "#00675d", "on-primary-fixed-variant": "#006359", "secondary-dim": "#2b5372",
+                        "secondary": "#385f7e", "inverse-surface": "#0b0f0f", "on-error": "#ffefee",
+                        "on-secondary": "#eaf4ff", "surface-container-high": "#dfe3e2", "on-primary-fixed": "#00443d",
+                        "secondary-container": "#b1d9fd", "primary": "#00675d", "error": "#b31b25",
+                        "surface-container-low": "#eff1f0", "surface": "#f5f7f6", "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#595c5c", "on-tertiary-fixed": "#4c321d", "on-primary-container": "#005950",
+                        "inverse-on-surface": "#9b9d9d", "surface-bright": "#f5f7f6", "on-error-container": "#570008",
+                        "on-tertiary-fixed-variant": "#6c4e36", "on-secondary-container": "#234d6b", "primary-fixed": "#8eeedf",
+                        "error-container": "#fb5151", "tertiary": "#74553d", "inverse-primary": "#93f4e4",
+                        "background": "#f5f7f6", "surface-dim": "#d1d5d4", "on-secondary-fixed-variant": "#2e5675",
+                        "on-tertiary-container": "#61452e", "tertiary-container": "#f9cfb0", "secondary-fixed-dim": "#a4cbef"
                     },
-                    fontFamily: {
-                        sans: ['"Inter"', "system-ui", "sans-serif"],
-                    },
-                },
-            },
-        };
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                    fontFamily: { "headline": ["Plus Jakarta Sans"], "body": ["Public Sans"], "label": ["Public Sans"] }
+                }
+            }
+        }
     </script>
 
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="css/styles.css" />
-</head>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Public Sans', sans-serif; background-color: #f5f7f6; overflow-x: hidden; }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
 
-<body class="bg-bg text-text-primary min-h-screen flex flex-col">
+        /* --- Bento style overrides for Search Cards output by search.js --- */
+        #search-results { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; margin-top: 24px; }
+        
+        .search-result-card { 
+            position: relative; 
+            border-radius: 1.5rem; 
+            transition: transform 0.3s ease; 
+            padding: 1.5rem; 
+            grid-column: span 12; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .search-result-card:hover { transform: scale(1.01); }
+
+        @media (min-width: 768px) {
+            .search-result-card:nth-child(4n+1) { grid-column: span 8; background-color: #8eeedf; color: #005950; padding: 2.5rem; }
+            .search-result-card:nth-child(4n+2) { grid-column: span 4; background-color: #f9cfb0; color: #61452e; }
+            .search-result-card:nth-child(4n+3) { grid-column: span 5; background-color: #b1d9fd; color: #234d6b; }
+            .search-result-card:nth-child(4n+4) { grid-column: span 7; background-color: #ffffff; color: #2c2f2f; border: 1px solid rgba(171,174,173,0.3); }
+        }
+
+        .search-card-header { margin-bottom: 1rem; }
+        .search-card-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem; line-height: 1.2; word-wrap: break-word;}
+        .search-result-card:nth-child(4n+1) .search-card-title { font-size: 2.25rem; margin-bottom: 1rem; }
+        .search-card-desc { font-family: 'Public Sans', sans-serif; font-size: 0.875rem; opacity: 0.8; margin-bottom: 1.5rem; line-height: 1.5; }
+        
+        .search-card-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .search-badge { padding: 0.25rem 0.625rem; border-radius: 0.25rem; font-size: 0.625rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(255,255,255,0.4); mix-blend-mode: multiply; }
+        
+        /* The lower row details inside the card */
+        .search-result-card > div.flex { border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 1rem; padding-bottom: 1rem; }
+        .search-result-card:nth-child(4n+1) > div.flex { border-color: rgba(0,89,80,0.15); }
+        
+        .search-card-link { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.875rem 1.5rem; font-weight: 700; border-radius: 9999px; text-decoration: none; font-size: 0.875rem; transition: all 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .search-card-link:hover { transform: scale(1.02); }
+        
+        .search-result-card:nth-child(4n+1) .search-card-link { background: #00675d; color: #fff; margin-top: 1rem; width: fit-content; }
+        .search-result-card:nth-child(4n+2) .search-card-link { background: #ffffff; color: inherit; width: 100%; margin-top: 1rem; }
+        .search-result-card:nth-child(4n+3) .search-card-link { background: #234d6b; color: #fff; width: 100%; margin-top: 1rem; }
+        .search-result-card:nth-child(4n+4) .search-card-link { background: #00675d; color: #fff; margin-top: 1rem; width: fit-content; }
+
+        .search-more-info { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.875rem 1.5rem; font-weight: 700; border-radius: 9999px; background: rgba(0,0,0,0.05); font-size: 0.875rem; transition: all 0.2s; border: none; cursor: pointer; }
+        .search-more-info:hover { background: rgba(0,0,0,0.1); }
+        
+        .search-highlight { background-color: rgba(255, 235, 59, 0.6); border-radius: 2px; padding: 0 2px; color: #000; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
 
     <!-- ========== NAVBAR ========== -->
-    <nav class="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-surface-soft/60 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2 group">
-                <div
-                    class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 group-hover:shadow-md group-hover:shadow-primary/10">
-                    <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                </div>
-                <span class="text-lg font-bold text-text-primary">Scheme <span class="text-gradient">Setu</span></span>
+    <nav class="sticky top-0 z-50 flex justify-between items-center px-6 py-3 max-w-7xl mx-auto rounded-2xl mt-4 mx-4 md:mx-8 bg-white/80 backdrop-blur-xl shadow-[0px_10px_40px_rgba(44,47,47,0.04)]">
+        <div class="flex items-center gap-8">
+            <a href="dashboard.html" class="flex items-center gap-2 group">
+                <span class="text-xl font-extrabold text-teal-700 tracking-tighter font-headline">Scheme Setu</span>
             </a>
-
-            <div class="hidden sm:flex items-center gap-1">
-                <span id="user-display" class="user-badge hidden"></span>
-                <button id="logout-btn" class="logout-btn hidden">Logout</button>
-                <a href="index.html"
-                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Home</a>
-                <a href="profile.html"
-                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Find
-                    Schemes</a>
-                <a href="search.html"
-                    class="nav-link nav-link-active px-3 py-2 rounded-lg text-sm font-medium text-primary">Search</a>
-                <a href="wishlist.html"
-                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Wishlist</a>
-            </div>
-
-            <button id="mobile-menu-btn"
-                class="sm:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-
-        <div id="mobile-menu" class="sm:hidden hidden border-t border-surface-soft/60 bg-white/95 backdrop-blur-md">
-            <div class="px-4 py-3 space-y-1">
-                <a href="index.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Home</a>
-                <a href="profile.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Find
-                    Schemes</a>
-                <a href="search.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-primary bg-primary/5">Search</a>
-                <a href="wishlist.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Wishlist</a>
-                <div class="flex items-center gap-2 px-3 py-2">
-                    <span id="user-display-mobile" class="user-badge hidden"></span>
-                    <button id="logout-btn-mobile" class="logout-btn hidden">Logout</button>
-                </div>
+            <div class="hidden md:flex gap-6 items-center">
+                <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-colors" href="dashboard.html">Dashboard</a>
+                <a class="text-teal-700 font-bold border-b-2 border-teal-600 pb-1 font-body text-sm" href="search.html">Search</a>
+                <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-colors" href="wishlist.html">Wishlist</a>
+                <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-colors" href="profile.html">Profile</a>
             </div>
         </div>
+        <div class="hidden md:flex items-center gap-4">
+            <span id="user-display" class="user-badge hidden font-body text-sm font-bold text-teal-700"></span>
+            <button id="logout-btn" class="logout-btn hidden text-sm font-body text-error hover:underline bg-transparent border-none cursor-pointer">Logout</button>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden text-on-surface p-2">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
     </nav>
+
+    <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-4 right-4 bg-white rounded-2xl shadow-xl z-40 p-4 border border-surface-container-highest">
+        <div class="flex flex-col gap-4">
+            <a class="text-on-surface-variant font-medium font-body text-base" href="dashboard.html">Dashboard</a>
+            <a class="text-teal-700 font-bold font-body text-base" href="search.html">Search</a>
+            <a class="text-on-surface-variant font-medium font-body text-base" href="wishlist.html">Wishlist</a>
+            <a class="text-on-surface-variant font-medium font-body text-base" href="profile.html">Profile</a>
+            <div class="flex items-center justify-between border-t border-surface-container-highest pt-4">
+                <span id="user-display-mobile" class="user-badge hidden font-bold text-teal-700 text-sm"></span>
+                <button id="logout-btn-mobile" class="logout-btn hidden text-error font-bold text-sm bg-transparent border-none">Logout</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ========== APP CONTENT ========== -->
     <div id="app-content">
+    <main class="flex-1 max-w-7xl mx-auto px-4 md:px-8 py-10 w-full">
+        
+        <!-- Header Section -->
+        <div class="mb-8">
+            <span class="text-primary font-headline font-bold text-xs tracking-widest uppercase mb-2 block">CURATED OPPORTUNITIES</span>
+            <h1 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight mb-2">Search Results</h1>
+            <p class="text-on-surface-variant font-body mt-2 max-w-2xl">Explore our database of 55+ Central & Punjab Government schemes — scholarships, welfare programs, and financial aid tailored for students.</p>
+        </div>
 
-        <main class="flex-1 px-4 sm:px-6 py-10 sm:py-14">
-            <div class="max-w-3xl mx-auto">
-
-                <!-- Header -->
-                <div class="text-center mb-8 slide-up">
-                    <div class="accent-line mx-auto"></div>
-                    <h1 class="text-2xl sm:text-3xl font-bold mb-2">Search Schemes</h1>
-                    <p class="text-text-secondary">Find government scholarships and welfare schemes by keyword.</p>
+        <!-- Quick Filters & Main Search Box wrapped in Bento Grid -->
+        <div class="bento-grid mb-8">
+            <!-- Filter / Quick tags -->
+            <div class="col-span-12 md:col-span-4 lg:col-span-4 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="material-symbols-outlined text-primary" data-icon="category">category</span>
+                    <h3 class="font-headline font-bold text-on-surface">Quick Searches</h3>
                 </div>
-
-                <!-- Search Bar -->
-                <div class="search-bar-wrapper slide-up stagger-1 mb-8">
-                    <div class="search-bar">
-                        <svg class="search-bar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                        <input type="text" id="search-input" class="search-bar-input"
-                            placeholder="Search scholarships or government schemes..." autocomplete="off"
-                            spellcheck="false" />
-                        <button id="search-btn" class="search-bar-btn">
-                            Search
-                        </button>
-                    </div>
-                    <!-- Quick search tags -->
-                    <div class="search-quick-tags">
-                        <span class="search-quick-label">Popular:</span>
-                        <button class="search-quick-tag" data-query="scholarship">scholarship</button>
-                        <button class="search-quick-tag" data-query="punjab">punjab</button>
-                        <button class="search-quick-tag" data-query="girl education">girl education</button>
-                        <button class="search-quick-tag" data-query="sc st">sc st</button>
-                        <button class="search-quick-tag" data-query="skill training">skill training</button>
-                    </div>
-                </div>
-
-                <!-- Result Count -->
-                <p id="search-count" class="hidden text-base text-text-secondary mb-4 font-medium"></p>
-
-                <!-- Initial State -->
-                <div id="search-initial" class="text-center py-12">
-                    <div
-                        class="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/5 flex items-center justify-center">
-                        <svg class="w-8 h-8 text-primary/40" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                    <p class="text-text-secondary">Type a keyword to search across 55 government schemes.</p>
-                </div>
-
-                <!-- Loading State -->
-                <div id="search-loading" class="hidden py-12 text-center">
-                    <svg class="w-8 h-8 mx-auto animate-spin text-primary/60 mb-3" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                        </circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z">
-                        </path>
-                    </svg>
-                    <p class="text-text-secondary text-base">Searching schemes...</p>
-                </div>
-
-                <!-- Empty State -->
-                <div id="search-empty" class="hidden text-center py-12">
-                    <div
-                        class="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/5 flex items-center justify-center">
-                        <svg class="w-8 h-8 text-primary/40" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <p class="text-text-secondary"></p>
-                </div>
-
-                <!-- Search Results Container -->
-                <div id="search-results" class="search-results-grid"></div>
-
-            </div>
-        </main>
-
-        <!-- ========== FOOTER ========== -->
-        <footer class="border-t border-surface-soft/40 px-4 sm:px-6 py-8 bg-white">
-            <div
-                class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-text-secondary">
-                <p>&copy; 2026 Scheme Setu &mdash; Academic Project</p>
-                <div class="flex items-center gap-4">
-                    <a href="index.html" class="hover:text-primary transition-colors duration-300">Home</a>
-                    <a href="profile.html" class="hover:text-primary transition-colors duration-300">Find Schemes</a>
-                    <a href="wishlist.html" class="hover:text-primary transition-colors duration-300">Wishlist</a>
+                <div class="flex flex-wrap gap-2">
+                    <button class="search-quick-tag px-4 py-2 bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-bold font-label transition-transform hover:scale-105" data-query="scholarship">Scholarship</button>
+                    <button class="search-quick-tag px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-medium font-label transition-transform hover:scale-105" data-query="punjab">Punjab</button>
+                    <button class="search-quick-tag px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-medium font-label transition-transform hover:scale-105" data-query="girl education">Girl Education</button>
+                    <button class="search-quick-tag px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-medium font-label transition-transform hover:scale-105" data-query="sc st">SC/ST</button>
+                    <button class="search-quick-tag px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-medium font-label transition-transform hover:scale-105" data-query="skill training">Skill Training</button>
                 </div>
             </div>
-        </footer>
 
+            <!-- Search Area -->
+            <div class="col-span-12 md:col-span-8 lg:col-span-8 bg-primary-container p-8 rounded-xl flex flex-col justify-center relative overflow-hidden group">
+                <h2 class="text-3xl font-headline font-extrabold text-on-primary-container mb-6 relative z-10">Find Your Perfect Scheme</h2>
+                <div class="relative z-10 flex items-center bg-white/70 backdrop-blur-md rounded-full p-1.5 shadow-sm max-w-xl focus-within:ring-4 ring-primary-fixed-dim/50 transition-all">
+                    <span class="material-symbols-outlined ml-4 text-primary opacity-60">search</span>
+                    <input type="text" id="search-input" class="w-full border-none focus:ring-0 bg-transparent py-3 px-4 text-base font-body text-on-primary-container placeholder:text-on-primary-container/50 outline-none" placeholder="Search scholarships or government schemes..." autocomplete="off" spellcheck="false" />
+                    <button id="search-btn" class="bg-primary text-white px-8 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-colors shadow-md hidden sm:block">Search</button>
+                </div>
+                <div class="absolute -bottom-10 -right-10 opacity-10 group-hover:rotate-6 transition-transform duration-700 pointer-events-none">
+                    <span class="material-symbols-outlined text-[160px]" style="font-variation-settings: 'FILL' 1;">manage_search</span>
+                </div>
+            </div>
+        </div>
+
+        <p id="search-count" class="hidden text-sm font-bold text-teal-700 uppercase tracking-widest mt-4 mb-2"></p>
+
+        <!-- Initial State -->
+        <div id="search-initial" class="text-center py-16 bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm col-span-12 mt-4">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary text-4xl">search</span>
+            </div>
+            <p class="text-on-surface-variant font-body font-medium">Type a keyword to search across 55+ government schemes.</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="search-loading" class="hidden py-16 text-center bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm col-span-12 mt-4">
+            <svg class="w-10 h-10 mx-auto animate-spin text-primary mb-4" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            <p class="text-on-surface-variant font-body font-medium text-lg">Curating results...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="search-empty" class="hidden text-center py-16 bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm col-span-12 mt-4">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-error-container/20 flex items-center justify-center">
+                <span class="material-symbols-outlined text-error text-4xl">error_outline</span>
+            </div>
+            <p class="text-on-surface-variant font-body font-medium"></p>
+        </div>
+
+        <!-- Search Results Container -->
+        <div id="search-results"></div>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6 bg-slate-100 mt-20 rounded-t-[2rem]">
+        <div class="flex flex-col items-center md:items-start gap-2">
+            <span class="text-lg font-bold text-slate-900 font-headline">Scheme Setu</span>
+            <p class="text-slate-500 font-body text-sm font-['Public_Sans']">© 2026 Scheme Setu. Exploring Opportunities.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8">
+            <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+            <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+            <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-opacity opacity-80 hover:opacity-100" href="#">Accessibility</a>
+            <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-opacity opacity-80 hover:opacity-100" href="#">Contact</a>
+        </div>
+    </footer>
     </div><!-- /app-content -->
+
 
     <!-- ========== AUTH OVERLAY ========== -->
     <div id="auth-overlay" class="auth-overlay">
+        <!-- Exact Auth Overlay markup from original search.html since auth.js requires it -->
         <div class="auth-left-panel">
             <div class="auth-left-inner">
                 <div class="auth-brand">
                     <div class="auth-brand-icon">
-                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                     </div>
                     <div class="auth-brand-name">Scheme <span>Setu</span></div>
@@ -213,21 +252,20 @@
                     <button class="auth-tab active" id="tab-signin" type="button">Sign In</button>
                     <button class="auth-tab" id="tab-signup" type="button">Sign Up</button>
                 </div>
+                <!-- ... login/signup forms inside auth-card ... -->
                 <div id="auth-login-card" class="auth-card">
                     <h2>Welcome Back</h2>
                     <p class="auth-subtitle">Log in to discover schemes you deserve.</p>
                     <div id="auth-login-error" class="auth-error hidden"></div>
                     <form id="auth-login-form">
                         <label for="auth-login-username">Username *</label>
-                        <input type="text" id="auth-login-username" placeholder="Enter your username"
-                            autocomplete="username" required />
+                        <input type="text" id="auth-login-username" placeholder="Enter your username" autocomplete="username" required />
                         <label for="auth-login-password">Password *</label>
-                        <input type="password" id="auth-login-password" placeholder="Enter your password"
-                            autocomplete="current-password" required />
+                        <input type="password" id="auth-login-password" placeholder="Enter your password" autocomplete="current-password" required />
                         <button type="submit" class="auth-btn">Log In</button>
                     </form>
                     <div class="auth-divider">or continue with</div>
-                    <button type="button" onclick="loginWithGoogle()" class="w-full flex items-center justify-center gap-3 bg-white border border-surface-soft/60 text-text-primary px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-md hover:border-surface-soft hover:-translate-y-0.5 mb-5 active:scale-95 h-12 sm:h-10">
+                    <button type="button" onclick="loginWithGoogle()" class="w-full flex items-center justify-center gap-3 bg-white border border-surface-soft/60 text-text-primary px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-md hover:border-surface-soft hover:-translate-y-0.5 mb-5 active:scale-95 h-12">
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -244,11 +282,9 @@
                     <div id="auth-signup-error" class="auth-error hidden"></div>
                     <form id="auth-signup-form">
                         <label for="auth-signup-username">Username *</label>
-                        <input type="text" id="auth-signup-username" placeholder="Choose a username"
-                            autocomplete="username" required />
+                        <input type="text" id="auth-signup-username" placeholder="Choose a username" autocomplete="username" required />
                         <label for="auth-signup-password">Password *</label>
-                        <input type="password" id="auth-signup-password" placeholder="Choose a password"
-                            autocomplete="new-password" required />
+                        <input type="password" id="auth-signup-password" placeholder="Choose a password" autocomplete="new-password" required />
                         <label for="auth-signup-phone">Phone (optional)</label>
                         <input type="tel" id="auth-signup-phone" placeholder="e.g. 9876543210" autocomplete="tel" />
                         <button type="submit" class="auth-btn">Sign Up</button>
@@ -258,45 +294,41 @@
                 <div class="auth-footer" style="margin-top:2.5rem;">&copy; 2026 Scheme Setu</div>
             </div>
         </div>
-        <div class="auth-right-panel">
+        <div class="auth-right-panel" style="background:#00675d;"> <!-- Quick adapt to teal -->
             <div class="auth-float-cards">
                 <div class="auth-float-card">
-                    <div class="float-card-header">Scholarship Tracker</div>
-                    <div class="float-card-value">₹1,85,000 <span class="float-card-badge green">↑ Eligible</span>
-                    </div>
-                    <div class="float-card-sub">Total scholarship value matched</div>
+                    <div class="float-card-header" style="color:#000;">Scholarship Tracker</div>
+                    <div class="float-card-value" style="color:#000;">₹1,85,000 <span class="float-card-badge green">↑ Eligible</span></div>
+                    <div class="float-card-sub" style="color:#666;">Total scholarship value matched</div>
                 </div>
                 <div class="auth-float-card">
-                    <div class="float-card-header">Active Schemes</div>
-                    <div class="float-card-row">Post Matric Scholarship <span style="font-weight:600;">SC/ST</span>
-                    </div>
-                    <div class="float-card-row">Punjab Merit Scholarship <span class="float-card-badge blue">New</span>
-                    </div>
-                    <div class="float-card-row">National Means Merit <span
-                            style="font-weight:600;">₹12,000/yr</span>
-                    </div>
+                    <div class="float-card-header" style="color:#000;">Active Schemes</div>
+                    <div class="float-card-row" style="color:#000;">Post Matric Scholarship <span style="font-weight:600;">SC/ST</span></div>
+                    <div class="float-card-row" style="color:#000;">Punjab Merit Scholarship <span class="float-card-badge blue">New</span></div>
+                    <div class="float-card-row" style="color:#000;">National Means Merit <span style="font-weight:600;">₹12,000/yr</span></div>
                 </div>
                 <div class="auth-float-card">
-                    <div class="float-card-header">Eligibility Score</div>
-                    <div class="float-card-value">92%</div>
-                    <div class="float-card-sub">Based on your profile match</div>
+                    <div class="float-card-header" style="color:#000;">Eligibility Score</div>
+                    <div class="float-card-value" style="color:#000;">92%</div>
+                    <div class="float-card-sub" style="color:#666;">Based on your profile match</div>
                 </div>
             </div>
-            <div class="auth-right-icon"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="white"
-                    stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg></div>
-            <h2 class="auth-right-heading">A Unified Hub for Discovering <em>Student Schemes</em></h2>
-            <p class="auth-right-desc">Scheme Setu helps students quickly find and track government scholarships and
-                welfare schemes tailored to their eligibility.</p>
+            <div class="auth-right-icon">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h2 class="auth-right-heading text-white">A Unified Hub for Discovering <em>Student Schemes</em></h2>
+            <p class="auth-right-desc text-white">Scheme Setu helps students quickly find and track government scholarships and welfare schemes tailored to their eligibility.</p>
         </div>
     </div>
 
-    <!-- Auth Script -->
-    <script src="js/auth.js"></script>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
 
     <!-- Scripts -->
+    <script src="js/auth.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/dummyData.js"></script>
     <script src="js/api.js"></script>
@@ -305,10 +337,8 @@
 
     <!-- Mobile Menu Toggle -->
     <script>
-        const menuBtn = document.getElementById("mobile-menu-btn");
-        const mobileMenu = document.getElementById("mobile-menu");
-        menuBtn.addEventListener("click", () => {
-            mobileMenu.classList.toggle("hidden");
+        document.getElementById("mobile-menu-btn").addEventListener("click", () => {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
         });
     </script>
 
@@ -342,6 +372,6 @@
             });
         });
     </script>
-</body>
 
+</body>
 </html>

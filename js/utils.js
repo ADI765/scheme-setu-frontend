@@ -140,3 +140,30 @@ function showToast(message, duration = 2500) {
 function $(id) {
     return document.getElementById(id);
 }
+
+// ===== HTML Escaping Helpers =====
+
+/**
+ * Escape HTML special characters for safe rendering.
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeHTML(str) {
+    if (!str) return "";
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+/** Alias for escapeHTML (used by search.js) */
+const escapeHtml = escapeHTML;
+
+/**
+ * Escape attribute special characters.
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeAttr(str) {
+    if (!str) return "";
+    return str.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}

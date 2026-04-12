@@ -10,6 +10,10 @@
     const form = $("profile-form");
     if (!form) return; // Not on profile page
 
+    // Determine if this is the permanent profile page (not find.html)
+    const currentPage = window.location.pathname.split("/").pop() || "";
+    const isPermanentProfile = (currentPage === "profile.html");
+
     const submitBtn = $("submit-btn");
     const submitText = $("submit-text");
     const submitSpinner = $("submit-spinner");
@@ -166,6 +170,8 @@
             const response = await matchSchemes(profileData);
 
             if (response.status === "success" && response.match_count > 0) {
+                // Save profile data to localStorage (only for profile.html)
+                saveProfileData(profileData);
                 // Store schemes in sessionStorage for the swipe page
                 storeEligibleSchemes(response.eligible_schemes);
                 storeCurrentIndex(0);
@@ -182,4 +188,39 @@
             setLoading(false);
         }
     });
+
+    // ===== Load Saved Profile Data =====
+    function loadSavedProfile() {
+        if (!isPermanentProfile) return;
+        const user = (typeof Auth !== 'undefined' && Auth.getCurrentUser) ? Auth.getCurrentUser() : null;
+        if (!user) return;
+        try {
+            const saved = JSON.parse(localStorage.getItem("schemeSetu_profile_" + user));
+            if (!saved) return;
+            if (saved.age) $("age").value = saved.age;
+            if (saved.gender) $("gender").value = saved.gender;
+            if (saved.category) $("category").value = saved.category;
+            if (saved.education_level) $("education_level").value = saved.education_level;
+            if (saved.occupation) $("occupation").value = saved.occupation;
+            if (saved.income_range) $("income").value = saved.income_range;
+        } catch(e) { /* ignore */ }
+    }
+
+    // ===== Save Profile Data =====
+    function saveProfileData(data) {
+        if (!isPermanentProfile) return;
+        const user = (typeof Auth !== 'undefined' && Auth.getCurrentUser) ? Auth.getCurrentUser() : null;
+        if (!user) return;
+        const toSave = {
+            age: data.age,
+            gender: data.gender,
+            category: data.category,
+            education_level: data.education_level,
+            occupation: data.occupation,
+            income_range: $("income").value
+        };
+        localStorage.setItem("schemeSetu_profile_" + user, JSON.stringify(toSave));
+    }
+
+    document.addEventListener("DOMContentLoaded", loadSavedProfile);
 })();

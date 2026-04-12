@@ -1,6 +1,6 @@
 
 // ===== Configuration =====
-const USE_DUMMY = false; // ← flipped to use real backend
+const USE_DUMMY = true; // ← use dummy data (set false when backend is running)
 const API_BASE_URL = "http://localhost:5000"; // Flask backend URL
 const API_TIMEOUT = 10000; // 10 seconds
 

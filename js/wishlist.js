@@ -149,16 +149,8 @@
         return card;
     }
 
-    // ===== HTML Escaping =====
-    function escapeHTML(str) {
-        const div = document.createElement("div");
-        div.textContent = str;
-        return div.innerHTML;
-    }
+    // escapeHTML and escapeAttr are provided by utils.js
 
-    function escapeAttr(str) {
-        return str.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-    }
 
     // ===== Clear All =====
     if (clearAllBtn) {

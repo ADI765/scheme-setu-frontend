@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Find Schemes — Scheme Setu</title>
+    <title>My Profile — Scheme Setu</title>
     <meta name="description"
         content="Enter your profile details to discover government educational schemes you're eligible for." />
 
@@ -40,7 +40,7 @@
     <!-- ========== NAVBAR ========== -->
     <nav class="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-surface-soft/60 shadow-sm">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2 group">
+            <a href="dashboard.html" class="flex items-center gap-2 group">
                 <div
                     class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 group-hover:shadow-md group-hover:shadow-primary/10">
                     <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -55,13 +55,14 @@
             <div class="hidden sm:flex items-center gap-1">
                 <span id="user-display" class="user-badge hidden"></span>
                 <button id="logout-btn" class="logout-btn hidden">Logout</button>
-                <a href="index.html"
-                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Home</a>
-                <a href="profile.html"
-                    class="nav-link nav-link-active px-3 py-2 rounded-lg text-sm font-medium text-primary">Find
-                    Schemes</a>
+                <a href="dashboard.html"
+                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Dashboard</a>
+                <a href="search.html"
+                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Search</a>
                 <a href="wishlist.html"
                     class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Wishlist</a>
+                <a href="profile.html"
+                    class="nav-link nav-link-active px-3 py-2 rounded-lg text-sm font-medium text-primary">Profile</a>
             </div>
 
             <button id="mobile-menu-btn"
@@ -74,12 +75,14 @@
 
         <div id="mobile-menu" class="sm:hidden hidden border-t border-surface-soft/60 bg-white/95 backdrop-blur-md">
             <div class="px-4 py-3 space-y-1">
-                <a href="index.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Home</a>
-                <a href="profile.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-primary bg-primary/5">Find Schemes</a>
+                <a href="dashboard.html"
+                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Dashboard</a>
+                <a href="search.html"
+                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Search</a>
                 <a href="wishlist.html"
                     class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Wishlist</a>
+                <a href="profile.html"
+                    class="block px-3 py-2 rounded-lg text-sm font-medium text-primary bg-primary/5">Profile</a>
                 <div class="flex items-center gap-2 px-3 py-2">
                     <span id="user-display-mobile" class="user-badge hidden"></span>
                     <button id="logout-btn-mobile" class="logout-btn hidden">Logout</button>
@@ -98,9 +101,8 @@
                 <!-- Header -->
                 <div class="text-center mb-8 slide-up">
                     <div class="accent-line mx-auto"></div>
-                    <h1 class="text-2xl sm:text-3xl font-bold mb-2">Find Your Schemes</h1>
-                    <p class="text-text-secondary">Tell us about yourself and we'll match you with eligible government
-                        schemes.</p>
+                    <h1 class="text-2xl sm:text-3xl font-bold mb-2">My Profile</h1>
+                    <p class="text-text-secondary">Fill in your details once. We'll use this to match you with eligible schemes.</p>
                 </div>
 
                 <!-- Profile Form Card -->
@@ -247,7 +249,7 @@
                 class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-text-secondary">
                 <p>&copy; 2026 Scheme Setu &mdash; Academic Project</p>
                 <div class="flex items-center gap-4">
-                    <a href="index.html" class="hover:text-primary transition-colors duration-300">Home</a>
+                    <a href="dashboard.html" class="hover:text-primary transition-colors duration-300">Dashboard</a>
                     <a href="wishlist.html" class="hover:text-primary transition-colors duration-300">Wishlist</a>
                 </div>
             </div>

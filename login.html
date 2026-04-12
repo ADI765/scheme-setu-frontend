@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scheme Setu — Discover Government Schemes for Students</title>
+  <title>Login — Scheme Setu</title>
   <meta name="description"
-    content="Scheme Setu helps students discover eligible Central and Punjab Government educational schemes through a simple profile-based matching system." />
+    content="Login or sign up to Scheme Setu to discover government schemes you're eligible for." />
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -37,11 +37,10 @@
 
 <body class="bg-bg text-text-primary min-h-screen flex flex-col">
 
-  <!-- ========== NAVBAR ========== -->
+  <!-- ========== MINIMAL NAVBAR (logo + back to home) ========== -->
   <nav class="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-surface-soft/60 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="login.html" class="flex items-center gap-2 group">
+      <a href="index.html" class="flex items-center gap-2 group">
         <div
           class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 group-hover:shadow-md group-hover:shadow-primary/10">
           <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -51,214 +50,18 @@
         </div>
         <span class="text-lg font-bold text-text-primary">Scheme <span class="text-gradient">Setu</span></span>
       </a>
-
-      <!-- Desktop Nav Links -->
-      <div class="hidden sm:flex items-center gap-1">
-        <!-- Header Search Bar -->
-        <form id="header-search-form" class="relative mr-4 flex items-center" onsubmit="return false;">
-          <svg class="absolute left-3 w-4 h-4 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-            stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <input type="text" id="header-search-input"
-            class="bg-surface-soft/40 border border-surface-soft text-text-primary text-sm rounded-full pl-9 pr-4 py-1.5 focus:outline-none focus:border-primary focus:bg-white transition-all w-64 placeholder:text-text-secondary/60"
-            placeholder="Search schemes..." autocomplete="off" />
-        </form>
-
-        <span id="user-display" class="user-badge hidden"></span>
-        <button id="logout-btn" class="logout-btn hidden">Logout</button>
-        <a href="login.html"
-          class="nav-link nav-link-active px-3 py-2 rounded-lg text-sm font-medium text-primary">Home</a>
-        <a href="profile.html"
-          class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Find
-          Schemes</a>
-        <a href="search.html"
-          class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Search</a>
-        <a href="wishlist.html"
-          class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Wishlist</a>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn"
-        class="sm:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">
-        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      <a href="index.html"
+        class="inline-flex items-center gap-1.5 text-text-secondary text-sm font-medium hover:text-primary transition-colors duration-300">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-      </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="sm:hidden hidden border-t border-surface-soft/60 bg-white/95 backdrop-blur-md">
-      <div class="px-4 py-3 space-y-1">
-        <a href="login.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-primary bg-primary/5">Home</a>
-        <a href="profile.html"
-          class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Find
-          Schemes</a>
-        <a href="search.html"
-          class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Search</a>
-        <a href="wishlist.html"
-          class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Wishlist</a>
-        <div class="flex items-center gap-2 px-3 py-2">
-          <span id="user-display-mobile" class="user-badge hidden"></span>
-          <button id="logout-btn-mobile" class="logout-btn hidden">Logout</button>
-        </div>
-      </div>
+        Back to Home
+      </a>
     </div>
   </nav>
 
-  <!-- ========== APP CONTENT (hidden until login) ========== -->
-  <div id="app-content">
-
-    <!-- ========== HERO SECTION ========== -->
-    <section class="flex-1 flex items-center justify-center px-4 sm:px-6 py-16 sm:py-24 relative overflow-hidden">
-      <!-- Decorative background blobs -->
-      <div
-        class="absolute top-10 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl pointer-events-none float-animation">
-      </div>
-      <div class="absolute bottom-10 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="max-w-3xl mx-auto text-center relative z-10">
-        <!-- Badge -->
-        <div
-          class="slide-down inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/8 border border-primary/15 text-primary text-sm font-medium mb-8 shadow-sm">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-          Central &amp; Punjab Government Schemes
-        </div>
-
-        <!-- Headline -->
-        <h1 class="slide-up text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6">
-          Discover Schemes
-          <br />
-          <span class="text-gradient">You Deserve</span>
-        </h1>
-
-        <!-- Subtitle -->
-        <p class="slide-up stagger-1 text-lg sm:text-xl text-text-secondary max-w-xl mx-auto mb-10 leading-relaxed">
-          Answer a few questions about yourself and we'll match you with educational scholarships and welfare schemes
-          you're eligible for.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="slide-up stagger-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="profile.html"
-            class="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 hover:bg-accent shadow-lg shadow-primary/20 h-12 sm:h-auto">
-            Find My Schemes
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-          <a href="#how-it-works"
-            class="btn-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-text-primary font-medium px-8 py-3.5 rounded-xl border border-surface-soft transition-all duration-300 hover:border-primary/30 hover:text-primary shadow-sm h-12 sm:h-auto">
-            How It Works
-          </a>
-        </div>
-
-        <!-- Hero Search Bar -->
-        <div class="slide-up stagger-3 w-full max-w-xl mx-auto mt-8">
-          <form id="hero-search-form" class="search-bar" onsubmit="return false;">
-            <svg class="search-bar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input type="text" id="hero-search-input" class="search-bar-input"
-              placeholder="Search scholarships or government schemes..." autocomplete="off" />
-            <button type="submit" id="hero-search-btn" class="search-bar-btn">Search</button>
-          </form>
-          <div class="search-quick-tags mt-3 justify-center">
-            <span class="search-quick-label">Try:</span>
-            <button class="search-quick-tag" data-query="scholarship">scholarship</button>
-            <button class="search-quick-tag" data-query="punjab">punjab</button>
-            <button class="search-quick-tag" data-query="girl education">girl education</button>
-            <button class="search-quick-tag" data-query="sc st">sc st</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== HOW IT WORKS ========== -->
-    <section id="how-it-works"
-      class="px-4 sm:px-6 py-16 sm:py-20 border-t border-surface-soft/40 bg-gradient-to-b from-bg to-white">
-      <div class="max-w-5xl mx-auto">
-        <!-- Section Header -->
-        <div class="text-center mb-12 sm:mb-16 reveal">
-          <div class="accent-line mx-auto"></div>
-          <h2 class="text-2xl sm:text-3xl font-bold mb-3">How It Works</h2>
-          <p class="text-text-secondary max-w-lg mx-auto">Three simple steps to find the government schemes you're
-            eligible for.</p>
-        </div>
-
-        <!-- Steps Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 reveal reveal-stagger">
-
-          <!-- Step 1 -->
-          <div
-            class="card-hover bg-surface rounded-xl p-4 sm:p-6 border border-surface-soft/60 hover:border-primary/30 transition-all duration-300 group shadow-sm">
-            <div
-              class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors duration-300">
-              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </div>
-            <div class="text-xs font-semibold text-primary mb-2 tracking-wider uppercase">Step 1</div>
-            <h3 class="text-lg font-semibold mb-2">Fill Your Profile</h3>
-            <p class="text-text-secondary text-base leading-relaxed">Enter basic details like age, income, education
-              level, and category.</p>
-          </div>
-
-          <!-- Step 2 -->
-          <div
-            class="card-hover bg-surface rounded-xl p-4 sm:p-6 border border-surface-soft/60 hover:border-primary/30 transition-all duration-300 group shadow-sm">
-            <div
-              class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors duration-300">
-              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div class="text-xs font-semibold text-primary mb-2 tracking-wider uppercase">Step 2</div>
-            <h3 class="text-lg font-semibold mb-2">Swipe Through Schemes</h3>
-            <p class="text-text-secondary text-base leading-relaxed">Review matched schemes one by one. Swipe right to
-              save, left to skip.</p>
-          </div>
-
-          <!-- Step 3 -->
-          <div
-            class="card-hover bg-surface rounded-xl p-4 sm:p-6 border border-surface-soft/60 hover:border-primary/30 transition-all duration-300 group shadow-sm">
-            <div
-              class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors duration-300">
-              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-              </svg>
-            </div>
-            <div class="text-xs font-semibold text-primary mb-2 tracking-wider uppercase">Step 3</div>
-            <h3 class="text-lg font-semibold mb-2">Save &amp; Apply</h3>
-            <p class="text-text-secondary text-base leading-relaxed">Access saved schemes anytime from your wishlist and
-              apply directly.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="border-t border-surface-soft/40 px-4 sm:px-6 py-8 bg-white">
-      <div
-        class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-text-secondary">
-        <p>&copy; 2026 Scheme Setu &mdash; Academic Project</p>
-        <div class="flex items-center gap-4">
-          <a href="profile.html" class="hover:text-primary transition-colors duration-300">Find Schemes</a>
-          <a href="wishlist.html" class="hover:text-primary transition-colors duration-300">Wishlist</a>
-        </div>
-      </div>
-    </footer>
-
-  </div><!-- /app-content -->
-
   <!-- ========== AUTH OVERLAY — Split-Screen Login ========== -->
-  <div id="auth-overlay" class="auth-overlay">
+  <div id="auth-overlay" class="auth-overlay" style="position: relative; min-height: calc(100vh - 64px);">
 
     <!-- === LEFT PANEL: Form === -->
     <div class="auth-left-panel">
@@ -351,20 +154,17 @@
 
       <!-- Floating Dashboard Cards -->
       <div class="auth-float-cards">
-        <!-- Card 1: Scholarship Tracker -->
         <div class="auth-float-card">
           <div class="float-card-header">Scholarship Tracker</div>
           <div class="float-card-value">₹1,85,000 <span class="float-card-badge green">↑ Eligible</span></div>
           <div class="float-card-sub">Total scholarship value matched</div>
         </div>
-        <!-- Card 2: Scheme Categories -->
         <div class="auth-float-card">
           <div class="float-card-header">Active Schemes</div>
           <div class="float-card-row">Post Matric Scholarship <span style="font-weight:600;">SC/ST</span></div>
           <div class="float-card-row">Punjab Merit Scholarship <span class="float-card-badge blue">New</span></div>
           <div class="float-card-row">National Means Merit <span style="font-weight:600;">₹12,000/yr</span></div>
         </div>
-        <!-- Card 3: Eligibility Score -->
         <div class="auth-float-card">
           <div class="float-card-header">Eligibility Score</div>
           <div class="float-card-value">92%</div>
@@ -395,21 +195,18 @@
 
   </div>
 
-  <!-- Auth Script (must load before other scripts) -->
+  <!-- Auth Script -->
   <script src="js/auth.js"></script>
 
-  <!-- Mobile Menu Toggle Script -->
-  <script>
-    const menuBtn = document.getElementById("mobile-menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  </script>
-
-  <!-- Auth Tab Toggle (syncs tabs with existing auth.js show/hide logic) -->
+  <!-- Auth Tab Toggle -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // If already logged in, redirect to dashboard
+      if (typeof Auth !== "undefined" && Auth.isAuthenticated()) {
+        window.location.href = "dashboard.html";
+        return;
+      }
+
       const tabSignin = document.getElementById("tab-signin");
       const tabSignup = document.getElementById("tab-signup");
       const showSignup = document.getElementById("auth-show-signup");
@@ -431,46 +228,9 @@
         });
       }
 
-      // Sync tabs when toggle links are clicked
       if (showSignup) showSignup.addEventListener("click", () => activateTab(tabSignup, tabSignin));
       if (showLogin) showLogin.addEventListener("click", () => activateTab(tabSignin, tabSignup));
     });
-  </script>
-
-  <!-- Section Reveal on Scroll (additive — no existing logic modified) -->
-  <script>
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-  </script>
-
-  <!-- Hero Search Bar Redirect -->
-  <script>
-    (function () {
-      const heroInput = document.getElementById("hero-search-input");
-      const heroBtn = document.getElementById("hero-search-btn");
-
-      function goToSearch(query) {
-        query = (query || "").trim();
-        if (query.length >= 2) {
-          window.location.href = "search.html?q=" + encodeURIComponent(query);
-        }
-      }
-
-      if (heroBtn) heroBtn.addEventListener("click", () => goToSearch(heroInput.value));
-      if (heroInput) heroInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") { e.preventDefault(); goToSearch(heroInput.value); }
-      });
-
-      document.querySelectorAll("#app-content .search-quick-tag").forEach((tag) => {
-        tag.addEventListener("click", () => goToSearch(tag.dataset.query));
-      });
-    })();
   </script>
 </body>
 
