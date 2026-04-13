@@ -94,7 +94,8 @@
     function collectFormData() {
         // Parse income range "min-max" into numeric values
         const incomeRange = $("income").value;
-        const [incomeMin, incomeMax] = incomeRange.split("-").map(Number);
+        const isNoIncome = incomeRange === "no-income";
+        const [incomeMin, incomeMax] = isNoIncome ? [0, 0] : incomeRange.split("-").map(Number);
 
         return {
             age: parseInt($("age").value, 10),

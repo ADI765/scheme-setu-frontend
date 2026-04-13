@@ -155,14 +155,14 @@
                     <svg class="w-4 h-4 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 8h6M9 12h6M9 8c2.21 0 4 1.79 4 4s-1.79 4-4 4H9l5 4" />
                     </svg>
-                    <span class="text-sm sm:text-base font-medium">${scheme.amount || 'N/A'}</span>
+                    <span class="text-xs sm:text-sm font-semibold text-text-primary">${scheme.amount || 'N/A'}</span>
                 </div>
                 <!-- Deadline -->
                 <div class="flex items-center gap-2">
                     <svg class="w-4 h-4 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <span class="text-sm sm:text-base font-medium">${scheme.deadline || 'TBD'}</span>
+                    <span class="text-xs sm:text-sm font-semibold text-text-primary">${scheme.deadline || 'TBD'}</span>
                 </div>
             </div>
 
@@ -176,14 +176,14 @@
             </div>
 
             <div class="flex items-center gap-3 flex-wrap">
-                <a href="${scheme.apply_link || '#'}" target="_blank" rel="noopener noreferrer"
+                ${scheme.application_mode === 'online' && scheme.apply_link ? `<a href="${scheme.apply_link}" target="_blank" rel="noopener noreferrer"
                    class="inline-flex items-center gap-1.5 text-primary text-sm font-medium hover:text-accent transition-colors duration-300">
-                    Apply on Official Portal
+                    Apply Online
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
-                </a>
+                </a>` : `<span class="inline-flex items-center gap-1.5 text-text-secondary text-sm font-medium" style="opacity:0.7;">Offline Application</span>`}
                 <button class="more-info-btn swipe-more-info" type="button">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

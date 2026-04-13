@@ -1,6 +1,6 @@
 
 // ===== Configuration =====
-const USE_DUMMY = true; // ← use dummy data (set false when backend is running)
+const USE_DUMMY = false; // ← use dummy data (set false when backend is running)
 const API_BASE_URL = "http://localhost:5000"; // Flask backend URL
 const API_TIMEOUT = 10000; // 10 seconds
 
@@ -68,3 +68,43 @@ async function matchSchemes(profileData) {
         throw error;
     }
 }
+
+/**
+ * Fetch a list of all schemes (with optional category and govt_level filters).
+ * @param {Object} filters - { category, govt_level }
+ * @returns {Promise<Array>} - list of scheme objects
+ */
+async function fetchSchemes(filters = {}) {
+    if (USE_DUMMY) {
+        await new Promise(r => setTimeout(r, 600));
+        if (typeof dummySchemesList !== 'undefined') return dummySchemesList;
+        return [];
+    }
+    
+    const params = new URLSearchParams();
+    if (filters.category) params.append('category', filters.category);
+    if (filters.govt_level) params.append('govt_level', filters.govt_level);
+    const queryString = params.toString() ? `?${params.toString()}` : '';
+
+    const response = await fetch(`${API_BASE_URL}/api/schemes${queryString}`);
+    if (!response.ok) throw new Error("Failed to fetch schemes");
+    return await response.json();
+}
+
+/**
+ * Fetch a single scheme by ID to get full details including how_to_apply.
+ * @param {string} schemeId 
+ * @returns {Promise<Object>} - scheme detail object
+ */
+async function fetchSchemeDetails(schemeId) {
+    if (USE_DUMMY) {
+        await new Promise(r => setTimeout(r, 600));
+        if (typeof dummySchemeDetails !== 'undefined') return dummySchemeDetails[schemeId];
+        return null;
+    }
+
+    const response = await fetch(`${API_BASE_URL}/api/schemes/${schemeId}`);
+    if (!response.ok) throw new Error("Failed to fetch scheme details");
+    return await response.json();
+}
+

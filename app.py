@@ -1,7 +1,12 @@
 """
-SchemeSetu — Flask Backend
-Route: POST /api/match-schemes
-Reads 55schemes.json and filters by user profile.
+SchemeSetu — Flask Backend (v5.0)
+Routes:
+  POST /api/match-schemes     — Match schemes by user profile
+  GET  /api/search-schemes    — Keyword search
+  GET  /api/schemes            — List all schemes (compact)
+  GET  /api/schemes/<id>       — Single scheme detail (full)
+  GET  /api/schemes/name/<name>— Lookup by name
+Reads data/schemesetu_v5.json and filters by user profile.
 """
 
 from flask import Flask, request, jsonify
@@ -13,8 +18,136 @@ import re
 app = Flask(__name__)
 CORS(app)
 
+
+# ─── Custom Error Handling ───────────────────────────────────────────────────
+
+class SchemeAPIError(Exception):
+    """Custom exception for API error responses."""
+    def __init__(self, message, status_code=400):
+        self.message = message
+        self.status_code = status_code
+
+
+@app.errorhandler(SchemeAPIError)
+def handle_scheme_error(error):
+    return jsonify({'error': error.message}), error.status_code
+
+
+@app.errorhandler(404)
+def handle_not_found(error):
+    return jsonify({'error': 'Endpoint not found'}), 404
+
+
+@app.errorhandler(500)
+def handle_server_error(error):
+    return jsonify({'error': 'Internal server error'}), 500
+
+
+# ─── Data Validation ────────────────────────────────────────────────────────
+
+def validate_scheme(scheme):
+    """Ensure required fields exist and have correct types."""
+
+    # Required fields that must exist
+    required = ['id', 'name', 'ministry']
+    for field in required:
+        if field not in scheme or not scheme[field]:
+            raise ValueError(f"Missing required field: {field}")
+
+    # Amount: should be a string like "₹2,500/month"
+    amount = scheme.get('amount', 'N/A')
+    if amount and not isinstance(amount, str):
+        scheme['amount'] = str(amount)
+
+    # Deadline: should be a date string like "31 Dec 2026"
+    deadline = scheme.get('deadline', 'Ongoing')
+    if deadline and not isinstance(deadline, str):
+        scheme['deadline'] = str(deadline)
+
+    # Tags: should be a list of strings
+    tags = scheme.get('tags', [])
+    if not isinstance(tags, list):
+        scheme['tags'] = []
+    else:
+        scheme['tags'] = [str(tag) for tag in tags]
+
+    # How-to-apply: in v5, this is a flat list of step strings
+    how_to = scheme.get('how_to_apply', [])
+    if not isinstance(how_to, list):
+        scheme['how_to_apply'] = []
+
+    # Required documents: top-level list in v5
+    req_docs = scheme.get('required_documents', [])
+    if not isinstance(req_docs, list):
+        scheme['required_documents'] = []
+
+    # Optional documents: top-level list in v5
+    opt_docs = scheme.get('optional_documents', [])
+    if not isinstance(opt_docs, list):
+        scheme['optional_documents'] = []
+
+    # application_mode: "online" or "offline"
+    app_mode = scheme.get('application_mode', 'offline')
+    if app_mode not in ('online', 'offline'):
+        scheme['application_mode'] = 'offline'
+
+    return scheme
+
+
+# ─── How-To-Apply Transformer ───────────────────────────────────────────────
+
+def format_how_to_apply(scheme):
+    """
+    Convert the flat how_to_apply array from v5 JSON into a rich object.
+
+    Input  (v5 JSON):  "how_to_apply": ["Step 1: Visit...", "Step 2: Fill..."]
+    Output (API):      { "steps": [{step_number, title, instruction}, ...], ... }
+    """
+    raw_steps = scheme.get('how_to_apply', [])
+    if not isinstance(raw_steps, list):
+        raw_steps = []
+
+    docs = scheme.get('required_documents', [])
+    opt_docs = scheme.get('optional_documents', [])
+    helpline = scheme.get('helplineNumber', '')
+
+    steps = []
+    for i, step_text in enumerate(raw_steps, start=1):
+        # Strip "Step N: " prefix if present
+        cleaned = re.sub(r'^Step\s*\d+\s*[:\-–—]\s*', '', step_text, flags=re.IGNORECASE)
+        steps.append({
+            'step_number': i,
+            'title': cleaned.split('.')[0].strip() if '.' in cleaned else cleaned.strip(),
+            'instruction': cleaned.strip(),
+            'screenshot_url': ''
+        })
+
+    # Estimate time: ~5 minutes per step, minimum 10
+    est_time = max(10, len(steps) * 5)
+
+    # Extract support email from helpline if it looks like email
+    support_email = ''
+    support_phone = ''
+    if helpline:
+        if '@' in helpline:
+            support_email = helpline
+        else:
+            support_phone = helpline
+
+    return {
+        'steps': steps,
+        'estimated_time_minutes': est_time,
+        'required_documents': docs if isinstance(docs, list) else [],
+        'optional_documents': opt_docs if isinstance(opt_docs, list) else [],
+        'application_mode': scheme.get('application_mode', 'offline'),
+        'apply_link': scheme.get('apply_link', ''),
+        'support_email': support_email,
+        'support_phone': support_phone
+    }
+
+
 # ─── Load schemes database ──────────────────────────────────────────────────
-SCHEMES_FILE = os.path.join(os.path.dirname(__file__), "55schemes.json")
+SCHEMES_FILE = os.path.join(os.path.dirname(__file__), "data", "schemesetu_v5.json")
 
 def load_schemes():
     """
@@ -332,13 +465,20 @@ def match_schemes():
     schemes = load_schemes()
     matched = [
         {
+            "id":                 s.get("id", ""),
             "scheme_name":        s["name"],
+            "shortName":          s.get("shortName", ""),
             "description":        s["description"],
-            "apply_link":         s.get("officialWebsite", "#"),
+            "amount":             s.get("amount", "N/A"),
+            "deadline":           s.get("deadline", "Ongoing"),
+            "application_mode":   s.get("application_mode", "offline"),
+            "apply_link":         s.get("apply_link", ""),
             "category":           s.get("category", ""),
             "govtLevel":          s.get("govtLevel", ""),
-            "howToApply":         s.get("howToApply", []),
-            "documentsRequired":  s.get("documentsRequired", []),
+            "how_to_apply":       s.get("how_to_apply", []),
+            "required_documents": s.get("required_documents", []),
+            "optional_documents": s.get("optional_documents", []),
+            "tags":               s.get("tags", []),
         }
         for s in schemes
         if is_eligible(s, profile)
@@ -383,11 +523,17 @@ def search_schemes():
         # All keywords must match (AND logic for multi-word queries)
         if all(kw in searchable for kw in keywords):
             matched.append({
+                "id":                 s.get("id", ""),
                 "scheme_name":        s["name"],
+                "shortName":          s.get("shortName", ""),
                 "description":        s["description"],
-                "apply_link":         s.get("officialWebsite", "#"),
+                "amount":             s.get("amount", "N/A"),
+                "deadline":           s.get("deadline", "Ongoing"),
+                "application_mode":   s.get("application_mode", "offline"),
+                "apply_link":         s.get("apply_link", ""),
                 "category":           s.get("category", ""),
                 "govtLevel":          s.get("govtLevel", ""),
+                "tags":               s.get("tags", []),
             })
 
     return jsonify({
@@ -395,6 +541,164 @@ def search_schemes():
         "match_count":  len(matched),
         "results":      matched,
     })
+
+
+
+# ─── Scheme Routes ───────────────────────────────────────────────────────────
+
+@app.route("/api/schemes", methods=["GET"])
+def list_schemes():
+    category_filter = request.args.get('category')
+    govt_level_filter = request.args.get('govt_level')
+    
+    schemes = load_schemes()
+    filtered_schemes = []
+    
+    for scheme in schemes:
+        if category_filter and scheme.get('category') != category_filter:
+            continue
+            
+        scheme_govt_level = scheme.get('govt_level') or scheme.get('govtLevel', 'Central')
+        if govt_level_filter and scheme_govt_level != govt_level_filter:
+            continue
+            
+        filtered_schemes.append(scheme)
+    
+    filtered_schemes = filtered_schemes[:50]
+    
+    response = []
+    for scheme in filtered_schemes:
+        amount = scheme.get('amount', 'N/A')
+        if amount and not isinstance(amount, str): amount = str(amount)
+        
+        deadline = scheme.get('deadline', 'Ongoing')
+        if deadline and not isinstance(deadline, str): deadline = str(deadline)
+        
+        tags = scheme.get('tags', [])
+        if not isinstance(tags, list): tags = []
+        
+        ministry = scheme.get('ministry') or scheme.get('ministryName', '')
+        
+        response.append({
+            'id': scheme.get('id'),
+            'name': scheme.get('name'),
+            'shortName': scheme.get('shortName', ''),
+            'ministry': ministry,
+            'description': scheme.get('description'),
+            'amount': amount,
+            'deadline': deadline,
+            'application_mode': scheme.get('application_mode', 'offline'),
+            'apply_link': scheme.get('apply_link', ''),
+            'tags': [str(t) for t in tags],
+            'govt_level': scheme.get('govt_level') or scheme.get('govtLevel', 'Central')
+        })
+            
+    return jsonify(response)
+
+
+@app.route('/api/schemes/<scheme_id>', methods=['GET'])
+def get_scheme(scheme_id):
+    if not scheme_id:
+        raise SchemeAPIError('Scheme ID required', 400)
+    
+    schemes = load_schemes()
+    scheme = next((s for s in schemes if s.get('id') == scheme_id), None)
+    
+    if not scheme:
+        raise SchemeAPIError(f'Scheme {scheme_id} not found', 404)
+        
+    # Map fields for validation if missing
+    if 'ministry' not in scheme and 'ministryName' in scheme:
+        scheme['ministry'] = scheme['ministryName']
+
+    try:
+        scheme = validate_scheme(scheme)
+    except ValueError as e:
+        raise SchemeAPIError(f'Data validation failed: {str(e)}', 500)
+
+    # Build the rich how_to_apply object from v5 flat data
+    how_to_apply_rich = format_how_to_apply(scheme)
+
+    response = {
+        'id': scheme.get('id'),
+        'name': scheme.get('name'),
+        'shortName': scheme.get('shortName', ''),
+        'ministry': scheme.get('ministry'),
+        'category': scheme.get('category', ''),
+        'launchedYear': scheme.get('launchedYear'),
+        'description': scheme.get('description'),
+        'amount': scheme.get('amount', 'N/A'),
+        'deadline': scheme.get('deadline', 'Ongoing'),
+        'tags': scheme.get('tags', []),
+        'eligibility': scheme.get('eligibility', {}),
+        'benefits': scheme.get('benefits', {}),
+        'application_mode': scheme.get('application_mode', 'offline'),
+        'apply_link': scheme.get('apply_link', ''),
+        'how_to_apply': scheme.get('how_to_apply', []),
+        'how_to_apply_rich': how_to_apply_rich,
+        'required_documents': scheme.get('required_documents', []),
+        'optional_documents': scheme.get('optional_documents', []),
+        'helplineNumber': scheme.get('helplineNumber', ''),
+        'govt_level': scheme.get('govt_level') or scheme.get('govtLevel', 'Central')
+    }
+
+    return jsonify(response)
+
+
+@app.route('/api/schemes/name/<scheme_name>', methods=['GET'])
+def get_scheme_by_name(scheme_name):
+    """Look up a scheme by its name (case-insensitive partial match)."""
+    if not scheme_name or len(scheme_name) < 2:
+        raise SchemeAPIError('Scheme name must be at least 2 characters', 400)
+
+    schemes = load_schemes()
+    query = scheme_name.strip().lower()
+
+    # Try exact match first, then partial
+    scheme = next((s for s in schemes if s.get('name', '').lower() == query), None)
+    if not scheme:
+        scheme = next((s for s in schemes if query in s.get('name', '').lower()), None)
+    if not scheme:
+        scheme = next((s for s in schemes if query in s.get('shortName', '').lower()), None)
+
+    if not scheme:
+        raise SchemeAPIError(f'Scheme matching "{scheme_name}" not found', 404)
+
+    # Map fields for validation if missing
+    if 'ministry' not in scheme and 'ministryName' in scheme:
+        scheme['ministry'] = scheme['ministryName']
+
+    try:
+        scheme = validate_scheme(scheme)
+    except ValueError as e:
+        raise SchemeAPIError(f'Data validation failed: {str(e)}', 500)
+
+    how_to_apply_rich = format_how_to_apply(scheme)
+
+    response = {
+        'id': scheme.get('id'),
+        'name': scheme.get('name'),
+        'shortName': scheme.get('shortName', ''),
+        'ministry': scheme.get('ministry'),
+        'category': scheme.get('category', ''),
+        'launchedYear': scheme.get('launchedYear'),
+        'description': scheme.get('description'),
+        'amount': scheme.get('amount', 'N/A'),
+        'deadline': scheme.get('deadline', 'Ongoing'),
+        'tags': scheme.get('tags', []),
+        'eligibility': scheme.get('eligibility', {}),
+        'benefits': scheme.get('benefits', {}),
+        'application_mode': scheme.get('application_mode', 'offline'),
+        'apply_link': scheme.get('apply_link', ''),
+        'how_to_apply': scheme.get('how_to_apply', []),
+        'how_to_apply_rich': how_to_apply_rich,
+        'required_documents': scheme.get('required_documents', []),
+        'optional_documents': scheme.get('optional_documents', []),
+        'helplineNumber': scheme.get('helplineNumber', ''),
+        'govt_level': scheme.get('govt_level') or scheme.get('govtLevel', 'Central')
+    }
+
+    return jsonify(response)
 
 
 # ─── Run ─────────────────────────────────────────────────────────────────────

@@ -80,8 +80,8 @@
             }
         }
 
-        // Documents
-        const docs = scheme.documentsRequired || scheme.documents;
+        // Required Documents
+        const docs = scheme.required_documents || scheme.documentsRequired || scheme.documents;
         if (docs) {
             if (Array.isArray(docs) && docs.length > 0) {
                 bodyHTML += buildSection("Required Documents", buildList(docs));
@@ -90,10 +90,22 @@
             }
         }
 
-        // Last Date
-        const lastDate = scheme.last_date;
-        if (lastDate) {
-            bodyHTML += buildSection("Last Date", `<p>${escapeHTML(lastDate)}</p>`);
+        // Optional Documents
+        const optDocs = scheme.optional_documents;
+        if (optDocs && Array.isArray(optDocs) && optDocs.length > 0) {
+            bodyHTML += buildSection("Optional Documents", buildList(optDocs));
+        }
+
+        // Deadline
+        const deadline = scheme.deadline || scheme.last_date;
+        if (deadline) {
+            bodyHTML += buildSection("Deadline", `<p>${escapeHTML(deadline)}</p>`);
+        }
+
+        // Amount
+        const amount = scheme.amount;
+        if (amount && amount !== 'N/A') {
+            bodyHTML += buildSection("Amount", `<p>${escapeHTML(amount)}</p>`);
         }
 
         // Benefits
@@ -116,22 +128,24 @@
         }
 
         // How to Apply
-        const howToApply = scheme.howToApply;
+        const howToApply = scheme.how_to_apply || scheme.howToApply;
         if (howToApply && Array.isArray(howToApply) && howToApply.length > 0) {
             bodyHTML += buildSection("How to Apply", buildList(howToApply));
         }
 
         bodyEl.innerHTML = bodyHTML;
 
-        // Footer — Apply link + Close
+        // Footer — Apply link + Close (respect application_mode)
+        const appMode = scheme.application_mode || 'offline';
         const applyLink = scheme.apply_link || scheme.officialWebsite || "#";
+        const isOnline = appMode === 'online' && applyLink && applyLink !== '#';
         footerEl.innerHTML = `
-            <a href="${escapeAttr(applyLink)}" target="_blank" rel="noopener noreferrer" class="scheme-modal-apply">
-                Apply Now
+            ${isOnline ? `<a href="${escapeAttr(applyLink)}" target="_blank" rel="noopener noreferrer" class="scheme-modal-apply">
+                Apply Online
                 <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
-            </a>
+            </a>` : `<span class="scheme-modal-apply" style="opacity:0.7;cursor:default;">Offline Application</span>`}
             <button class="scheme-modal-close-btn" id="scheme-modal-close-footer">Close</button>
         `;
 

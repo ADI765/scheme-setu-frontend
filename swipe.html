@@ -14,13 +14,13 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: "#1D4ED8",
-                        accent: "#3B82F6",
-                        bg: "#F8FAFC",
+                        primary: "#0D7C66",
+                        accent: "#17B897",
+                        bg: "#C8D8D4",
                         surface: "#FFFFFF",
-                        "surface-soft": "#E2E8F0",
-                        "text-primary": "#1E293B",
-                        "text-secondary": "#64748B",
+                        "surface-soft": "#E5E7EB",
+                        "text-primary": "#1F2937",
+                        "text-secondary": "#6B7280",
                     },
                     fontFamily: {
                         sans: ['"Inter"', "system-ui", "sans-serif"],
@@ -32,56 +32,240 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        .text-gradient {
+            background: linear-gradient(135deg, #0D7C66, #17B897);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-link-active { color: #0D7C66 !important; }
+        .nav-link::after { background: #0D7C66; }
+
+        /* Swipe background: blurred radial teal/green blobs */
+        .swipe-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: #B8CEC8;
+            overflow: hidden;
+        }
+        .swipe-bg::before {
+            content: '';
+            position: absolute;
+            top: 15%; left: 15%;
+            width: 320px; height: 320px;
+            border-radius: 50%;
+            background: rgba(23,184,151,0.35);
+            filter: blur(80px);
+        }
+        .swipe-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 20%; right: 10%;
+            width: 280px; height: 280px;
+            border-radius: 50%;
+            background: rgba(13,124,102,0.28);
+            filter: blur(80px);
+        }
+
+        /* Flashcard overrides for new design */
+        .flashcard {
+            border-radius: 24px !important;
+            box-shadow: 0 20px 60px -12px rgba(0,0,0,0.18) !important;
+        }
+        .flashcard.top-card {
+            box-shadow: 0 24px 64px -12px rgba(0,0,0,0.22) !important;
+        }
+
+        /* Tag pill */
+        .swipe-tag {
+            display: inline-flex;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1.5px solid #D1D5DB;
+            color: #374151;
+            background: transparent;
+            letter-spacing: 0.02em;
+        }
+
+        /* Nav arrows */
+        .swipe-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: all 0.2s;
+            z-index: 20;
+        }
+        .swipe-arrow:hover { background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.16); }
+        .swipe-arrow-left { left: -18px; }
+        .swipe-arrow-right { right: -18px; }
+
+        /* Action buttons */
+        .swipe-btn-skip {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1.5px solid #0D7C66;
+            color: #0D7C66;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .swipe-btn-skip:hover { background: #E6F5F0; }
+        .swipe-btn-save {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            color: #fff;
+            background: linear-gradient(135deg, #0D7C66, #17B897);
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(13,124,102,0.25);
+        }
+        .swipe-btn-save:hover { background: linear-gradient(135deg, #0a6b58, #14a687); }
+
+        /* Scheme icon circle */
+        .scheme-icon-circle {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            background: #E6F5F0;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        /* Pagination */
+        .sw-pag { display: flex; align-items: center; gap: 6px; }
+        .sw-pag-dot {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: rgba(255,255,255,0.6);
+            color: #374151;
+            transition: all 0.2s;
+        }
+        .sw-pag-dot.active {
+            background: #0D7C66;
+            color: #fff;
+        }
+        .sw-pag-arrow {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.5);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .sw-pag-arrow:hover { background: rgba(255,255,255,0.8); }
+
+        /* ===== DECK / FLASHCARD STYLES (required by swipe.js) ===== */
+        .deck-container {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flashcard {
+            position: absolute;
+            width: 90%;
+            max-width: 360px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 28px 24px 24px;
+            box-shadow: 0 20px 60px -12px rgba(0,0,0,0.18);
+            border: 1px solid #E5E7EB;
+            overflow: hidden;
+            transform-origin: bottom center;
+            transform: rotate(var(--rotation, 0deg));
+            z-index: var(--z, 1);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            will-change: transform;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
+        .flashcard.top-card {
+            cursor: grab;
+            box-shadow: 0 24px 64px -12px rgba(0,0,0,0.22);
+        }
+        .flashcard.top-card:active { cursor: grabbing; }
+        .flashcard.bg-card {
+            pointer-events: none;
+            background: #f8fafc;
+        }
+        .flashcard.dragging {
+            cursor: grabbing;
+            transition: none;
+        }
+        .flashcard.swipe-away {
+            transition: transform 0.4s cubic-bezier(0.4,0,0.6,1), opacity 0.4s ease;
+        }
+        .flashcard.snap-back {
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .flashcard.promoting {
+            transition: transform 0.42s cubic-bezier(0.34, 1.2, 0.64, 1);
+        }
+        .flashcard.deck-enter {
+            animation: deckEnter 0.35s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+        }
+        @keyframes deckEnter {
+            from { opacity: 0; transform: rotate(var(--rotation, 0deg)) scale(0.9); }
+            to   { opacity: 1; transform: rotate(var(--rotation, 0deg)) scale(1); }
+        }
+    </style>
 </head>
 
-<body class="bg-bg text-text-primary min-h-screen flex flex-col">
+<body class="text-text-primary min-h-screen flex flex-col" style="background:transparent;">
+
+    <!-- Blurred background -->  
+    <div class="swipe-bg"></div>
 
     <!-- ========== NAVBAR ========== -->
-    <nav class="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-surface-soft/60 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <nav class="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-white/30 shadow-sm" style="position:relative;z-index:30;">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
             <a href="dashboard.html" class="flex items-center gap-2 group">
-                <div
-                    class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 group-hover:shadow-md group-hover:shadow-primary/10">
-                    <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                </div>
-                <span class="text-lg font-bold text-text-primary">Scheme <span class="text-gradient">Setu</span></span>
+                <span class="text-lg font-bold text-text-primary">Scheme<span class="text-gradient">Setu</span></span>
             </a>
-
             <div class="hidden sm:flex items-center gap-1">
+                <a href="search.html" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Search</a>
+                <a href="wishlist.html" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Wishlist</a>
+                <a href="profile.html" class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Profile</a>
                 <span id="user-display" class="user-badge hidden"></span>
                 <button id="logout-btn" class="logout-btn hidden">Logout</button>
-                <a href="dashboard.html"
-                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Dashboard</a>
-                <a href="search.html"
-                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Search</a>
-                <a href="wishlist.html"
-                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Wishlist</a>
-                <a href="profile.html"
-                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Profile</a>
             </div>
-
-            <button id="mobile-menu-btn"
-                class="sm:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+            <div class="flex items-center gap-3">
+                <button id="mobile-menu-btn" class="sm:hidden p-2 rounded-lg text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
         </div>
-
         <div id="mobile-menu" class="sm:hidden hidden border-t border-surface-soft/60 bg-white/95 backdrop-blur-md">
             <div class="px-4 py-3 space-y-1">
-                <a href="dashboard.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Dashboard</a>
-                <a href="search.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Search</a>
-                <a href="wishlist.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Wishlist</a>
-                <a href="profile.html"
-                    class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Profile</a>
+                <a href="dashboard.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Dashboard</a>
+                <a href="search.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Search</a>
+                <a href="wishlist.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Wishlist</a>
+                <a href="profile.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Profile</a>
                 <div class="flex items-center gap-2 px-3 py-2">
                     <span id="user-display-mobile" class="user-badge hidden"></span>
                     <button id="logout-btn-mobile" class="logout-btn hidden">Logout</button>
@@ -91,74 +275,62 @@
     </nav>
 
     <!-- ========== APP CONTENT (hidden until login) ========== -->
-    <div id="app-content">
+    <div id="app-content" style="position:relative;z-index:1;">
 
         <!-- ========== MAIN CONTENT ========== -->
-        <main class="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12">
-            <div class="w-full max-w-md">
+        <main class="flex-1 flex flex-col items-center px-4 sm:px-6 py-6 sm:py-10">
+            <div class="w-full max-w-sm">
 
                 <!-- Progress Section -->
-                <div id="progress-section" class="mb-6 slide-down">
-                    <div class="flex items-center justify-between text-sm mb-2">
-                        <span class="text-text-secondary">Reviewing schemes</span>
-                        <span id="progress-text" class="text-text-primary font-medium">1 / 5</span>
+                <div id="progress-section" class="mb-5 slide-down">
+                    <div class="flex items-center justify-between text-xs mb-1.5">
+                        <span class="text-white/80 font-medium">Reviewing schemes</span>
+                        <span id="progress-text" class="text-white font-semibold">1 / 5</span>
                     </div>
-                    <div class="progress-bar">
-                        <div id="progress-fill" class="progress-bar-fill" style="width: 20%"></div>
+                    <div class="progress-bar" style="background:rgba(255,255,255,0.3);">
+                        <div id="progress-fill" class="progress-bar-fill" style="width: 20%; background:linear-gradient(90deg,#0D7C66,#17B897);"></div>
                     </div>
                 </div>
 
                 <!-- ===== Swipe Deck Container ===== -->
                 <div id="card-container" class="deck-container">
-                    <!-- Fanned flashcards are rendered dynamically by swipe.js -->
+                    <!-- Fanned flashcards rendered dynamically by swipe.js -->
                 </div>
 
-                <!-- ===== Action Buttons ===== -->
-                <div id="action-buttons" class="flex items-center justify-center gap-6 mt-8 slide-up stagger-2">
-                    <!-- Discard Button -->
-                    <button id="discard-btn"
-                        class="w-16 h-16 rounded-full bg-white border-2 border-red-300 flex items-center justify-center text-red-500 hover:bg-red-50 hover:border-red-500 transition-all duration-300 active:scale-90 shadow-sm"
-                        title="Discard Scheme">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-
-                    <!-- Save Button -->
-                    <button id="save-btn"
-                        class="w-16 h-16 rounded-full bg-white border-2 border-green-300 flex items-center justify-center text-green-500 hover:bg-green-50 hover:border-green-500 transition-all duration-300 active:scale-90 shadow-sm"
-                        title="Save Scheme">
-                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                        </svg>
-                    </button>
+                <!-- ===== Action Buttons (hidden, used by swipe.js via IDs) ===== -->
+                <div id="action-buttons" class="hidden">
+                    <button id="discard-btn"></button>
+                    <button id="save-btn"></button>
                 </div>
+
+                <!-- ===== Swipe Hint ===== -->
+                <div class="flex items-center justify-center gap-4 mt-4 text-xs text-white/70">
+                    <span class="flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                        Skip
+                    </span>
+                    <span class="flex items-center gap-1">
+                        Save
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </span>
+                </div>
+
+
 
                 <!-- ===== Empty State (hidden by default) ===== -->
                 <div id="empty-state" class="hidden text-center py-16">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/5 flex items-center justify-center">
-                        <svg class="w-10 h-10 text-primary/60" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-white/20 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
-                    <h2 class="text-xl font-bold mb-2">You've reviewed all schemes!</h2>
-                    <p class="text-text-secondary mb-8">Check your wishlist for saved schemes or search again with
-                        different
-                        details.</p>
+                    <h2 class="text-xl font-bold mb-2 text-white">You've reviewed all schemes!</h2>
+                    <p class="text-white/70 mb-8">Check your wishlist for saved schemes or search again.</p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <a href="wishlist.html"
-                            class="btn-primary inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-accent shadow-lg shadow-primary/20 h-12 sm:h-10">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                            </svg>
+                        <a href="wishlist.html" class="inline-flex items-center gap-2 bg-white text-primary font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-white/90 shadow-lg h-10">
                             View Wishlist
                         </a>
-                        <a href="profile.html"
-                            class="btn-secondary inline-flex items-center gap-2 bg-white text-text-primary font-medium px-6 py-3 rounded-xl border border-surface-soft transition-all duration-300 hover:border-primary/30 hover:text-primary shadow-sm h-12 sm:h-10">
+                        <a href="profile.html" class="inline-flex items-center gap-2 bg-white/20 text-white font-medium px-6 py-3 rounded-xl border border-white/30 transition-all duration-300 hover:bg-white/30 h-10">
                             Search Again
                         </a>
                     </div>
@@ -166,19 +338,14 @@
 
                 <!-- ===== No Schemes Found State (hidden by default) ===== -->
                 <div id="no-schemes-state" class="hidden text-center py-16">
-                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/5 flex items-center justify-center">
-                        <svg class="w-10 h-10 text-primary/60" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-white/20 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
-                    <h2 class="text-xl font-bold mb-2">No Schemes Found</h2>
-                    <p class="text-text-secondary mb-8">We couldn't find any schemes matching your profile. Try
-                        adjusting
-                        your details.</p>
-                    <a href="profile.html"
-                        class="btn-primary inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-accent shadow-lg shadow-primary/20 h-12 sm:h-10">
+                    <h2 class="text-xl font-bold mb-2 text-white">No Schemes Found</h2>
+                    <p class="text-white/70 mb-8">We couldn't find schemes matching your profile. Try adjusting your details.</p>
+                    <a href="profile.html" class="inline-flex items-center gap-2 bg-white text-primary font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:bg-white/90 shadow-lg h-10">
                         Edit Profile
                     </a>
                 </div>
@@ -186,18 +353,6 @@
             </div>
         </main>
 
-        <!-- ========== FOOTER ========== -->
-        <footer class="border-t border-surface-soft/40 px-4 sm:px-6 py-8 bg-white">
-            <div
-                class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-text-secondary">
-                <p>&copy; 2026 Scheme Setu &mdash; Academic Project</p>
-                <div class="flex items-center gap-4">
-                    <a href="dashboard.html" class="hover:text-primary transition-colors duration-300">Dashboard</a>
-                    <a href="profile.html" class="hover:text-primary transition-colors duration-300">Profile</a>
-                    <a href="wishlist.html" class="hover:text-primary transition-colors duration-300">Wishlist</a>
-                </div>
-            </div>
-        </footer>
 
     </div><!-- /app-content -->
 

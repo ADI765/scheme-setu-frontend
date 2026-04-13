@@ -21,7 +21,10 @@
     // ===== Search Handler =====
     async function performSearch(query) {
         query = query.trim();
-        if (query.length < 2) return;
+        if (query.length < 2) {
+            showAllSchemes();
+            return;
+        }
 
         // Show loading, hide others
         if (searchLoading) searchLoading.classList.remove("hidden");
@@ -103,13 +106,14 @@
     async function searchLocalJSON(query) {
         if (!_cachedLocalSchemes) {
             try {
-                const res = await fetch("data/schemes_schemesetu_v3.json");
+                const res = await fetch("data/schemesetu_v5.json");
                 const data = await res.json();
                 const ageGroups = data.schemeSetu?.ageGroups || [];
                 _cachedLocalSchemes = ageGroups.flatMap(g => (g.schemes || []).map(s => ({
                     scheme_name: s.name || s.shortName,
                     description: s.description || "",
-                    apply_link: s.officialWebsite || "#",
+                    apply_link: s.apply_link || "#",
+                    application_mode: s.application_mode || "offline",
                     category: s.category || "",
                     govtLevel: s.govtLevel || "",
                     amount: s.amount || "N/A",
@@ -117,8 +121,9 @@
                     tags: s.tags || [],
                     eligibility: s.eligibility,
                     benefits: s.benefits,
-                    howToApply: s.howToApply,
-                    documentsRequired: s.documentsRequired
+                    how_to_apply: s.how_to_apply || [],
+                    required_documents: s.required_documents || [],
+                    optional_documents: s.optional_documents || []
                 })));
             } catch (err) {
                 console.warn("Could not load local scheme data.", err);
@@ -130,6 +135,46 @@
             const text = [scheme.scheme_name, scheme.description, scheme.category, scheme.govtLevel, ...(scheme.tags || [])].join(" ").toLowerCase();
             return keywords.every(kw => text.includes(kw));
         });
+    }
+
+    // ===== Show All Schemes (no filter) =====
+    async function showAllSchemes() {
+        if (searchLoading) searchLoading.classList.remove("hidden");
+        if (searchResults) searchResults.innerHTML = "";
+        if (searchCount) searchCount.classList.add("hidden");
+        if (searchEmpty) searchEmpty.classList.add("hidden");
+        if (searchInitial) searchInitial.classList.add("hidden");
+
+        try {
+            // Ensure local cache is loaded
+            if (!_cachedLocalSchemes) {
+                await searchLocalJSON("");
+            }
+            const all = _cachedLocalSchemes || [];
+
+            if (searchLoading) searchLoading.classList.add("hidden");
+
+            if (all.length === 0) {
+                if (searchEmpty) {
+                    searchEmpty.classList.remove("hidden");
+                    const emptyText = searchEmpty.querySelector("p");
+                    if (emptyText) emptyText.textContent = "No schemes available.";
+                }
+            } else {
+                if (searchCount) {
+                    searchCount.textContent = `${all.length} scheme${all.length > 1 ? "s" : ""} found`;
+                    searchCount.classList.remove("hidden");
+                }
+                renderResults(all, "");
+            }
+        } catch (err) {
+            if (searchLoading) searchLoading.classList.add("hidden");
+            if (searchEmpty) {
+                searchEmpty.classList.remove("hidden");
+                const emptyText = searchEmpty.querySelector("p");
+                if (emptyText) emptyText.textContent = "Could not load schemes.";
+            }
+        }
     }
 
     // ===== Render Results =====
@@ -191,12 +236,12 @@
                 </div>
 
                 <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
-                    <a href="${escapeHtml(scheme.apply_link || "#")}" target="_blank" rel="noopener noreferrer" class="search-card-link">
-                        Apply on Official Portal
+                    ${scheme.application_mode === 'online' && scheme.apply_link ? `<a href="${escapeHtml(scheme.apply_link)}" target="_blank" rel="noopener noreferrer" class="search-card-link">
+                        Apply Online
                         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                         </svg>
-                    </a>
+                    </a>` : `<span class="search-card-link" style="opacity:0.7;cursor:default;">Offline Application</span>`}
                     <button class="more-info-btn search-more-info" type="button">
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -289,5 +334,14 @@
             searchInput.value = urlQuery;
             performSearch(urlQuery);
         }
+    }
+
+    // ===== All Schemes Button =====
+    const allSchemesBtn = document.getElementById("all-schemes-btn");
+    if (allSchemesBtn) {
+        allSchemesBtn.addEventListener("click", () => {
+            if (searchInput) searchInput.value = "";
+            showAllSchemes();
+        });
     }
 })();

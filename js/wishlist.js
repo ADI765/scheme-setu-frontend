@@ -105,13 +105,13 @@
       </div>
 
       <div class="flex items-center gap-3 flex-wrap">
-        <a href="${escapeAttr(scheme.apply_link || "#")}" target="_blank" rel="noopener noreferrer"
+        ${scheme.application_mode === 'online' && scheme.apply_link ? `<a href="${escapeAttr(scheme.apply_link)}" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center gap-1.5 text-primary text-sm font-medium hover:text-accent transition-colors duration-300">
-            Apply Now
+            Apply Online
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-        </a>
+        </a>` : `<span class="inline-flex items-center gap-1.5 text-text-secondary text-sm font-medium" style="opacity:0.7;">Offline Application</span>`}
         <button class="more-info-btn wishlist-more-info" type="button">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

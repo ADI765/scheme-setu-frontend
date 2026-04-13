@@ -114,14 +114,11 @@
             <a href="dashboard.html" class="flex items-center gap-2 group">
                 <span class="text-xl font-extrabold text-teal-700 tracking-tighter font-headline">Scheme Setu</span>
             </a>
-            <div class="hidden md:flex gap-6 items-center">
-                <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-colors" href="dashboard.html">Dashboard</a>
-                <a class="text-teal-700 font-bold border-b-2 border-teal-600 pb-1 font-body text-sm" href="search.html">Search</a>
-                <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-colors" href="wishlist.html">Wishlist</a>
-                <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-colors" href="profile.html">Profile</a>
-            </div>
-        </div>
         <div class="hidden md:flex items-center gap-4">
+            <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-colors" href="dashboard.html">Dashboard</a>
+            <a class="text-teal-700 font-bold border-b-2 border-teal-600 pb-1 font-body text-sm" href="search.html">Search</a>
+            <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-colors" href="wishlist.html">Wishlist</a>
+            <a class="text-slate-500 font-medium font-body text-sm hover:text-teal-700 transition-colors" href="profile.html">Profile</a>
             <span id="user-display" class="user-badge hidden font-body text-sm font-bold text-teal-700"></span>
             <button id="logout-btn" class="logout-btn hidden text-sm font-body text-error hover:underline bg-transparent border-none cursor-pointer">Logout</button>
         </div>
@@ -163,6 +160,7 @@
                     <h3 class="font-headline font-bold text-on-surface">Quick Searches</h3>
                 </div>
                 <div class="flex flex-wrap gap-2">
+                    <button id="all-schemes-btn" class="px-4 py-2 bg-primary text-white rounded-full text-xs font-bold font-label transition-transform hover:scale-105 shadow-sm">All Schemes</button>
                     <button class="search-quick-tag px-4 py-2 bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-bold font-label transition-transform hover:scale-105" data-query="scholarship">Scholarship</button>
                     <button class="search-quick-tag px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-medium font-label transition-transform hover:scale-105" data-query="punjab">Punjab</button>
                     <button class="search-quick-tag px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-medium font-label transition-transform hover:scale-105" data-query="girl education">Girl Education</button>

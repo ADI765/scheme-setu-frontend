@@ -15,13 +15,13 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: "#1D4ED8",
-                        accent: "#3B82F6",
-                        bg: "#F8FAFC",
+                        primary: "#0D7C66",
+                        accent: "#17B897",
+                        bg: "#F3F4F6",
                         surface: "#FFFFFF",
-                        "surface-soft": "#E2E8F0",
-                        "text-primary": "#1E293B",
-                        "text-secondary": "#64748B",
+                        "surface-soft": "#E5E7EB",
+                        "text-primary": "#1F2937",
+                        "text-secondary": "#6B7280",
                     },
                     fontFamily: {
                         sans: ['"Inter"', "system-ui", "sans-serif"],
@@ -33,36 +33,36 @@
 
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        .text-gradient {
+            background: linear-gradient(135deg, #0D7C66, #17B897);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-link-active { color: #0D7C66 !important; }
+        .nav-link::after { background: #0D7C66; }
+    </style>
 </head>
 
 <body class="bg-bg text-text-primary min-h-screen flex flex-col">
 
     <!-- ========== NAVBAR ========== -->
-    <nav class="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-surface-soft/60 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <nav class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-surface-soft/60 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
             <a href="dashboard.html" class="flex items-center gap-2 group">
-                <div
-                    class="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 group-hover:shadow-md group-hover:shadow-primary/10">
-                    <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                </div>
-                <span class="text-lg font-bold text-text-primary">Scheme <span class="text-gradient">Setu</span></span>
+                <span class="text-lg font-bold text-text-primary">Scheme<span class="text-gradient">Setu</span></span>
             </a>
 
             <div class="hidden sm:flex items-center gap-1">
-                <span id="user-display" class="user-badge hidden"></span>
-                <button id="logout-btn" class="logout-btn hidden">Logout</button>
-                <a href="dashboard.html"
-                    class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Dashboard</a>
                 <a href="search.html"
                     class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Search</a>
                 <a href="wishlist.html"
                     class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Wishlist</a>
                 <a href="profile.html"
                     class="nav-link px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300">Profile</a>
+                <span id="user-display" class="user-badge hidden"></span>
+                <button id="logout-btn" class="logout-btn hidden">Logout</button>
             </div>
 
             <button id="mobile-menu-btn"
@@ -153,26 +153,6 @@
                             </p>
                         </div>
 
-                        <!-- Education Level -->
-                        <div class="mb-5 form-group">
-                            <label for="education_level"
-                                class="block text-sm font-medium text-text-secondary mb-1.5">Education Level</label>
-                            <select id="education_level" name="education_level"
-                                class="w-full bg-bg text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
-                                required>
-                                <option value="" disabled selected class="text-text-secondary/60">Select education level
-                                </option>
-                                <option value="high-school">High School</option>
-                                <option value="senior-secondary">Senior Secondary</option>
-                                <option value="diploma">Diploma</option>
-                                <option value="undergraduate">Undergraduate</option>
-                                <option value="postgraduate">Postgraduate</option>
-                                <option value="phd">PhD / Research</option>
-                            </select>
-                            <p id="education_level-error" class="text-red-500 text-xs mt-1 hidden">Please select your
-                                education level</p>
-                        </div>
-
                         <!-- Occupation -->
                         <div class="mb-5 form-group">
                             <label for="occupation"
@@ -196,6 +176,34 @@
                             </p>
                         </div>
 
+                        <!-- Degree -->
+                        <div class="mb-5 form-group">
+                            <label for="education_level"
+                                class="block text-sm font-medium text-text-secondary mb-1.5">Degree</label>
+                            <select id="education_level" name="education_level"
+                                class="w-full bg-bg text-text-primary px-4 py-3 rounded-lg border border-surface-soft transition-all duration-300 cursor-pointer"
+                                required>
+                                <option value="" disabled selected class="text-text-secondary/60">Select degree
+                                </option>
+                                <option value="high-school">High School</option>
+                                <option value="senior-secondary">Senior Secondary</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="postgraduate">Postgraduate</option>
+                                <option value="phd">PhD / Research</option>
+                            </select>
+                            <p id="education_level-error" class="text-red-500 text-xs mt-1 hidden">Please select your
+                                degree</p>
+                        </div>
+
+                        <!-- Rank (Optional) -->
+                        <div class="mb-5 form-group">
+                            <label for="rank"
+                                class="block text-sm font-medium text-text-secondary mb-1.5">Rank <span class="text-text-secondary/50 font-normal">(optional)</span></label>
+                            <input type="number" id="rank" name="rank" placeholder="e.g. 1500" min="1"
+                                class="w-full bg-bg text-text-primary px-4 py-3 rounded-lg border border-surface-soft placeholder:text-text-secondary/60 transition-all duration-300" />
+                        </div>
+
                         <!-- Family Income (Salary) -->
                         <div class="mb-8 form-group">
                             <label for="income" class="block text-sm font-medium text-text-secondary mb-1.5">Annual
@@ -205,6 +213,7 @@
                                 required>
                                 <option value="" disabled selected class="text-text-secondary/60">Select income range
                                 </option>
+                                <option value="no-income">No Income</option>
                                 <option value="0-100000">Below ₹1,00,000</option>
                                 <option value="100000-250000">₹1,00,000 – ₹2,50,000</option>
                                 <option value="250000-500000">₹2,50,000 – ₹5,00,000</option>

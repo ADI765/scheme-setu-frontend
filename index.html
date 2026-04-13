@@ -140,7 +140,7 @@
         <section class="reveal md:col-span-4 bg-secondary-container rounded-xl p-8 flex flex-col justify-between overflow-hidden relative group hover:scale-[1.005] transition-transform duration-300">
             <div>
                 <span class="bg-on-secondary-container text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-widest font-label uppercase mb-6 inline-block">LIVE UPDATES</span>
-                <h2 class="text-2xl font-headline font-extrabold text-on-secondary-container leading-tight">55+ Government Schemes Now Available on SchemeSetu</h2>
+                <h2 class="text-2xl font-headline font-extrabold text-on-secondary-container leading-tight">66 Government Schemes Now Available on SchemeSetu</h2>
             </div>
             <div class="mt-8">
                 <img class="w-full h-40 object-cover rounded-xl mb-4 shadow-sm" alt="Students studying together" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN3XmB8EWPQ8mBqjIEetgmW72yObLWeNXC3-VWsvYwZfXPSYFkTCBJNtiv_0jrIADTos0MRiY5_DIxPTK16iEz7nQ4IWvxxVNm1yGaPfCiK31rt6ualFXSQYdnt3KHSNNOuKvWFJvLzSsNKB3IMW7rCIy-yff6MrSzY5-U54t5hXDvsan_DEKRwRu2Z9U-7d5rluU52tGu55Bn02CFgv61MHxk6ylUr8Fq62JLiTNs6ei4wD3XAbHpY1r0b7wMccfKwKUS9tV3rd4"/>
@@ -285,18 +285,57 @@
         revealObserver.observe(el);
     });
 
-    // Smooth Scroll for Anchor Links
+    // Smooth Scroll for Anchor Links + Active State Fix
+    const navLinks = document.querySelectorAll('#landing-nav a[href^="#"], #landing-mobile-menu a[href^="#"]');
+
+    function setActiveNav(href) {
+        navLinks.forEach(link => {
+            const isActive = link.getAttribute("href") === href;
+            if (isActive) {
+                link.classList.add("text-teal-700", "font-bold", "border-b-2", "border-teal-600", "pb-1");
+                link.classList.remove("text-on-surface-variant");
+            } else {
+                link.classList.remove("text-teal-700", "font-bold", "border-b-2", "border-teal-600", "pb-1");
+                link.classList.add("text-on-surface-variant");
+            }
+        });
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             const targetId = this.getAttribute("href");
-            if (targetId === "#") return;
+            if (targetId === "#") {
+                setActiveNav("#");
+                return;
+            }
             const target = document.querySelector(targetId);
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: "smooth", block: "start" });
+                setActiveNav(targetId);
             }
         });
     });
+
+    // Sync active nav on scroll using IntersectionObserver
+    const sections = document.querySelectorAll("#how-it-works, #about");
+    if (sections.length > 0) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveNav("#" + entry.target.id);
+                }
+            });
+        }, { threshold: 0.3 });
+        sections.forEach(s => sectionObserver.observe(s));
+
+        // Reset to Discover when scrolled to top
+        window.addEventListener("scroll", () => {
+            if (window.scrollY < 200) {
+                setActiveNav("#");
+            }
+        });
+    }
 </script>
 
 <!-- ========== PREVIEW SEARCH LOGIC ========== -->
@@ -315,7 +354,7 @@
 
         async function loadSchemes() {
             try {
-                const res = await fetch("data/schemes_schemesetu_v3.json");
+                const res = await fetch("data/schemesetu_v5.json");
                 const data = await res.json();
                 const ageGroups = data.schemeSetu?.ageGroups || [];
                 allSchemes = ageGroups.flatMap(group => group.schemes || []);
