@@ -80,7 +80,7 @@ async function fetchSchemes(filters = {}) {
         if (typeof dummySchemesList !== 'undefined') return dummySchemesList;
         return [];
     }
-    
+
     const params = new URLSearchParams();
     if (filters.category) params.append('category', filters.category);
     if (filters.govt_level) params.append('govt_level', filters.govt_level);

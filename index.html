@@ -354,10 +354,10 @@
 
         async function loadSchemes() {
             try {
-                const res = await fetch("data/schemesetu_v5.json");
+                const res = await fetch("http://127.0.0.1:5000/api/schemes");
+                if (!res.ok) throw new Error("API failed");
                 const data = await res.json();
-                const ageGroups = data.schemeSetu?.ageGroups || [];
-                allSchemes = ageGroups.flatMap(group => group.schemes || []);
+                allSchemes = data || [];
             } catch (err) {
                 console.warn("Preview search: Could not load scheme data.", err);
                 allSchemes = [];

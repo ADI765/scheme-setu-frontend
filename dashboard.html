@@ -47,9 +47,15 @@
       margin: 0 auto;
       padding: 16px;
     }
+
     @media(min-width:640px) {
-      .bento-grid { max-width: 540px; gap: 16px; padding: 24px; }
+      .bento-grid {
+        max-width: 540px;
+        gap: 16px;
+        padding: 24px;
+      }
     }
+
     .bento-card {
       background: #fff;
       border-radius: 20px;
@@ -58,53 +64,102 @@
       overflow: hidden;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
+
     .bento-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 32px -8px rgba(13,124,102,0.13);
+      box-shadow: 0 12px 32px -8px rgba(13, 124, 102, 0.13);
     }
-    .bento-card.col-span-2 { grid-column: span 2; }
+
+    .bento-card.col-span-2 {
+      grid-column: span 2;
+    }
+
     .bento-card.bento-green-bg {
       background: linear-gradient(135deg, #0D7C66, #17B897);
       color: #fff;
     }
-    .bento-card.bento-green-bg .bento-card-subtitle { color: rgba(255,255,255,0.8); }
-    .bento-card.bento-mint-bg { background: #E6F5F0; }
+
+    .bento-card.bento-green-bg .bento-card-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .bento-card.bento-mint-bg {
+      background: #E6F5F0;
+    }
+
     .bento-icon-circle {
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-radius: 14px;
-      background: rgba(13,124,102,0.1);
-      display: flex; align-items: center; justify-content: center;
+      background: rgba(13, 124, 102, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
-    .bento-card.bento-green-bg .bento-icon-circle { background: rgba(255,255,255,0.2); }
-    .bento-badge {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 22px; height: 22px; border-radius: 50%;
-      background: #0D7C66; color: #fff;
-      font-size: 0.7rem; font-weight: 700;
+
+    .bento-card.bento-green-bg .bento-icon-circle {
+      background: rgba(255, 255, 255, 0.2);
     }
+
+    .bento-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #0D7C66;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
     .bento-pill {
-      display: inline-flex; padding: 6px 14px; border-radius: 999px;
-      background: #fff; color: #0D7C66;
-      font-size: 0.8rem; font-weight: 600;
-      border: none; cursor: pointer;
+      display: inline-flex;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #fff;
+      color: #0D7C66;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
       transition: background 0.2s;
       text-decoration: none;
     }
-    .bento-pill:hover { background: #E6F5F0; }
+
+    .bento-pill:hover {
+      background: #E6F5F0;
+    }
+
     .text-gradient {
       background: linear-gradient(135deg, #0D7C66, #17B897);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     /* Building illustration placeholder */
-    .bento-building-icon { opacity: 0.15; position: absolute; bottom: 8px; right: 8px; }
+    .bento-building-icon {
+      opacity: 0.15;
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+    }
 
     /* Navbar override for teal theme */
-    .nav-link-active { color: #0D7C66 !important; }
-    .nav-link::after { background: #0D7C66; }
-    .nav-link:hover { color: #0D7C66 !important; }
+    .nav-link-active {
+      color: #0D7C66 !important;
+    }
+
+    .nav-link::after {
+      background: #0D7C66;
+    }
+
+    .nav-link:hover {
+      color: #0D7C66 !important;
+    }
   </style>
 </head>
 
@@ -114,7 +169,7 @@
   <nav class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-surface-soft/60 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
       <a href="dashboard.html" class="flex items-center gap-2 group">
-        <span class="text-lg font-bold text-text-primary">Scheme<span class="text-gradient">Setu</span></span>
+        <span class="text-xl font-extrabold text-primary tracking-tighter">Scheme Setu</span>
       </a>
 
       <div class="hidden sm:flex items-center gap-1">
@@ -140,7 +195,8 @@
 
     <div id="mobile-menu" class="sm:hidden hidden border-t border-surface-soft/60 bg-white/95 backdrop-blur-md">
       <div class="px-4 py-3 space-y-1">
-        <a href="dashboard.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-primary bg-primary/5">Dashboard</a>
+        <a href="dashboard.html"
+          class="block px-3 py-2 rounded-lg text-sm font-medium text-primary bg-primary/5">Dashboard</a>
         <a href="search.html"
           class="block px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary hover:bg-primary/5 transition-all">Search</a>
         <a href="wishlist.html"
@@ -164,7 +220,8 @@
 
         <!-- Row 1: Welcome -->
         <div class="bento-card col-span-2">
-          <h1 class="text-2xl sm:text-3xl font-bold leading-tight mb-1">Welcome,<br/><span id="dashboard-user-name">User</span>!</h1>
+          <h1 class="text-2xl sm:text-3xl font-bold leading-tight mb-1">Welcome,<br /><span
+              id="dashboard-user-name">User</span>!</h1>
           <p class="text-xs text-text-secondary">Discover government schemes tailored for you.</p>
         </div>
 
@@ -172,7 +229,8 @@
         <div class="bento-card col-span-2 bento-green-bg">
           <div class="flex-1">
             <h2 class="text-xl font-bold mb-1">Find My Schemes</h2>
-            <p class="bento-card-subtitle text-sm leading-relaxed mb-4" style="max-width:280px;">Get matched with eligible schemes based on your profile details.</p>
+            <p class="bento-card-subtitle text-sm leading-relaxed mb-4" style="max-width:280px;">Get matched with
+              eligible schemes based on your profile details.</p>
             <a href="profile.html" class="bento-pill">Go to Profile</a>
           </div>
         </div>
@@ -180,7 +238,8 @@
         <!-- Row 3: Search Schemes + Wishlist -->
         <a href="search.html" class="bento-card bento-mint-bg flex flex-col items-start gap-3">
           <div class="bento-icon-circle">
-            <svg class="w-5 h-5 text-bento-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg class="w-5 h-5 text-bento-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
@@ -191,7 +250,7 @@
         <a href="wishlist.html" class="bento-card flex flex-col items-start gap-2">
           <div class="flex items-center gap-2">
             <p class="text-base font-bold text-text-primary">Wishlist</p>
-            <span class="bento-badge" id="dashboard-wishlist-count">0</span>
+            <span class="bento-badge" id="dashboard-wishlist-count"></span>
           </div>
           <p class="text-xs text-text-secondary leading-relaxed">View your saved schemes and track applications.</p>
         </a>
@@ -200,8 +259,10 @@
         <a href="find.html" class="bento-card col-span-2 flex flex-col gap-2">
           <div class="flex items-center gap-3">
             <div class="bento-icon-circle" style="width:36px;height:36px;border-radius:12px;">
-              <svg class="w-4 h-4 text-bento-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              <svg class="w-4 h-4 text-bento-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
             <div>
@@ -216,7 +277,8 @@
 
     <!-- ========== FOOTER ========== -->
     <footer class="border-t border-surface-soft/40 px-4 sm:px-6 py-6 bg-white">
-      <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-secondary">
+      <div
+        class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-secondary">
         <div>
           <p class="font-bold text-text-primary text-sm">SchemeSetu</p>
           <p>&copy; 2026 Scheme Setu, Architecting Accessibility.</p>
@@ -376,6 +438,21 @@
     const mobileMenu = document.getElementById("mobile-menu");
     menuBtn.addEventListener("click", () => {
       mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+
+  <!-- Wishlist Count Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      try {
+        const wishlist = JSON.parse(localStorage.getItem("schemeSetu_wishlist")) || [];
+        const countSpan = document.getElementById("dashboard-wishlist-count");
+        if (countSpan) {
+          countSpan.textContent = wishlist.length;
+        }
+      } catch (e) {
+        console.warn("Failed to load wishlist count", e);
+      }
     });
   </script>
 

@@ -41,22 +41,17 @@
                 await new Promise((r) => setTimeout(r, 300));
                 results = searchDummyData(query);
             } else {
-                // Try real API first, fallback to local JSON
-                try {
-                    const response = await fetch(
-                        `${API_BASE_URL}/api/search-schemes?q=${encodeURIComponent(query)}`
-                    );
+                // Real API
+                const response = await fetch(
+                    `${API_BASE_URL}/api/search-schemes?q=${encodeURIComponent(query)}`
+                );
 
-                    if (!response.ok) {
-                        throw new Error("API error");
-                    }
-
-                    const data = await response.json();
-                    results = data.results || data.schemes || [];
-                } catch (_apiErr) {
-                    // Fallback: search local JSON data
-                    results = await searchLocalJSON(query);
+                if (!response.ok) {
+                    throw new Error("Failed to search schemes");
                 }
+
+                const data = await response.json();
+                results = data.results || data.schemes || [];
             }
 
             // Hide loading
@@ -101,41 +96,7 @@
         });
     }
 
-    // ===== Local JSON Fallback Search =====
-    let _cachedLocalSchemes = null;
-    async function searchLocalJSON(query) {
-        if (!_cachedLocalSchemes) {
-            try {
-                const res = await fetch("data/schemesetu_v5.json");
-                const data = await res.json();
-                const ageGroups = data.schemeSetu?.ageGroups || [];
-                _cachedLocalSchemes = ageGroups.flatMap(g => (g.schemes || []).map(s => ({
-                    scheme_name: s.name || s.shortName,
-                    description: s.description || "",
-                    apply_link: s.apply_link || "#",
-                    application_mode: s.application_mode || "offline",
-                    category: s.category || "",
-                    govtLevel: s.govtLevel || "",
-                    amount: s.amount || "N/A",
-                    deadline: s.deadline || "TBD",
-                    tags: s.tags || [],
-                    eligibility: s.eligibility,
-                    benefits: s.benefits,
-                    how_to_apply: s.how_to_apply || [],
-                    required_documents: s.required_documents || [],
-                    optional_documents: s.optional_documents || []
-                })));
-            } catch (err) {
-                console.warn("Could not load local scheme data.", err);
-                _cachedLocalSchemes = [];
-            }
-        }
-        const keywords = query.toLowerCase().split(/\s+/);
-        return _cachedLocalSchemes.filter(scheme => {
-            const text = [scheme.scheme_name, scheme.description, scheme.category, scheme.govtLevel, ...(scheme.tags || [])].join(" ").toLowerCase();
-            return keywords.every(kw => text.includes(kw));
-        });
-    }
+
 
     // ===== Show All Schemes (no filter) =====
     async function showAllSchemes() {
@@ -146,11 +107,18 @@
         if (searchInitial) searchInitial.classList.add("hidden");
 
         try {
-            // Ensure local cache is loaded
-            if (!_cachedLocalSchemes) {
-                await searchLocalJSON("");
+            let all = [];
+            if (typeof USE_DUMMY !== "undefined" && USE_DUMMY) {
+                await new Promise((r) => setTimeout(r, 300));
+                all = typeof dummySchemesList !== 'undefined' ? dummySchemesList : [];
+            } else {
+                const response = await fetch(`${API_BASE_URL}/api/schemes`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch schemes");
+                }
+                const data = await response.json();
+                all = data || [];
             }
-            const all = _cachedLocalSchemes || [];
 
             if (searchLoading) searchLoading.classList.add("hidden");
 
@@ -202,8 +170,13 @@
                 : "";
 
             card.innerHTML = `
-                <div class="search-card-header">
-                    <h3 class="search-card-title">${highlightedName}</h3>
+                <div class="search-card-header" style="position: relative;">
+                    <h3 class="search-card-title pr-8">${highlightedName}</h3>
+                    <button class="search-wishlist-btn absolute top-0 right-0 p-1 text-gray-300 hover:text-red-500 transition-colors duration-200" title="Add to Wishlist">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
                     <div class="search-card-badges">${categoryBadge}${govtBadge}</div>
                 </div>
                 <p class="search-card-desc">${highlightedDesc}</p>
@@ -228,11 +201,11 @@
 
                 <!-- Category Tags -->
                 <div class="flex flex-wrap gap-2 mb-4">
-                    ${(scheme.tags || []).slice(0, 3).map(tag => 
-                        `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
+                    ${(scheme.tags || []).slice(0, 3).map(tag =>
+                `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
                             ${tag}
                         </span>`
-                    ).join('')}
+            ).join('')}
                 </div>
 
                 <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
@@ -250,6 +223,28 @@
                     </button>
                 </div>
             `;
+
+            // Check if already in wishlist to style button
+            const wishlistBtn = card.querySelector(".search-wishlist-btn");
+            if (typeof isInWishlist === "function" && isInWishlist(scheme.scheme_name || scheme.name)) {
+                wishlistBtn.classList.replace("text-gray-300", "text-red-500");
+            }
+
+            wishlistBtn.addEventListener("click", () => {
+                if (typeof addToWishlist === "function") {
+                    const added = addToWishlist(scheme);
+                    if (added) {
+                        if (typeof showToast === "function") showToast("Scheme added to wishlist");
+                        wishlistBtn.classList.replace("text-gray-300", "text-red-500");
+                    } else {
+                        if (typeof removeFromWishlist === "function") {
+                            removeFromWishlist(scheme.scheme_name || scheme.name);
+                            wishlistBtn.classList.replace("text-red-500", "text-gray-300");
+                            if (typeof showToast === "function") showToast("Removed from wishlist");
+                        }
+                    }
+                }
+            });
 
             // Attach More Info click handler
             const moreInfoBtn = card.querySelector(".search-more-info");
